@@ -17,3 +17,20 @@ html {
   @apply h-full;
   
 }
+
+
+.navpanel {
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.navlogo {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  left: 0;
+  right: 0;
+
+}
+

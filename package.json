@@ -27,6 +27,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
     "swr": "^2.2.0",
+    "tw-elements": "^1.0.0-beta2",
     "typescript": "5.1.6",
     "webpack": "^5.88.2"
   },
