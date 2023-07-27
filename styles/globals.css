@@ -33,4 +33,7 @@ html {
   right: 0;
 
 }
+.carousel-text {
+  position: absolute;
+}
 
