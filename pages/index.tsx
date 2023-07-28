@@ -1,9 +1,10 @@
 import Image from "next/image";
 import React from "react";
-import Navbar from "@/components/Navbar";
 import movies from '@/lib/dummy';
 import axios from "axios";
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import MovieSlider from "@/components/MovieSlider";
 
 import {Movies, Movie} from "@/lib/interfaces";
 import { get } from "lodash";
@@ -38,18 +39,7 @@ export default function Home({movies}:any) {
     <Hero {...movies} />
 
       <h1 className="text-white">Home</h1>
-      <div className="flex gap-4 p-4 flex-wrap ">
-        {movies.results.map((movie: Movie) => {
-          return (
-            <div className="flex flex-col border w-40 p-4">
-                <div key={movie.id}>
-                <h1 className="text-white text-lg m-3">{movie.title}</h1>
-                <p className="text-white text-sm">{movie.overview}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <MovieSlider {...movies} />
     </>
   );
 }

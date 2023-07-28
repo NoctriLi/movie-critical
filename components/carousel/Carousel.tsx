@@ -24,7 +24,8 @@ const Carousel: React.FC<Movies> = (movies) => {
       data-te-touch="true"
     >
       <div
-        className="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
+        id="carousel-indicators"
+        className="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0 "
         data-te-carousel-indicators
       >
         {movies.results.map((movie: Movie, i) => {
@@ -42,16 +43,21 @@ const Carousel: React.FC<Movies> = (movies) => {
         })}
       </div>
 
-      <div className="relative flex rounded-lg shadow-lg mx-auto w-full overflow-hidden after:clear-both after:block after:content-['']">
+      <div 
+      id="carousel-inner"
+      className="relative flex rounded-lg shadow-lg mx-auto w-full overflow-hidden after:clear-both after:block after:content-['']">
         {movies.results.map((movie: Movie) => (
           <div
-            className="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] hidden ease-in-out motion-reduce:transition-none"
+            className="relative float-left -mr-[100%] w-full transition-transform duration-[900ms] hidden ease-in-out motion-reduce:transition-none"
             {...(movie.id == movies.results[0].id
               ? { "data-te-carousel-active": true }
               : null)}
             data-te-carousel-item
           >
-            <div className="relative mx-auto w-10/12">
+            
+            <div 
+            id="carousel-image"
+            className="relative mx-auto w-10/12 shadow-lg">
               <img
                 src={"https://image.tmdb.org/t/p/w500" + movie.backdrop_path}
                 className="block w-full"
@@ -59,61 +65,20 @@ const Carousel: React.FC<Movies> = (movies) => {
               />
               <div className="absolute inset-0 bg-black opacity-10"></div>
             </div>
-            <div className="absolute rounded w-3/12 carousel-text top-20 hidden p-5   bg-zinc-800 text-center bg-opacity-50 text-white md:block ">
+            <div 
+              id="carousel-header"
+            className="absolute rounded w-3/12 carousel-text top-20 hidden p-5 bg-zinc-800 text-center bg-opacity-50 text-white md:block ">
               <h1 className="text-3xl text-white text-center py-5 left-0 top-20">
                 {movie.original_title}
               </h1>
             </div>
-            <div className="absolute w-5/12 rounded carousel-text bottom-20 hidden  p-5  bg-zinc-900 text-center bg-opacity-50 text-white md:block ">
+            <div 
+            id="carousel-text"
+            className="absolute w-5/12 rounded carousel-text bottom-20 right-0 hidden  p-5  bg-zinc-900 text-center bg-opacity-50 text-white md:block ">
               <p className="object-scale-down text-left">{movie.overview}</p>
             </div>
           </div>
         ))}
-        {/* <CarouselItem
-          image="https://tecdn.b-cdn.net/img/Photos/Slides/img%20(15).jpg"
-          title="First slide label"
-          description="Some representative placeholder content for the first slide."
-        />
-        <CarouselItem
-          image="https://tecdn.b-cdn.net/img/Photos/Slides/img%20(22).jpg"
-          title="First slide label"
-          description="Some representative placeholder content for the first slide."
-        />
-        <CarouselItem
-          image="https://tecdn.b-cdn.net/img/Photos/Slides/img%20(15).jpg"
-          title="First slide label"
-          description="Some representative placeholder content for the first slide."
-        /> */}
-
-        {/* <div
-          className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
-          data-te-carousel-item
-        >
-          <img
-            src="https://tecdn.b-cdn.net/img/Photos/Slides/img%20(22).jpg"
-            className="block w-full"
-            alt="..."
-          />
-          <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
-            <h5 className="text-xl">Second slide label</h5>
-            <p>Some representative placeholder content for the second slide.</p>
-          </div>
-        </div>
-
-        <div
-          className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
-          data-te-carousel-item
-        >
-          <img
-            src="https://tecdn.b-cdn.net/img/Photos/Slides/img%20(23).jpg"
-            className="block w-full"
-            alt="..."
-          />
-          <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
-            <h5 className="text-xl">Third slide label</h5>
-            <p>Some representative placeholder content for the third slide.</p>
-          </div>
-        </div> */}
       </div>
 
       <button
