@@ -21,7 +21,7 @@ const Carousel: React.FC<Movies> = (movies) => {
   };
 
   return (
-    <div className="relative flex  px-12">
+    <div className="relative flex  px-12 ">
       <div
         onClick={handlePrev}
         className="absolute flex  h-full w-[50vw] top-0 left-0 z-20"
@@ -41,9 +41,9 @@ const Carousel: React.FC<Movies> = (movies) => {
             movies.results[activeIndex].backdrop_path
           }
           alt={movies.results[activeIndex].title}
-          className=" h-[40vh] min-w-[30vh] lg:w-[50vw]  object-cover"
+          className=" h-[40vh]  lg:w-[50vw]  object-cover"
         />
-        <div className="flex flex-col ml-4 py-2 text-white h-[50vh] lg:h-[50%] xs:overflow-y-scroll">
+        <div className="flex flex-col ml-4 py-2 text-xs sm:text-base text-white h-[50vh] lg:h-[50%]">
           <h2 className="text-xl  font-bold ">
             {movies.results[activeIndex].title}
           </h2>
