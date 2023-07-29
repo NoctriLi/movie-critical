@@ -1,12 +1,12 @@
 import Image from "next/image";
 import React from "react";
-import movies from '@/lib/dummy';
+import movies from "@/lib/dummy";
 import axios from "axios";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import MovieSlider from "@/components/MovieSlider";
 
-import {Movies, Movie} from "@/lib/interfaces";
+import { Movies, Movie } from "@/lib/interfaces";
 import { get } from "lodash";
 
 const token = process.env.TMDB_TOKEN;
@@ -20,7 +20,7 @@ export async function getServerSideProps() {
   //     },
   //   }
   // );
-  console.log("GETTIN", movies)
+  console.log("GETTIN", movies);
   return {
     props: {
       movies,
@@ -28,17 +28,17 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Home({movies}:any) {
+export default function Home({ movies }: any) {
   console.log("INDEX", movies);
-
-  
 
   return (
     <>
-    <Navbar />
-    <Hero {...movies} />
+      <Navbar />
+      <section className="grid grid-cols-1">
+        <Hero {...movies} />
+      </section>
 
-      <h1 className="text-white">Home</h1>
+
       <MovieSlider {...movies} />
     </>
   );

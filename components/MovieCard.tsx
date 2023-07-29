@@ -12,8 +12,8 @@ const MovieCard: React.FC<Movie> = (movie) => {
         alt="Card"
         className="w-full h-full object-cover"
       />
-      <div className="absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100"> 
-        <div className="max-h-[75%] overflow-y-auto">
+      <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100"> 
+        <div className="max-h-[75%] overflow-y-auto @3xs:text-sm">
             <p>{movie.overview}</p>
         </div>
         <button className="absolute bottom-0 mt-2 px-4 py-2 bg-blue-500 rounded text-white">

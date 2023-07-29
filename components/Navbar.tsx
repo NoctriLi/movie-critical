@@ -30,15 +30,8 @@ const Navbar = () => {
         <div className=" p-2 ">
             <h1 className="text-white">Home</h1>
         </div>
-        <div className=" p-2 ">
-            <h1 className="text-white">Home</h1>
-        </div>
-        <div className=" p-2 ">
-            <h1 className="text-white">Home</h1>
-        </div>
-        <div className=" p-2 ">
-            <h1 className="text-white">Home</h1>
-        </div>
+
+
 
       </div>
     </nav>

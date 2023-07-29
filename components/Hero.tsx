@@ -8,7 +8,7 @@ interface Props {
 
 const Hero: React.FC<Movies> = (movies) => {
   return (
-    <div className="hero p-2">
+    <div className="hero p-2 w-100">
       <Carousel {...movies}/>
     </div>
   );

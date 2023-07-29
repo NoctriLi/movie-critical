@@ -15,8 +15,12 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      containers: {
+        '2xs': '16rem',
+        '3xs': '12rem',
+      },
     },
   },
-  plugins: [require('tw-elements/dist/plugin.cjs')],
+  plugins: [require('@tailwindcss/container-queries')],
   darkMode: 'class',
 };
