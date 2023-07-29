@@ -6,3 +6,4 @@ declare global {
         var prismadb: PrismaClient;
     }
 }
+declare module '@material-tailwind/react';

@@ -1,4 +1,4 @@
-import Carousel from "./carousel/Carousel";
+import Carousel from "./Carousel";
 
 import {Movies} from "@/lib/interfaces";
 
