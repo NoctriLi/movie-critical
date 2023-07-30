@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useRouter } from "next/router";
+import Image from "next/image";
 import { Movie } from "@/lib/interfaces";
 
 const MovieCard: React.FC<Movie> = (movie) => {
+  const router = useRouter();
+
+  const redirectToSummary = useCallback(
+    () => router.push(`/movies/${movie.id}`),
+    [router, movie.id]
+  );
+    if(!movie.poster_path) return (<div></div>)
   return (
-    <div
-      key={movie.id}
-      className="relative min-w-[250px] h-fit bg-white rounded shadow overflow-hidden"
-    >
-      <img
+    <div className="relative min-w-[250px] h-fit bg-white rounded shadow overflow-hidden">
+      <Image
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt="Card"
+        width={300}
+        height={450}
         className="w-full h-full object-cover"
       />
-      <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100"> 
+      <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
         <div className="max-h-[75%] overflow-y-auto @3xs:text-sm">
-            <p>{movie.overview}</p>
+          <p>{movie.overview}</p>
         </div>
-        <button className="absolute bottom-0 mt-2 px-4 py-2 bg-blue-500 rounded text-white">
+        <button
+          onClick={redirectToSummary}
+          className="absolute bottom-0 mt-2 px-4 py-2 bg-blue-500 rounded text-white"
+        >
           More!
         </button>
       </div>

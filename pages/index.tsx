@@ -33,11 +33,12 @@ export default function Home({ movies }: any) {
 
   return (
     <>
-      <Navbar />
+      <section className="pb-20 z-100">
+        <Navbar />
+      </section>
       <section className="grid grid-cols-1">
         <Hero {...movies} />
       </section>
-
 
       <MovieSlider {...movies} />
     </>
