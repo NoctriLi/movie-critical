@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
       let movie = await axios.get(
-   `https://api.themoviedb.org/3/movie/${movieId}`,
+   `https://api.themoviedb.org/3/movie/${movieId}?language=en-US&append_to_response=release_dates  `,
     {
       headers: {
         accept: "application/json",
@@ -32,8 +32,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     }
   )
+  console.log(movie);
     movie = movie.data;
-    console.log(movie);
     // const movies = await prismadb.movie.findUnique({
     //   where: {
     //     id: movieId
