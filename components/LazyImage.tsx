@@ -25,7 +25,7 @@
 // export default MyImage;
 import { useState } from "react";
 
-const MyImage = ({ src, alt, ...props }) => {
+const LazyImage = ({ src, alt, ...props }:any) => {
   const [imgSrc, setImgSrc] = useState(src);
 
   const handleError = () => {
@@ -38,9 +38,12 @@ const MyImage = ({ src, alt, ...props }) => {
       {...props}
       src={imgSrc}
       alt={alt}
+      className="w-full h-full object-cover"
       onError={handleError}
+      loading="lazy"
+      
     />
   );
 };
 
-export default MyImage;
+export default LazyImage;

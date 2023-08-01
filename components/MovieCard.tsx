@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import LazyImage from "./LazyImage";
 import { Movie } from "@/lib/interfaces";
 
 const MovieCard: React.FC<Movie> = (movie) => {
@@ -13,12 +13,10 @@ const MovieCard: React.FC<Movie> = (movie) => {
     if(!movie.poster_path) return (<div></div>)
   return (
     <div className="relative min-w-[250px] h-fit bg-white rounded shadow overflow-hidden">
-      <Image
+      <LazyImage
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt="Card"
-        width={300}
-        height={450}
-        className="w-full h-full object-cover"
+        alt={movie.title}
+        
       />
       <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
         <div className="max-h-[75%] overflow-y-auto @3xs:text-sm">
