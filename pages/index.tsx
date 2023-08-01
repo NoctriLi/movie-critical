@@ -20,7 +20,6 @@ export async function getServerSideProps() {
   //     },
   //   }
   // );
-  console.log("GETTIN", movies);
   return {
     props: {
       movies,
@@ -29,7 +28,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ movies }: any) {
-  console.log("INDEX", movies);
+
 
   return (
     <>

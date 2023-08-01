@@ -4,6 +4,9 @@ import { useRouter } from "next/router";
 import useMovie from "@/hooks/useMovie";
 import useRecommendations from "@/hooks/useRecommendations";
 import MovieSlider from "@/components/MovieSlider";
+import ActorSlider from "@/components/ActorSlider";
+import CrewSlider from "@/components/CrewSlider";
+import useCredits from "@/hooks/useCredits";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 const Summary = () => {
@@ -11,9 +14,13 @@ const Summary = () => {
   const { movieId } = router.query;
   const { data: details } = useMovie(movieId as string);
 
-  console.log("SUMMARY", details);
   const { data: recommendations } = useRecommendations(movieId as string);
-  console.log("RECOMMENDATIONS", recommendations);
+
+  const { data: credits } = useCredits(movieId as string);
+  
+
+
+
 
   const movieRating =
     details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
@@ -29,7 +36,7 @@ const Summary = () => {
 
         <div className=" col-span-1 border">
           <img
-            src={`https://image.tmdb.org/t/p/w500${details?.poster_path}`}
+            src={details?.poster_path}
             alt="poster"
             className="w-[100vh] mx-auto"
           />
@@ -58,7 +65,7 @@ const Summary = () => {
               {details?.genres.map((genre: any) => genre.name).join(", ")}
             </p>
             </div>
-
+ 
           </div>
           <div className="row-span-1 border">
             <div className="flex">
@@ -80,12 +87,20 @@ const Summary = () => {
           <p>Hi</p>
         </div>
         <div className=" border flex text-center flex-col">
+          <div className=" flex max-w-[500px] h-full  flex-col">
+            <h2 className="text-2xl font-bold tracking-tight text-white">
+              Credits 
+            </h2>
+
+            {/* {credits && <ActorSlider {...credits} />} */}
+            {credits && <CrewSlider {...credits} />}
+          </div>
           <div className="max-w-[500px] h-full  flex-col">
             <h2 className="text-2xl font-bold tracking-tight text-white">
               Recommendations
             </h2>
 
-            {recommendations && <MovieSlider {...recommendations} />}
+            {/* {recommendations && <MovieSlider {...recommendations} />} */}
           </div>
         </div>
       </div>

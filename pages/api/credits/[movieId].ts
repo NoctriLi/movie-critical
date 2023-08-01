@@ -23,8 +23,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error('Missing Id');
     }
 
-      let movie = await axios.get(
-   `https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en&page=1`,
+      let credits = await axios.get(
+   `https://api.themoviedb.org/3/movie/${movieId}/credits`,
     {
       headers: {
         accept: "application/json",
@@ -32,13 +32,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     }
   )
-    movie = movie.data;
+    credits = credits.data;
+
     // const movies = await prismadb.movie.findUnique({
     //   where: {
     //     id: movieId
     //   }
     // });
-    res.status(200).json(movie);
+    res.status(200).json(credits);
     return 
     
   } catch (error) {
