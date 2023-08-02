@@ -21,6 +21,36 @@ export interface Movie {
   vote_count: number;
 }
 
+export interface MovieDetails {
+  adult: boolean;
+  backdrop_path: string;
+  belongs_to_collection: null | object; // replace object with the actual type if available
+  budget: number;
+  genres: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  homepage: string;
+  id: number;
+  imdb_id: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  production_countries: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  release_date: string;
+  release_dates: { results: Array<{ [key: string]: any }> }; // replace any with the actual type if available
+  revenue: number;
+  runtime: number;
+  spoken_languages: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  status: string;
+  tagline: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
+
 export interface CastMember {
   adult: boolean;
   gender: number;

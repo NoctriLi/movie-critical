@@ -6,25 +6,44 @@ import CrewCard from "./CrewCard";
 
 
 
-const CrewSlider: React.FC<Credits> = (credits, type) => {
+const CrewSlider: React.FC<Credits> = (credits) => {
+  console.log(credits.crew);
 
-  let crew = credits.crew.reduce((acc:CrewMember[], item:CrewMember) => {
-    let existing = acc.find((i:CrewMember) => i.id === item.id);
-    if (existing) {
-      existing.department += item.department;
-    } else {
-      acc.push(item);
-    }
-    return acc;
-  }, []);
+  const combineLikeObjects = (arr: any[]) => {
+    return arr.reduce((acc, item) => {
+      let existing = acc.find((i:CrewMember) => i.id === item.id);
+      if (existing) {
+        existing.job += ", " + item.job;
+      } else {
+        acc.push(item);
+      }
+      return acc;
+    }, []);
+  };
+
+ const crew = combineLikeObjects(credits.crew)
+
+
+  // let crew = credits.crew.reduce((acc:CrewMember[], item:CrewMember) => {
+  //   let existing = acc.find((i:CrewMember) => i.id === item.id ) ;
+  //   if (existing) {
+  //     existing.department += ", " + item.department;
+  //   } else {
+  //     acc.push(item);
+  //   }
+  //   return acc;
+  // }, []);
 
     return (
 
    
         <div className="slider">
-  
-          {crew.map(cast =>
-            <CrewCard key={cast.id} {...cast}/> )}
+          
+          {crew.map((cast: CrewMember) =>
+          <div key={cast.id}>
+            <CrewCard key={cast.id} {...cast}/> 
+            </div>
+            )}
         </div>
 
   

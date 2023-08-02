@@ -12,8 +12,10 @@ const ActorSlider: React.FC<Credits> = (credits) => {
  
       <div className="slider">
         {credits.cast.map(cast =>
-          <ActorCard key={cast.id} {...cast}/> )}
-        
+        <div key={cast.id}>
+          <ActorCard {...cast}/> 
+          </div>
+        )}
       </div>
 
 

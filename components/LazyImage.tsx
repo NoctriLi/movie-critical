@@ -38,7 +38,7 @@ const LazyImage = ({ src, alt, ...props }:any) => {
       {...props}
       src={imgSrc}
       alt={alt}
-      className="w-full h-full object-cover"
+      className="w-full h-full object-cover rounded"
       onError={handleError}
       loading="lazy"
       

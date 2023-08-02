@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <nav className="fixed w-full z-[100] flex flex-col cols-3 opacity-[80%] bg-zinc-900 ">
+    <nav className="fixed w-full z-[100] h-20 flex flex-col cols-3 opacity-[80%] bg-zinc-900 ">
       <div className="flex flex-row navpanel justify-center mx-2 basis-7/12 ">
 
         <div className=" text-center align-middle p-2 border-x border-white ">
@@ -18,18 +18,10 @@ const Navbar = () => {
 
       </div>
       <div className="flex flex-row gap-2 basis-5/12 justify-center">
-        <div className=" p-2">
-            <h1 className="text-white">Home</h1>
+        <div className="text-white p-2 border">
+            <a href="/">Home</a>
         </div>
-        <div className=" p-2 ">
-            <h1 className="text-white">Home</h1>
-        </div>
-        <div className=" p-2 ">
-            <h1 className="text-white">Home</h1>
-        </div>
-        <div className=" p-2 ">
-            <h1 className="text-white">Home</h1>
-        </div>
+
 
 
 
