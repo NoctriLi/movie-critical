@@ -19,7 +19,7 @@ const CrewCard: React.FC<any> = (crewMember) => {
   const router = useRouter();
 
   const redirectToSummary = useCallback(
-    () => router.push(`/crewMembers/${crewMember.id}`),
+    () => router.push(`/people/${crewMember.id}`),
     [router, crewMember.id]
   );
   return (

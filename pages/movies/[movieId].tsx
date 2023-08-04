@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from "react";
 import { HiChevronLeft } from "react-icons/hi";
 import { useRouter } from "next/router";
@@ -23,7 +25,7 @@ const Summary = () => {
     details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
       ?.release_dates[0].certification || "NR";
 
-  console.log(details);
+  console.log(recommendations);
 
   return (
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">

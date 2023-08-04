@@ -1,31 +1,30 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prismadb from '@/lib/prismadb';
 import serverAuth from "@/lib/serverAuth";
-import movies from "@/lib/dummy";
+import persons from "@/lib/dummy";
 import axios from "axios";
 const token = process.env.TMDB_TOKEN;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  setTimeout(() => {}, 200);
   try {
     if (req.method !== 'GET') {
       return res.status(405).end();
     }
 
     // await serverAuth(req, res);
-    
-    const { movieId } = req.query;
-    console.log("MOVIE ID", movieId)
-    if (typeof movieId !== 'string') {
+
+    const { personId } = req.query;
+
+    if (typeof personId !== 'string') {
       throw new Error('Invalid Id');
     }
 
-    if (!movieId) {
+    if (!personId) {
       throw new Error('Missing Id');
     }
-
-      let movie = await axios.get(
-   `https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en-US&page=1`,
+    console.log(personId);
+      let person = await axios.get(
+        `https://api.themoviedb.org/3/person/${personId}?append_to_response=movie_credits&language=en-US`,
     {
       headers: {
         accept: "application/json",
@@ -33,14 +32,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     }
   )
-    movie = movie.data;
-    console.log(movie)
-    // const movies = await prismadb.movie.findUnique({
+  person = person.data;
+  console.log(person);
+    // const persons = await prismadb.person.findUnique({
     //   where: {
-    //     id: movieId
+    //     id: personId
     //   }
     // });
-    res.status(200).json(movie);
+    res.status(200).json(person);
     return 
     
   } catch (error) {

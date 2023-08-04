@@ -7,10 +7,10 @@ const ActorCard: React.FC<CastMember> = (castMember) => {
   const router = useRouter();
 
   const redirectToSummary = useCallback(
-    () => router.push(`/castMembers/${castMember.id}`),
+    () => router.push(`/people/${castMember.id}`),
     [router, castMember.id]
   );
-  if (!castMember.profile_path) return <div></div>;
+ 
 
   return (
     <div className="flex flex-col gap-0 relative min-w-[100px] h-fit text-white text-xs rounded shadow">

@@ -1,3 +1,7 @@
+import React from "react";
+import SearchInput from "./SearchInput";
+
+
 const Navbar = () => {
   return (
     <nav className="fixed w-full z-[100] h-20 flex flex-col cols-3 opacity-[80%] bg-zinc-900 ">
@@ -13,7 +17,7 @@ const Navbar = () => {
 
         <div className="flex flex-row gap-2 p-2 border border-white">
           <h1 className="text-white ">search</h1>
-          <h1 className="text-white">{"(_)"}</h1>
+          <SearchInput />
         </div>
 
       </div>
