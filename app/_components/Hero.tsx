@@ -1,3 +1,6 @@
+
+
+
 import Carousel from "./Carousel";
 
 import {Movies} from "@/lib/interfaces";

@@ -10,36 +10,36 @@ import { Movies, Movie } from "@/lib/interfaces";
 import { get } from "lodash";
 
 const token = process.env.TMDB_TOKEN;
-export async function getServerSideProps() {
-  let movies = await axios.get(
+async function getMovies() {
+  let res = await fetch(
     "https://api.themoviedb.org/3/discover/movie",
     {
+      method: "GET",
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
+      
+
     }
   );
-  movies = movies.data
+  const data = await res.json();
 
-  return {
-    props: {
-      movies,
-    },
-  };
+  return data;
+  
 }
 
-export default function Home({ movies }: any) {
-
+export default async function Page() {
+ const movies = await getMovies();
   
   return (
     <>
 
       <section className="grid grid-cols-1">
-        <Hero {...movies} />
+        {movies && <Hero {...movies} />}
       </section>
 
-      <MovieSlider {...movies} />
+      {movies && <MovieSlider {...movies} />}
     </>
   );
 }

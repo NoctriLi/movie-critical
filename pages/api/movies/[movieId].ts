@@ -23,16 +23,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error('Missing Id');
     }
 
-      let movie = await axios.get(
-   `https://api.themoviedb.org/3/movie/${movieId}?language=en-US&append_to_response=release_dates  `,
+      let movRes = await fetch(
+   `https://api.themoviedb.org/3/movie/${movieId}?language=en-US&append_to_response=release_dates`,
     {
+      method: "GET",
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
     }
   )
-    movie = movie.data;
+    let movie = await movRes.json();
+    
+      console.log("MOVIE", movie)
     // const movies = await prismadb.movie.findUnique({
     //   where: {
     //     id: movieId

@@ -15,18 +15,24 @@ import Image from "next/image";
 
 
 async function getMovies(movieId: string) {
-  const res = await fetch(`http://localhost:3000/api/movies/${movieId}`);
+  const res = await fetch(`http://localhost:3000/api/movies/${movieId}`, {
+    method: "GET",
+});
   return res.json();
 }
 async function getRecommendations(movieId: string) {
   const res = await fetch(
-    `http://localhost:3000/api/recommendations/${movieId}`
+    `http://localhost:3000/api/recommendations/${movieId}`, {
+      method: "GET",
+  }
   );  
   return res.json();
 }
 async function getCredits(movieId: string) {
   const res = await fetch(
-    `http://localhost:3000/api/credits/${movieId}`
+    `http://localhost:3000/api/credits/${movieId}`, {
+      method: "GET",
+  }
   );
   return res.json();
 }
@@ -56,7 +62,7 @@ export default async function Page({ params }: { params: { movieId: string } }) 
   const movieRating =
     details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
       ?.release_dates[0].certification || "NR";
-
+  console.log(details)
   console.log("MOVIEPAGE", recommendations.results[0]);
 
   return (
@@ -89,10 +95,10 @@ export default async function Page({ params }: { params: { movieId: string } }) 
                   <p className="text-md self-center">{movieRating}</p>
                 )}
               </h2>
-              <h1>{details?.release_date.substring(0, 4)}</h1>
+              <h1>{details?.release_date?details?.release_date.substring(0, 4):'????'}</h1>
 
               <p>
-                {details?.genres.map((genre: any) => genre.name).join(", ")}
+                {details?.genres && details?.genres.map((genre: any) => genre.name).join(", ")}
               </p>
             </div>
           </div>
