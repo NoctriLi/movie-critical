@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import "react-multi-carousel/lib/styles.css";
 import { Roboto } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/app/_components/Navbar";
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 

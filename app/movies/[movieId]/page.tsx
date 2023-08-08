@@ -1,46 +1,80 @@
-"use client"
 
 import React, { useState, useEffect } from "react";
 import { HiChevronLeft } from "react-icons/hi";
-import { useRouter } from "next/router";
+import Spinner from "@/app/_components/Spinner";
+import { useSearchParams } from "next/navigation";
 import useMovie from "@/hooks/useMovie";
 import useRecommendations from "@/hooks/useRecommendations";
-import MovieSlider from "@/components/MovieSlider";
-import ActorSlider from "@/components/ActorSlider";
-import CrewSlider from "@/components/CrewSlider";
+import MovieSlider from "@/app/_components/MovieSlider";
+import ActorSlider from "@/app/_components/ActorSlider";
+import CrewSlider from "@/app/_components/CrewSlider";
 import useCredits from "@/hooks/useCredits";
-import MovieDetailsTable from "@/components/MovieDetailsTable";
+import MovieDetailsTable from "@/app/_components/MovieDetailsTable";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import Image from "next/image";
 
-const Summary = () => {
-  const router = useRouter();
-  const { movieId } = router.query;
-  const { data: details } = useMovie(movieId as string);
 
-  const { data: recommendations } = useRecommendations(movieId as string);
+async function getMovies(movieId: string) {
+  const res = await fetch(`http://localhost:3000/api/movies/${movieId}`);
+  return res.json();
+}
+async function getRecommendations(movieId: string) {
+  const res = await fetch(
+    `http://localhost:3000/api/recommendations/${movieId}`
+  );  
+  return res.json();
+}
+async function getCredits(movieId: string) {
+  const res = await fetch(
+    `http://localhost:3000/api/credits/${movieId}`
+  );
+  return res.json();
+}
 
-  const { data: credits } = useCredits(movieId as string);
+
+export default async function Page({ params }: { params: { movieId: string } }) {
+  const movieId = params.movieId;
+  const details = await getMovies(movieId);
+  const recommendations = await getRecommendations(movieId);
+  const credits = await getCredits(movieId);
+
+
+  // const {
+  //   data: details,
+  //   error: detailsError,
+  //   isLoading: detailsIsLoading,
+  // } = await useMovie(movieId as string);
+
+  // const {
+  //   data: recommendations,
+  //   error: recommendationsError,
+  //   isLoading: recommendationsIsLoading,
+  // } = await useRecommendations(movieId as string);
+
+  // const { data: credits } = await useCredits(movieId as string);
 
   const movieRating =
     details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
       ?.release_dates[0].certification || "NR";
 
-  console.log(recommendations);
+  console.log("MOVIEPAGE", recommendations.results[0]);
 
   return (
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">
       <div className="row-span-1 bg-black p-5 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className=" col-span-auto ">
-          <img
-            src={
-              details?.poster_path
-                ? `https://image.tmdb.org/t/p/w500${details?.poster_path}`
-                : "/blank-profile-picture.png"
-            }
-            loading="lazy"
-            alt="poster"
-            className="w-[500px] mx-auto rounded"
-          />
+          {details?.poster_path == undefined ? (
+            <Spinner visible={true}/>
+          ) : (
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${details?.poster_path}`}
+              loading="lazy"
+              width={300}
+              height={400}
+              alt="poster"
+              className="w-[500px] mx-auto rounded"
+            />
+          )}
         </div>
 
         <div className="col-span-auto flex flex-col text-white ">
@@ -138,4 +172,4 @@ const Summary = () => {
   );
 };
 
-export default Summary;
+

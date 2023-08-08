@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { HiChevronLeft } from "react-icons/hi";
-import { useRouter } from "next/router";
-import usePerson from "@/hooks/usePerson";
-import useMovie from "@/hooks/useMovie";
-import useRecommendations from "@/hooks/useRecommendations";
-import MovieCastSlider from "@/components/MovieCastSlider";
-import ActorSlider from "@/components/ActorSlider";
-import CrewSlider from "@/components/CrewSlider";
+// import { useRouter } from "next/router";
+// import usePerson from "@/hooks/usePerson";
+// import useMovie from "@/hooks/useMovie";
+// import useRecommendations from "@/hooks/useRecommendations";
+import MovieCastSlider from "@/app/_components/MovieCastSlider";
+import ActorSlider from "@/app/_components/ActorSlider";
+import CrewSlider from "@/app/_components/CrewSlider";
 import useCredits from "@/hooks/useCredits";
-import MovieDetailsTable from "@/components/MovieDetailsTable";
+import MovieDetailsTable from "@/app/_components/MovieDetailsTable";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 function formatDate(date: Date) {
@@ -43,10 +43,17 @@ function parseDate(date: string) {
   return new Date(year, month, day);
 }
 
-const Summary = () => {
-  const router = useRouter();
-  const { personId } = router.query;
-  const { data: details } = usePerson(personId as string);
+
+const getPerson = async (personId: string) => {
+  const res = await fetch(`http://localhost:3000/api/people/${personId}`);
+  return res.json();
+}
+
+
+export default async function Page({ params }: { params: { personId: string } }) {
+
+  const  personId  = params.personId;
+  const details = await getPerson(personId as string);
 
   const name = details?.name;
   const birthday = details?.birthday ? parseDate(details?.birthday) : "N/A";
@@ -152,5 +159,3 @@ const Summary = () => {
     </div>
   );
 };
-
-export default Summary;

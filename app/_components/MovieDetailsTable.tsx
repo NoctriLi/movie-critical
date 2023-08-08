@@ -25,7 +25,7 @@ const MovieDetailsTable = (details: MovieDetails) => {
           </tr>
           <tr >
             <td>Website</td>
-            <td>{details.homepage? <a className="ps-2 text-sm text-blue-200" href={details.homepage}>{details.homepage}</a>: <p className="ps-2 text-sm">N/A}</p>}</td>
+            <td>{details.homepage? <a className="ps-2 text-sm text-blue-200" href={details.homepage}>{details.homepage}</a>: <p className="ps-2 text-sm">N/A</p>}</td>
 
           </tr>
 

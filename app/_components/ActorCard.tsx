@@ -1,15 +1,16 @@
 import React, { useCallback } from "react";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
+import Link from "next/link";
 import LazyImage from "./LazyImage";
 import { CastMember } from "@/lib/interfaces";
 
 const ActorCard: React.FC<CastMember> = (castMember) => {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const redirectToSummary = useCallback(
-    () => router.push(`/people/${castMember.id}`),
-    [router, castMember.id]
-  );
+  // const redirectToSummary = useCallback(
+  //   () => router.push(`/people/${castMember.id}`),
+  //   [router, castMember.id]
+  // );
  
 
   return (
@@ -24,12 +25,11 @@ const ActorCard: React.FC<CastMember> = (castMember) => {
           alt={castMember.name}
         />
         <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
-          <button
-            onClick={redirectToSummary}
-            className="absolute bottom-0 mt-2 px-4 py-2 bg-blue-500 rounded text-white"
-          >
-            More!
-          </button>
+          <Link
+            href={`/people/${castMember.id}`}
+            
+            className="absolute bottom-0 mt-2 px-4 py-2 bg-zinc-800 rounded text-white"
+        >More...</Link>
         </div>
       </div>
       <div className="flex flex-col py-1">

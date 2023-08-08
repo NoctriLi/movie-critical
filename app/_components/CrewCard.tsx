@@ -1,7 +1,8 @@
 import React, { useCallback } from "react";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
+import Link from "next/link";
 import { CrewMember } from "@/lib/interfaces";
-import LazyImage from "@/components/LazyImage";
+import LazyImage from "@/app/_components/LazyImage";
 
 interface Image {
   src: string;
@@ -16,12 +17,12 @@ const imageLoader = ({ src, width, quality }: Image) => {
 };
 
 const CrewCard: React.FC<any> = (crewMember) => {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const redirectToSummary = useCallback(
-    () => router.push(`/people/${crewMember.id}`),
-    [router, crewMember.id]
-  );
+  // const redirectToSummary = useCallback(
+  //   () => router.push(`/people/${crewMember.id}`),
+  //   [router, crewMember.id]
+  // );
   return (
     <div className="flex flex-col relative gap-0 min-w-[100px] h-fit text-white text-xs rounded shadow ">
       <div className="relative">
@@ -34,12 +35,11 @@ const CrewCard: React.FC<any> = (crewMember) => {
           alt={crewMember.name}
         />
         <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
-          <button
-            onClick={redirectToSummary}
-            className="absolute bottom-0 mt-2 px-4 py-2 bg-blue-500 rounded text-white"
-          >
-            More!
-          </button>
+        <Link
+            href={`/people/${crewMember.id}`}
+            
+            className="absolute bottom-0 mt-2 px-4 py-2 bg-zinc-800 rounded text-white"
+        >More...</Link>
         </div>
       </div>
 

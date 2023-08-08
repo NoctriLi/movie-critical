@@ -1,19 +1,16 @@
-import { Movies, Movie } from "@/lib/interfaces";
+import { PersonMovies } from "@/lib/interfaces";
 import MovieCastCard from "./MovieCastCard";
 
-interface Props {
-  movies: Movies;
-}
 
-const MovieSlider: React.FC<Movies> = (movies) => {
+
+const MovieSlider = (movies: PersonMovies) => {
   //  const arr = Object.values(movies);
   //  console.log("ARR", arr)
   //   console.log(movies)
   const cast = movies.cast;
   const crew = movies.crew;
 
-  console.log("cast", cast[0]);
-  console.log("crew", crew[0]);
+
 
   return (
     <div className="flex flex-col w-full  mx-auto">

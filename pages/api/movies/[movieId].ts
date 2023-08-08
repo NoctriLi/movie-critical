@@ -32,7 +32,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     }
   )
-  console.log(movie);
     movie = movie.data;
     // const movies = await prismadb.movie.findUnique({
     //   where: {

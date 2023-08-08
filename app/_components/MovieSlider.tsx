@@ -12,7 +12,7 @@ const MovieSlider: React.FC<Movies> = (movies) => {
  
       <div className="slider">
 
-        {movies.results.map(movie =>
+        {movies.results.map((movie, i) =>
           <MovieCard key={movie.id} {...movie}/> )}
         
 

@@ -33,7 +33,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   )
   person = person.data;
-  console.log(person);
     // const persons = await prismadb.person.findUnique({
     //   where: {
     //     id: personId

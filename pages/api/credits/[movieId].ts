@@ -14,7 +14,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // await serverAuth(req, res);
     
     const { movieId } = req.query;
-    console.log("MOVIE ID", movieId)
     if (typeof movieId !== 'string') {
       throw new Error('Invalid Id');
     }

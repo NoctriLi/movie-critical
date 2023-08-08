@@ -7,6 +7,8 @@ import ActorCard from "./ActorCard";
 
 
 const ActorSlider: React.FC<Credits> = (credits) => {
+
+ 
   return (
 
  

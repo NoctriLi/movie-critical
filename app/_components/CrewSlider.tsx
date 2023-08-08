@@ -7,7 +7,7 @@ import CrewCard from "./CrewCard";
 
 
 const CrewSlider: React.FC<Credits> = (credits) => {
-  console.log(credits.crew);
+
 
   const combineLikeObjects = (arr: any[]) => {
     return arr.reduce((acc, item) => {
