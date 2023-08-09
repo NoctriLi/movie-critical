@@ -15,14 +15,14 @@ import Image from "next/image";
 
 
 async function getMovies(movieId: string) {
-  const res = await fetch(`http://localhost:3000/api/movies/${movieId}`, {
+  const res = await fetch(`https://movie-critical.vercel.app/api/movies/${movieId}`, {
     method: "GET",
 });
   return res.json();
 }
 async function getRecommendations(movieId: string) {
   const res = await fetch(
-    `http://localhost:3000/api/recommendations/${movieId}/movie`, {
+    `https://movie-critical.vercel.app/api/recommendations/${movieId}/movie`, {
       method: "GET",
   }
   );  
@@ -30,7 +30,7 @@ async function getRecommendations(movieId: string) {
 }
 async function getCredits(movieId: string) {
   const res = await fetch(
-    `http://localhost:3000/api/credits/${movieId}/movie`, {
+    `https://movie-critical.vercel.app/api/credits/${movieId}/movie`, {
       method: "GET",
   }
   );

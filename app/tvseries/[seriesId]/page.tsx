@@ -14,14 +14,14 @@ import Image from "next/image";
 
 
 async function getTvSeries(seriesId: string) {
-  const res = await fetch(`http://localhost:3000/api/tvseries/${seriesId}`, {
+  const res = await fetch(`https://movie-critical.vercel.app/api/tvseries/${seriesId}`, {
     method: "GET",
 });
   return res.json();
 }
 async function getRecommendations(seriesId: string) {
   const res = await fetch(
-    `http://localhost:3000/api/recommendations/${seriesId}/tv`, {
+    `https://movie-critical.vercel.app/api/recommendations/${seriesId}/tv`, {
       method: "GET",
   }
   );  
@@ -29,7 +29,7 @@ async function getRecommendations(seriesId: string) {
 }
 async function getCredits(seriesId: string) {
   const res = await fetch(
-    `http://localhost:3000/api/credits/${seriesId}/tv`, {
+    `https://movie-critical.vercel.app/api/credits/${seriesId}/tv`, {
       method: "GET",
   }
   );

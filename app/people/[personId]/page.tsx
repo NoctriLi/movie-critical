@@ -45,7 +45,7 @@ function parseDate(date: string) {
 
 
 const getPerson = async (personId: string) => {
-  const res = await fetch(`http://localhost:3000/api/people/${personId}`);
+  const res = await fetch(`https://movie-critical.vercel.app/api/people/${personId}`);
   return res.json();
 }
 
