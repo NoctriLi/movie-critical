@@ -5,7 +5,7 @@ import axios from "axios";
 import Navbar from "@/app/_components/Navbar";
 import Hero from "@/app/_components/Hero";
 import MovieSlider from "@/app/_components/MovieSlider";
-
+import TvSlider from "@/app/_components/TvSlider";
 import { Movies, Movie } from "@/lib/interfaces";
 import { get } from "lodash";
 
@@ -28,10 +28,30 @@ async function getMovies() {
   return data;
   
 }
+async function getCurrentTVSeries() {
+  let res = await fetch(
+    "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_original_language=en",
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      
+
+    }
+  );
+  const data = await res.json();
+
+  return data;
+  
+}
 
 export default async function Page() {
  const movies = await getMovies();
+ const tvSeries = await getCurrentTVSeries();
   
+ 
   return (
     <>
 
@@ -40,6 +60,7 @@ export default async function Page() {
       </section>
 
       {movies && <MovieSlider {...movies} />}
+      {tvSeries && <TvSlider {...tvSeries} />}
     </>
   );
 }

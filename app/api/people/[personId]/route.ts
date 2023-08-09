@@ -1,19 +1,9 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import prismadb from '@/lib/prismadb';
-import serverAuth from "@/lib/serverAuth";
-import persons from "@/lib/dummy";
+import {  NextResponse } from "next/server";
 import axios from "axios";
 const token = process.env.TMDB_TOKEN;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  try {
-    if (req.method !== 'GET') {
-      return res.status(405).end();
-    }
-
-    // await serverAuth(req, res);
-
-    const { personId } = req.query;
+export async function GET(request: Request, { params }: {params: {personId: string}}) {
+    const  personId  = params.personId;
 
     if (typeof personId !== 'string') {
       throw new Error('Invalid Id');
@@ -33,18 +23,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   )
   person = person.data;
+
     // const persons = await prismadb.person.findUnique({
     //   where: {
     //     id: personId
     //   }
     // });
-    res.status(200).json(person);
-    return 
     
-  } catch (error) {
-    console.log(error);
+    return NextResponse.json(person);
     
-    res.status(500).end();
-    return 
-  }
+
 }

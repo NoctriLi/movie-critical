@@ -130,3 +130,57 @@ export interface PersonMovies {
   cast: CastMovie[];
   crew: CrewMovie[];
 }
+
+
+export interface TVShow {
+  backdrop_path: string | null;
+  first_air_date: string;
+  genre_ids: number[];
+  id: number;
+  name: string;
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  vote_average: number;
+  vote_count: number;
+}
+
+export interface TVDetails {
+  adult: boolean;
+  backdrop_path: string | null;
+  created_by: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  episode_run_time: number[];
+  first_air_date: string;
+  genres: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  homepage: string;
+  id: number;
+  in_production: boolean;
+  languages: string[];
+  last_air_date: string;
+  last_episode_to_air: { [key: string]: any }; // replace any with the actual type if available
+  name: string;
+  next_episode_to_air: null | object; // replace object with the actual type if available
+  networks: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  number_of_episodes: number;
+  number_of_seasons: number;
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  production_companies: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  production_countries: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  seasons: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  spoken_languages: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  status: string;
+  tagline: string;
+  type: string;
+  vote_average: number;
+  vote_count: number;
+
+
+}

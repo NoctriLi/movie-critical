@@ -1,19 +1,13 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import prismadb from '@/lib/prismadb';
-import serverAuth from "@/lib/serverAuth";
-import movies from "@/lib/dummy";
+import {  NextResponse } from "next/server";
 import axios from "axios";
 const token = process.env.TMDB_TOKEN;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  try {
-    if (req.method !== 'GET') {
-      return res.status(405).end();
-    }
+export async function GET(request: Request, { params }: {params: {movieId: string}}) {
+
 
     // await serverAuth(req, res);
 
-    const { movieId } = req.query;
+    const  movieId  = params.movieId;
 
     if (typeof movieId !== 'string') {
       throw new Error('Invalid Id');
@@ -41,13 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     //     id: movieId
     //   }
     // });
-    res.status(200).json(movie);
-    return 
     
-  } catch (error) {
-    console.log(error);
+    return NextResponse.json(movie);
     
-    res.status(500).end();
-    return 
-  }
 }
