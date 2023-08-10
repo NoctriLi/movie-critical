@@ -1,15 +1,13 @@
 
 import React from "react";
-
 import Spinner from "@/app/_components/Spinner";
-import { useSearchParams } from "next/navigation";
 import TvSlider from "@/app/_components/TvSlider";
 import ActorSlider from "@/app/_components/ActorSlider";
 import CrewSlider from "@/app/_components/CrewSlider";
-import TvDetailsTable from "@/app/_components/TvDetailsTable";
+import SeasonBox from "@/app/_components/SeasonBox";
 import { SeasonDetails } from "@/lib/interfaces";
 
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { GetServerSideProps } from "next";
 import Image from "next/image";
 
 let address = process.env.WEB_LOC;
@@ -37,15 +35,6 @@ async function getCredits(seriesId: string, season: string) {
   );
   return res.json();
 }
-function getVoteCount(episodes: any) {
-  let count = 0;
-  episodes.forEach((episode: any) => {
-    count += episode.vote_count;
-  }
-  );
-  return count;
-}
-
 
 export default async function Page({ params }: { params: { seriesId: string; season: string } }) {
   const seriesId = params.seriesId[0];
@@ -59,12 +48,6 @@ export default async function Page({ params }: { params: { seriesId: string; sea
   const recommendations = await getRecommendations(seriesId);
   const credits = await getCredits(seriesId, season);
 
-
-
-  // const seriesRating =
-  //   details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
-  //     ?.release_dates[0].certification || "NR";
-  console.log(details)
   console.log("seriesPAGE", recommendations.results[0]);
 
   return (
@@ -93,9 +76,7 @@ export default async function Page({ params }: { params: { seriesId: string; sea
 
             <div className="flex flex-row  space-x-5 w-full align-middle text-md lg:text-lg">
               <h2>
-                {/* {seriesRating && (
-                  <p className="text-md self-center">{seriesRating}</p>
-                )} */}
+      
               </h2>
               <h1>{details?.air_date?details?.air_date.substring(0, 4):'????'}</h1>
 
@@ -108,7 +89,7 @@ export default async function Page({ params }: { params: { seriesId: string; sea
               <h2 className="text-xs py-2">
                 TMDB Rating: {details?.vote_average}
               </h2>
-              <p className="text-[.6rem]">({details?.episodes} votes)</p>
+              
             </div>
             <div className="flex flex-col pt-5 pb-10">
               <h2 className="text-lg py-2">Overview:</h2>
@@ -118,6 +99,14 @@ export default async function Page({ params }: { params: { seriesId: string; sea
 
         </div>
       </div>
+      <div className="flex flex-col w-full  mx-auto">
+        <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
+          Credits
+        </h2>
+        <div className="flex flex-col lg:flex-row text-center gap-28 mx-auto">
+          {seriesId && <SeasonBox seriesId={seriesId} />}
+          </div>
+        </div>
 
       <div className="flex flex-col w-full  mx-auto">
         <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
@@ -155,5 +144,3 @@ export default async function Page({ params }: { params: { seriesId: string; sea
     </div>
   );
 };
-
-
