@@ -9,7 +9,7 @@ import CrewSlider from "@/app/_components/CrewSlider";
 import TvDetailsTable from "@/app/_components/TvDetailsTable";
 import { Episode } from "@/lib/interfaces";
 
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+
 import Image from "next/image";
 
 let address = process.env.WEB_LOC;
