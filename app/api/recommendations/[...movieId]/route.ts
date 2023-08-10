@@ -11,6 +11,7 @@ export async function GET(
   const movieId = params.movieId[0];
   const type = params.movieId[1]
   console.log("MOVIE ID", movieId);
+  console.log("TYPE", type);
   if (typeof movieId !== "string") {
     throw new Error("Invalid Id");
   }

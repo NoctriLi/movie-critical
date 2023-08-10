@@ -12,16 +12,18 @@ import { TVDetails } from "@/lib/interfaces";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 
+let address = process.env.WEB_LOC;
+
 
 async function getTvSeries(seriesId: string) {
-  const res = await fetch(`http://localhost:3000/api/tvseries/${seriesId}`, {
+  const res = await fetch(`${address}/api/tvseries/${seriesId}`, {
     method: "GET",
 });
   return res.json();
 }
 async function getRecommendations(seriesId: string) {
   const res = await fetch(
-    `http://localhost:3000/api/recommendations/${seriesId}/tv`, {
+    `${address}/api/recommendations/${seriesId}/tv`, {
       method: "GET",
   }
   );  
@@ -29,7 +31,7 @@ async function getRecommendations(seriesId: string) {
 }
 async function getCredits(seriesId: string) {
   const res = await fetch(
-    `http://localhost:3000/api/credits/${seriesId}/tv`, {
+    `${address}/api/credits/${seriesId}/tv`, {
       method: "GET",
   }
   );
