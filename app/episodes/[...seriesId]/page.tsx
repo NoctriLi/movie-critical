@@ -2,7 +2,6 @@
 import React from "react";
 
 import Spinner from "@/app/_components/Spinner";
-import { useSearchParams } from "next/navigation";
 import TvSlider from "@/app/_components/TvSlider";
 import ActorSlider from "@/app/_components/ActorSlider";
 import CrewSlider from "@/app/_components/CrewSlider";
