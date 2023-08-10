@@ -37,6 +37,14 @@ async function getCredits(seriesId: string, season: string) {
   );
   return res.json();
 }
+function getVoteCount(episodes: any) {
+  let count = 0;
+  episodes.forEach((episode: any) => {
+    count += episode.vote_count;
+  }
+  );
+  return count;
+}
 
 
 export default async function Page({ params }: { params: { seriesId: string; season: string } }) {
@@ -89,11 +97,9 @@ export default async function Page({ params }: { params: { seriesId: string; sea
                   <p className="text-md self-center">{seriesRating}</p>
                 )} */}
               </h2>
-              <h1>{details?.first_air_date?details?.first_air_date.substring(0, 4):'????'}</h1>
+              <h1>{details?.air_date?details?.air_date.substring(0, 4):'????'}</h1>
 
-              <p>
-                {details?.genres && details?.genres.map((genre: any) => genre.name).join(", ")}
-              </p>
+  
             </div>
           </div>
 
@@ -102,16 +108,14 @@ export default async function Page({ params }: { params: { seriesId: string; sea
               <h2 className="text-xs py-2">
                 TMDB Rating: {details?.vote_average}
               </h2>
-              <p className="text-[.6rem]">({details?.vote_count} votes)</p>
+              <p className="text-[.6rem]">({details?.episodes} votes)</p>
             </div>
             <div className="flex flex-col pt-5 pb-10">
               <h2 className="text-lg py-2">Overview:</h2>
               <p className="text-sm px-5">{details?.overview}</p>
             </div>
           </div>
-          <div className="py-2">
-            <TvDetailsTable {...details} />
-          </div>
+
         </div>
       </div>
 

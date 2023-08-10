@@ -91,11 +91,8 @@ console.log(credits)
                   <p className="text-md self-center">{seriesRating}</p>
                 )} */}
               </h2>
-              <h1>{details?.first_air_date?details?.first_air_date.substring(0, 4):'????'}</h1>
+              <h1>{details?.air_date?details?.air_date.substring(0, 4):''}</h1>
 
-              <p>
-                {details?.genres && details?.genres.map((genre: any) => genre.name).join(", ")}
-              </p>
             </div>
           </div>
 
@@ -111,9 +108,7 @@ console.log(credits)
               <p className="text-sm px-5">{details?.overview}</p>
             </div>
           </div>
-          <div className="py-2">
-            <TvDetailsTable {...details} />
-          </div>
+
         </div>
       </div>
 

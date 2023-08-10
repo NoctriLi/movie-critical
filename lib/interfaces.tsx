@@ -187,7 +187,7 @@ export interface TVDetails {
 export interface SeasonDetails {
   _id: string;
   air_date: string;
-  episodes: Episode[];
+  episodes: any[];
   name: string;
   overview: string;
   id: number;
