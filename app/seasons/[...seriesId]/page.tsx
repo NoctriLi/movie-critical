@@ -7,34 +7,31 @@ import TvSlider from "@/app/_components/TvSlider";
 import ActorSlider from "@/app/_components/ActorSlider";
 import CrewSlider from "@/app/_components/CrewSlider";
 import TvDetailsTable from "@/app/_components/TvDetailsTable";
-import { TVDetails } from "@/lib/interfaces";
+import { SeasonDetails } from "@/lib/interfaces";
 
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 
 let address = process.env.WEB_LOC;
 
-
-async function getTvSeries(seriesId: string) {
-
-  const res = await fetch(`${address}/api/tvseries/${seriesId}`, {
-
+async function getSeason(seriesId: string, season:  string) {
+  const res = await fetch(`${address}/api/seasons/${seriesId}/${season}`, {
     method: "GET",
 });
+console.log(res)
   return res.json();
 }
 async function getRecommendations(seriesId: string) {
   const res = await fetch(
-
     `${address}/api/recommendations/${seriesId}/tv`, {
       method: "GET",
   }
   );  
   return res.json();
 }
-async function getCredits(seriesId: string) {
+async function getCredits(seriesId: string, season: string) {
   const res = await fetch(
-    `${address}/api/credits/${seriesId}/tv`, {
+    `${address}/api/credits/${seriesId}/season/${season}`, {
       method: "GET",
   }
   );
@@ -42,11 +39,17 @@ async function getCredits(seriesId: string) {
 }
 
 
-export default async function Page({ params }: { params: { seriesId: string } }) {
-  const seriesId = params.seriesId;
-  const details:TVDetails = await getTvSeries(seriesId) ;
+export default async function Page({ params }: { params: { seriesId: string; season: string } }) {
+  const seriesId = params.seriesId[0];
+  const season = params.seriesId[1];
+  console.log(seriesId, season)
+  if (!seriesId || !season) {
+    return <Spinner visible={true} />;
+  }
+  const details:SeasonDetails = await getSeason(seriesId, season);
+  console.log(details)
   const recommendations = await getRecommendations(seriesId);
-  const credits = await getCredits(seriesId);
+  const credits = await getCredits(seriesId, season);
 
 
 

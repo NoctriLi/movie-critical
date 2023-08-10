@@ -184,3 +184,31 @@ export interface TVDetails {
 
 
 }
+export interface SeasonDetails {
+  _id: string;
+  air_date: string;
+  episodes: Episode[];
+  name: string;
+  overview: string;
+  id: number;
+  poster_path: string;
+  season_number: number;
+  vote_average: number;
+  
+}
+
+export interface Episode {
+  air_date: string;
+  crew: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  episode_number: number;
+  guest_stars: Array<{ [key: string]: any }>; // replace any with the actual type if available
+  name: string;
+  overview: string;
+  id: number;
+  production_code: string;
+  season_number: number;
+  still_path: string;
+  vote_average: number;
+  vote_count: number;
+}
+

@@ -11,6 +11,10 @@ import useCredits from "@/hooks/useCredits";
 import MovieDetailsTable from "@/app/_components/MovieDetailsTable";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
+
+let address = process.env.WEB_LOC;
+
+
 function formatDate(date: Date) {
   console.log(date);
 
@@ -45,7 +49,7 @@ function parseDate(date: string) {
 
 
 const getPerson = async (personId: string) => {
-  const res = await fetch(`https://movie-critical.vercel.app/api/people/${personId}`);
+  const res = await fetch(`${address}/api/people/${personId}`);
   return res.json();
 }
 
