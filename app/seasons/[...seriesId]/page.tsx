@@ -1,39 +1,37 @@
 
-import React, { useState, useEffect } from "react";
-import { HiChevronLeft } from "react-icons/hi";
+import React from "react";
+
 import Spinner from "@/app/_components/Spinner";
 import { useSearchParams } from "next/navigation";
-import useMovie from "@/hooks/useMovie";
-import useRecommendations from "@/hooks/useRecommendations";
-import MovieSlider from "@/app/_components/MovieSlider";
+import TvSlider from "@/app/_components/TvSlider";
 import ActorSlider from "@/app/_components/ActorSlider";
 import CrewSlider from "@/app/_components/CrewSlider";
-import useCredits from "@/hooks/useCredits";
-import MovieDetailsTable from "@/app/_components/MovieDetailsTable";
+import TvDetailsTable from "@/app/_components/TvDetailsTable";
+import { SeasonDetails } from "@/lib/interfaces";
+
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 
 let address = process.env.WEB_LOC;
 
-
-
-async function getMovies(movieId: string) {
-  const res = await fetch(`${address}/api/movies/${movieId}`, {
+async function getSeason(seriesId: string, season:  string) {
+  const res = await fetch(`${address}/api/seasons/${seriesId}/${season}`, {
     method: "GET",
 });
+console.log(res)
   return res.json();
 }
-async function getRecommendations(movieId: string) {
+async function getRecommendations(seriesId: string) {
   const res = await fetch(
-    `${address}/api/recommendations/${movieId}/movie`, {
+    `${address}/api/recommendations/${seriesId}/tv`, {
       method: "GET",
   }
   );  
   return res.json();
 }
-async function getCredits(movieId: string) {
+async function getCredits(seriesId: string, season: string) {
   const res = await fetch(
-    `${address}/api/credits/${movieId}/movie`, {
+    `${address}/api/credits/${seriesId}/season/${season}`, {
       method: "GET",
   }
   );
@@ -41,32 +39,25 @@ async function getCredits(movieId: string) {
 }
 
 
-export default async function Page({ params }: { params: { movieId: string } }) {
-  const movieId = params.movieId;
-  const details = await getMovies(movieId);
-  const recommendations = await getRecommendations(movieId);
-  const credits = await getCredits(movieId);
-
-
-  // const {
-  //   data: details,
-  //   error: detailsError,
-  //   isLoading: detailsIsLoading,
-  // } = await useMovie(movieId as string);
-
-  // const {
-  //   data: recommendations,
-  //   error: recommendationsError,
-  //   isLoading: recommendationsIsLoading,
-  // } = await useRecommendations(movieId as string);
-
-  // const { data: credits } = await useCredits(movieId as string);
-
-  const movieRating =
-    details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
-      ?.release_dates[0].certification || "NR";
+export default async function Page({ params }: { params: { seriesId: string; season: string } }) {
+  const seriesId = params.seriesId[0];
+  const season = params.seriesId[1];
+  console.log(seriesId, season)
+  if (!seriesId || !season) {
+    return <Spinner visible={true} />;
+  }
+  const details:SeasonDetails = await getSeason(seriesId, season);
   console.log(details)
-  console.log("MOVIEPAGE", recommendations.results[0]);
+  const recommendations = await getRecommendations(seriesId);
+  const credits = await getCredits(seriesId, season);
+
+
+
+  // const seriesRating =
+  //   details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
+  //     ?.release_dates[0].certification || "NR";
+  console.log(details)
+  console.log("seriesPAGE", recommendations.results[0]);
 
   return (
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">
@@ -89,16 +80,16 @@ export default async function Page({ params }: { params: { movieId: string } }) 
         <div className="col-span-auto flex flex-col text-white ">
           <div className="flex flex-col gap-2 ">
             <h1 className="text-2xl md:text-3xl font-bold  ">
-              {details?.original_title}{" "}
+              {details?.name}{" "}
             </h1>
 
             <div className="flex flex-row  space-x-5 w-full align-middle text-md lg:text-lg">
               <h2>
-                {movieRating && (
-                  <p className="text-md self-center">{movieRating}</p>
-                )}
+                {/* {seriesRating && (
+                  <p className="text-md self-center">{seriesRating}</p>
+                )} */}
               </h2>
-              <h1>{details?.release_date?details?.release_date.substring(0, 4):'????'}</h1>
+              <h1>{details?.first_air_date?details?.first_air_date.substring(0, 4):'????'}</h1>
 
               <p>
                 {details?.genres && details?.genres.map((genre: any) => genre.name).join(", ")}
@@ -119,28 +110,8 @@ export default async function Page({ params }: { params: { movieId: string } }) 
             </div>
           </div>
           <div className="py-2">
-            <MovieDetailsTable {...details} />
+            <TvDetailsTable {...details} />
           </div>
-          {/* <div className=" flex justify-evenly row-start-3 row-end-5 ">
-            <div className="flex">
-              <h2 className="text-lg py-2">Genres:</h2>
-              <p className="text-sm">
-                {details?.budget}
-              </p>
-            </div>
-            <div className="flex">
-              <h2 className="text-lg py-2">Genres:</h2>
-              <p className="text-sm">
-                {details?.genres.map((genre: any) => genre.name).join(", ")}
-              </p>
-            </div>
-            <div className="flex">
-              <h2 className="text-lg py-2">Genres:</h2>
-              <p className="text-sm">
-                {details?.genres.map((genre: any) => genre.name).join(", ")}
-              </p>
-            </div>
-          </div> */}
         </div>
       </div>
 
@@ -174,7 +145,7 @@ export default async function Page({ params }: { params: { movieId: string } }) 
           Recommendations
         </h2>
         <div className="w-full">
-          {recommendations && <MovieSlider {...recommendations} />}
+          {recommendations && < TvSlider {...recommendations} />}
         </div>
       </div>
     </div>
