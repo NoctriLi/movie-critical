@@ -23,7 +23,7 @@ const SeasonBox: React.FC<SeasonBoxProps> = async ({ seriesId }) => {
     <div className="mx-auto  px-4 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="slider">
         {details.seasons.map((season) => (
-          <SeasonCard key={season.id} season={season} seriesId={seriesId} />
+          <SeasonCard key={season.id} seasonDetails={[season, seriesId]} />
         ))}
       </div>
     </div>
