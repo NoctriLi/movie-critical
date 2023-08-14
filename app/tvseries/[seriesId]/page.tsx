@@ -3,37 +3,53 @@ import React from "react";
 
 import Spinner from "@/app/_components/Spinner";
 import { useSearchParams } from "next/navigation";
-import TvSlider from "@/app/_components/TvSlider";
-import ActorSlider from "@/app/_components/ActorSlider";
-import CrewSlider from "@/app/_components/CrewSlider";
-import TvDetailsTable from "@/app/_components/TvDetailsTable";
+import TvSlider from "@/app/_components/sliders/TvSlider";
+import ActorSlider from "@/app/_components/sliders/ActorSlider";
+import CrewSlider from "@/app/_components/sliders/CrewSlider";
+import TvDetailsTable from "@/app/_components/tables/TvDetailsTable";
 import { TVDetails } from "@/lib/interfaces";
-
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import SeasonBox from "@/app/_components/grids/SeasonBox";
 import Image from "next/image";
 
-let address = process.env.WEB_LOC;
-
+const address = process.env.WEB_LOC;
+const token = process.env.TMDB_TOKEN;
 
 async function getTvSeries(seriesId: string) {
-  const res = await fetch(`${address}/api/tvseries/${seriesId}`, {
-    method: "GET",
-});
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${seriesId}?language=en-US`,
+     {
+       method: "GET",
+       headers: {
+         accept: "application/json",
+         Authorization: `Bearer ${token}`,
+       },
+     }
+   )
   return res.json();
 }
 async function getRecommendations(seriesId: string) {
   const res = await fetch(
-    `${address}/api/recommendations/${seriesId}/tv`, {
+    `https://api.themoviedb.org/3/tv/${seriesId}/recommendations?language=en-US`,
+    {
       method: "GET",
-  }
-  );  
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  ); 
   return res.json();
 }
 async function getCredits(seriesId: string) {
   const res = await fetch(
-    `${address}/api/credits/${seriesId}/tv`, {
+    `https://api.themoviedb.org/3/tv/${seriesId}/credits`,
+    {
       method: "GET",
-  }
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   return res.json();
 }
@@ -108,6 +124,16 @@ export default async function Page({ params }: { params: { seriesId: string } })
           </div>
         </div>
       </div>
+
+
+      <div className="flex flex-col w-full  mx-auto">
+        <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
+          Credits
+        </h2>
+        <div className="flex flex-col lg:flex-row text-center gap-28 mx-auto">
+          {seriesId && <SeasonBox seriesId={seriesId} />}
+          </div>
+        </div>
 
       <div className="flex flex-col w-full  mx-auto">
         <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">

@@ -1,6 +1,6 @@
 "use  client"
 import { TVDetails, SeasonDetails } from "@/lib/interfaces";
-import SeasonCard from "./SeasonCard";
+import SeasonCard from "../cards/SeasonCard";
 
 let address = process.env.WEB_LOC;
 

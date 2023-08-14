@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 // import { useRouter } from "next/router";
 import Link from "next/link";
-import LazyImage from "./LazyImage";
+import LazyImage from "../LazyImage";
 import { CastMember } from "@/lib/interfaces";
 
 const ActorCard: React.FC<CastMember> = (castMember) => {

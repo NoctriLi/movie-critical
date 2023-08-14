@@ -4,8 +4,8 @@ import movies from "@/lib/dummy";
 import axios from "axios";
 import Navbar from "@/app/_components/Navbar";
 import Hero from "@/app/_components/Hero";
-import MovieSlider from "@/app/_components/MovieSlider";
-import TvSlider from "@/app/_components/TvSlider";
+import MovieSlider from "@/app/_components/sliders/MovieSlider";
+import TvSlider from "@/app/_components/sliders/TvSlider";
 import { Movies, Movie } from "@/lib/interfaces";
 import { get } from "lodash";
 

@@ -4,13 +4,13 @@ import { HiChevronLeft } from "react-icons/hi";
 // import usePerson from "@/hooks/usePerson";
 // import useMovie from "@/hooks/useMovie";
 // import useRecommendations from "@/hooks/useRecommendations";
-import MovieCastSlider from "@/app/_components/MovieCastSlider";
-import ActorSlider from "@/app/_components/ActorSlider";
-import CrewSlider from "@/app/_components/CrewSlider";
+import MovieCastSlider from "@/app/_components/sliders/MovieCastSlider";
+import ActorSlider from "@/app/_components/sliders/ActorSlider";
+import CrewSlider from "@/app/_components/sliders/CrewSlider";
 import useCredits from "@/hooks/useCredits";
-import MovieDetailsTable from "@/app/_components/MovieDetailsTable";
+import MovieDetailsTable from "@/app/_components/tables/MovieDetailsTable";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-
+const token = process.env.TMDB_TOKEN;
 
 let address = process.env.WEB_LOC;
 
@@ -49,7 +49,16 @@ function parseDate(date: string) {
 
 
 const getPerson = async (personId: string) => {
-  const res = await fetch(`${address}/api/people/${personId}`);
+  const res = await fetch(
+    `https://api.themoviedb.org/3/person/${personId}?append_to_response=movie_credits&language=en-US`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return res.json();
 }
 

@@ -1,5 +1,5 @@
 import { PersonMovies } from "@/lib/interfaces";
-import MovieCastCard from "./MovieCastCard";
+import MovieCastCard from "../cards/MovieCastCard";
 
 
 

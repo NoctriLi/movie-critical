@@ -2,38 +2,55 @@
 import React from "react";
 
 import Spinner from "@/app/_components/Spinner";
-import TvSlider from "@/app/_components/TvSlider";
-import ActorSlider from "@/app/_components/ActorSlider";
-import CrewSlider from "@/app/_components/CrewSlider";
-import TvDetailsTable from "@/app/_components/TvDetailsTable";
+import TvSlider from "@/app/_components/sliders/TvSlider";
+import ActorSlider from "@/app/_components/sliders/ActorSlider";
+import CrewSlider from "@/app/_components/sliders/CrewSlider";
+import TvDetailsTable from "@/app/_components/tables/TvDetailsTable";
 import { Episode } from "@/lib/interfaces";
 
 
 import Image from "next/image";
-
+const token = process.env.TMDB_TOKEN;
 let address = process.env.WEB_LOC;
 
 
 async function getEpisode(seriesId: string, season:  string, episode: string) {
-  const res = await fetch(`${address}/api/episodes/${seriesId}/${season}/${episode}`, {
-    method: "GET",
-});
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${seriesId}/season/${season}/episode/${episode}?language=en-US`,
+     {
+       method: "GET",
+       headers: {
+         accept: "application/json",
+         Authorization: `Bearer ${token}`,
+       },
+     }
+   )
 
   return res.json();
 }
 async function getRecommendations(seriesId: string) {
   const res = await fetch(
-    `${address}/api/recommendations/${seriesId}/tv`, {
+    `https://api.themoviedb.org/3/tv/${seriesId}/recommendations?language=en-US`,
+    {
       method: "GET",
-  }
-  );  
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  ); 
   return res.json();
 }
 async function getCredits(seriesId: string, season: string, episode: string) {
   const res = await fetch(
-    `${address}/api/credits/${seriesId}/episode/${season}/${episode}`, {
+    `https://api.themoviedb.org/3/tv/${seriesId}/season/${season}/episode/${episode}/credits?language=en-US`,
+    {
       method: "GET",
-  }
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   return res.json();
 }

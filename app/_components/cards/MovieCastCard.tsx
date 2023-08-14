@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 // import { useRouter } from "next/router";
-import LazyImage from "./LazyImage";
+import LazyImage from "../LazyImage";
 import { Movie } from "@/lib/interfaces";
 import Link from "next/link";
 import {CastMovie, CrewMovie } from "@/lib/interfaces";

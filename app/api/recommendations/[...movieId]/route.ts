@@ -7,6 +7,9 @@ export async function GET(
   { params }: { params: { movieId: string; type: string } }
 ) {
   // await serverAuth(req, res);
+  if(params.movieId.length !== 2) {
+    throw new Error("Invalid Id");
+  }
 
   const movieId = params.movieId[0];
   const type = params.movieId[1]
@@ -27,9 +30,10 @@ export async function GET(
   }
   let res;
   if (type === "movie") {
-    res = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en-US&page=1`,
+    res = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en-US`,
       {
+        method: "GET",
         headers: {
           accept: "application/json",
           Authorization: `Bearer ${token}`,
@@ -37,9 +41,10 @@ export async function GET(
       }
     );
   } else if (type === "tv") {
-    res = await axios.get(
-      `https://api.themoviedb.org/3/tv/${movieId}/recommendations?language=en-US&page=1`,
+    res = await fetch(
+      `https://api.themoviedb.org/3/tv/${movieId}/recommendations?language=en-US`,
       {
+        method: "GET",
         headers: {
           accept: "application/json",
           Authorization: `Bearer ${token}`,
@@ -50,13 +55,13 @@ export async function GET(
     throw new Error("Invalid type");
   }
 
-  res = res.data;
-  console.log(res);
+  let rec = await res.json();
+  console.log(rec);
   // const movies = await prismadb.movie.findUnique({
   //   where: {
   //     id: movieId
   //   }
   // });
 
-  return NextResponse.json(res);
+  return NextResponse.json(rec);
 }

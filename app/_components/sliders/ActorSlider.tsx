@@ -1,6 +1,6 @@
 
 import { Credits } from "@/lib/interfaces";
-import ActorCard from "./ActorCard";
+import ActorCard from "../cards/ActorCard";
 
 
 

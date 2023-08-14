@@ -1,6 +1,6 @@
 
 import { Movies, Movie } from "@/lib/interfaces";
-import MovieCard from "./MovieCard";
+import MovieCard from "../cards/MovieCard";
 
 interface Props {
   movies: Movies;

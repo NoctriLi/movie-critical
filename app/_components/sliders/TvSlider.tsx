@@ -1,6 +1,6 @@
 
 import { TVShow } from "@/lib/interfaces";
-import TvCard from "./TvCard";
+import TvCard from "../cards/TvCard";
 
 interface Props {
     "page": number,

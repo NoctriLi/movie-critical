@@ -1,37 +1,55 @@
 
 import React from "react";
 import Spinner from "@/app/_components/Spinner";
-import TvSlider from "@/app/_components/TvSlider";
-import ActorSlider from "@/app/_components/ActorSlider";
-import CrewSlider from "@/app/_components/CrewSlider";
-import SeasonBox from "@/app/_components/SeasonBox";
+import TvSlider from "@/app/_components/sliders/TvSlider";
+import ActorSlider from "@/app/_components/sliders/ActorSlider";
+import CrewSlider from "@/app/_components/sliders/CrewSlider";
+import SeasonBox from "@/app/_components/grids/SeasonBox";
 import { SeasonDetails } from "@/lib/interfaces";
 
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 
-let address = process.env.WEB_LOC;
+const token = process.env.TMDB_TOKEN;
+const address = process.env.WEB_LOC;
 
 async function getSeason(seriesId: string, season:  string) {
-  const res = await fetch(`${address}/api/seasons/${seriesId}/${season}`, {
-    method: "GET",
-});
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${seriesId}/season/${season}?language=en-US`,
+     {
+       method: "GET",
+       headers: {
+         accept: "application/json",
+         Authorization: `Bearer ${token}`,
+       },
+     }
+   )
 console.log(res)
   return res.json();
 }
 async function getRecommendations(seriesId: string) {
   const res = await fetch(
-    `${address}/api/recommendations/${seriesId}/tv`, {
+    `https://api.themoviedb.org/3/tv/${seriesId}/recommendations?language=en-US`,
+    {
       method: "GET",
-  }
-  );  
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return res.json();
 }
 async function getCredits(seriesId: string, season: string) {
   const res = await fetch(
-    `${address}/api/credits/${seriesId}/season/${season}`, {
+    `https://api.themoviedb.org/3/tv/${seriesId}/season/${season}/credits?language=en-US`,
+    {
       method: "GET",
-  }
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   return res.json();
 }
@@ -44,11 +62,10 @@ export default async function Page({ params }: { params: { seriesId: string; sea
     return <Spinner visible={true} />;
   }
   const details:SeasonDetails = await getSeason(seriesId, season);
-  console.log(details)
   const recommendations = await getRecommendations(seriesId);
   const credits = await getCredits(seriesId, season);
 
-  console.log("seriesPAGE", recommendations.results[0]);
+  
 
   return (
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">

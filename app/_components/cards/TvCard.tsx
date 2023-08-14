@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 // import { useRouter } from "next/router";
 import Link from "next/link";
-import LazyImage from "./LazyImage";
+import LazyImage from "../LazyImage";
 import { TVShow } from "@/lib/interfaces";
 
 const TvCard: React.FC<TVShow> = (tvshow) => {

@@ -5,75 +5,85 @@ import Spinner from "@/app/_components/Spinner";
 import { useSearchParams } from "next/navigation";
 import useMovie from "@/hooks/useMovie";
 import useRecommendations from "@/hooks/useRecommendations";
-import MovieSlider from "@/app/_components/MovieSlider";
-import ActorSlider from "@/app/_components/ActorSlider";
-import CrewSlider from "@/app/_components/CrewSlider";
+import MovieSlider from "@/app/_components/sliders/MovieSlider";
+import ActorSlider from "@/app/_components/sliders/ActorSlider";
+import CrewSlider from "@/app/_components/sliders/CrewSlider";
 import useCredits from "@/hooks/useCredits";
-import MovieDetailsTable from "@/app/_components/MovieDetailsTable";
+import MovieDetailsTable from "@/app/_components/tables/MovieDetailsTable";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
-
+const token = process.env.TMDB_TOKEN;
 let address = process.env.WEB_LOC;
 
 
 
 async function getMovies(movieId: string) {
-  const res = await fetch(`${address}/api/movies/${movieId}`, {
-    method: "GET",
-});
+  let res = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}?language=en-US&append_to_response=release_dates`,
+     {
+       method: "GET",
+       headers: {
+         accept: "application/json",
+         Authorization: `Bearer ${token}`,
+       },
+     }
+   )
   return res.json();
 }
 async function getRecommendations(movieId: string) {
   const res = await fetch(
-    `${address}/api/recommendations/${movieId}/movie`, {
+    `https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en-US`,
+    {
       method: "GET",
-  }
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );  
   return res.json();
 }
 async function getCredits(movieId: string) {
   const res = await fetch(
-    `${address}/api/credits/${movieId}/movie`, {
+    `https://api.themoviedb.org/3/movie/${movieId}/credits`,
+    {
       method: "GET",
-  }
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   return res.json();
 }
 
 
-export default async function Page({ params }: { params: { movieId: string } }) {
-  const movieId = params.movieId;
-  const details = await getMovies(movieId);
-  const recommendations = await getRecommendations(movieId);
-  const credits = await getCredits(movieId);
+export default async function Page({ params: {movieId} }: { params: { movieId: string } }) {
+  
+  const detailsData = getMovies(movieId);
+  const recommendationsData = getRecommendations(movieId);
+  const creditsData = await getCredits(movieId);
 
-
-  // const {
-  //   data: details,
-  //   error: detailsError,
-  //   isLoading: detailsIsLoading,
-  // } = await useMovie(movieId as string);
-
-  // const {
-  //   data: recommendations,
-  //   error: recommendationsError,
-  //   isLoading: recommendationsIsLoading,
-  // } = await useRecommendations(movieId as string);
-
-  // const { data: credits } = await useCredits(movieId as string);
-
+  const [details, recommendations, credits] = await Promise.all([detailsData, recommendationsData, creditsData]);
+console.log(recommendations)
   const movieRating =
     details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
       ?.release_dates[0].certification || "NR";
-  console.log(details)
-  console.log("MOVIEPAGE", recommendations.results[0]);
+
 
   return (
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">
       <div className="row-span-1 bg-black p-5 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className=" col-span-auto ">
           {details?.poster_path == undefined ? (
-            <Spinner visible={true}/>
+            <Image
+              src={`/blank-profile-picture.png`}
+              loading="lazy"
+              width={300}
+              height={400}
+              alt="poster"
+              className="w-[500px] mx-auto rounded"
+            />
           ) : (
             <Image
               src={`https://image.tmdb.org/t/p/w500${details?.poster_path}`}
@@ -119,7 +129,8 @@ export default async function Page({ params }: { params: { movieId: string } }) 
             </div>
           </div>
           <div className="py-2">
-            <MovieDetailsTable {...details} />
+            {details && <MovieDetailsTable {...details} />}
+            
           </div>
           {/* <div className=" flex justify-evenly row-start-3 row-end-5 ">
             <div className="flex">
@@ -174,7 +185,7 @@ export default async function Page({ params }: { params: { movieId: string } }) 
           Recommendations
         </h2>
         <div className="w-full">
-          {recommendations && <MovieSlider {...recommendations} />}
+          {recommendations?.results && <MovieSlider {...recommendations} />}
         </div>
       </div>
     </div>

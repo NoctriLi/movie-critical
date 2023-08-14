@@ -1,6 +1,6 @@
 
 import { Credits, CrewMember } from "@/lib/interfaces";
-import CrewCard from "./CrewCard";
+import CrewCard from "../cards/CrewCard";
 
 
 
