@@ -66,15 +66,20 @@ export default async function Page({ params }: { params: { seriesId: string } })
   // const seriesRating =
   //   details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
   //     ?.release_dates[0].certification || "NR";
-  console.log(details)
-  console.log("seriesPAGE", recommendations.results[0]);
-
+ 
   return (
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">
       <div className="row-span-1 bg-black p-5 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className=" col-span-auto ">
-          {details?.poster_path == undefined ? (
-            <Spinner visible={true}/>
+        {details?.poster_path == undefined ? (
+            <Image
+              src={`/blank-profile-picture.png`}
+              loading="lazy"
+              width={300}
+              height={400}
+              alt="poster"
+              className="w-[500px] mx-auto rounded"
+            />
           ) : (
             <Image
               src={`https://image.tmdb.org/t/p/w500${details?.poster_path}`}
@@ -120,7 +125,7 @@ export default async function Page({ params }: { params: { seriesId: string } })
             </div>
           </div>
           <div className="py-2">
-            <TvDetailsTable {...details} />
+           {details && <TvDetailsTable {...details} />} 
           </div>
         </div>
       </div>
@@ -128,10 +133,10 @@ export default async function Page({ params }: { params: { seriesId: string } })
 
       <div className="flex flex-col w-full  mx-auto">
         <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
-          Credits
+          Seasons
         </h2>
         <div className="flex flex-col lg:flex-row text-center gap-28 mx-auto">
-          {seriesId && <SeasonBox seriesId={seriesId} />}
+          {seriesId && <SeasonBox seasons={details} id={seriesId} />}
           </div>
         </div>
 

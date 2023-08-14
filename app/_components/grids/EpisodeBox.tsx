@@ -1,33 +1,29 @@
-"use  client"
-import { TVDetails, SeasonDetails } from "@/lib/interfaces";
+
+import { SeasonDetails } from "@/lib/interfaces";
 import SeasonCard from "../cards/SeasonCard";
+import EpisodeCard from "../cards/EpisodeCard";
 
 let address = process.env.WEB_LOC;
 
 type SeasonBoxProps = {
-  seriesId: string;
+  episodes: any;
+  id: string;
 };
 
-async function getTvSeries(seriesId: string) {
-  const res = await fetch(`${address}/api/tvseries/${seriesId}`, {
-    method: "GET",
-  });
-  return res.json();
-}
 
-const SeasonBox: React.FC<SeasonBoxProps> = async ({ seriesId }) => {
-  console.log(seriesId);
-  const details: TVDetails = await getTvSeries(seriesId);
+
+const EpisodeBox: React.FC<SeasonBoxProps> = async ({ episodes, id }) => {
+  const details: SeasonDetails = episodes;
   console.log(details);
   return (
     <div className="mx-auto  px-4 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="slider">
-        {details.seasons.map((season) => (
-          <SeasonCard key={season.id} seasonDetails={[season, seriesId]} />
+        {details.episodes.map((season) => (
+          <EpisodeCard key={season.id} episodeDetails={[season, id]} />
         ))}
       </div>
     </div>
   );
 };
 
-export default SeasonBox;
+export default EpisodeBox;

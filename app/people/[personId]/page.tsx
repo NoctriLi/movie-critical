@@ -10,6 +10,7 @@ import CrewSlider from "@/app/_components/sliders/CrewSlider";
 import useCredits from "@/hooks/useCredits";
 import MovieDetailsTable from "@/app/_components/tables/MovieDetailsTable";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import Image from "next/image";
 const token = process.env.TMDB_TOKEN;
 
 let address = process.env.WEB_LOC;
@@ -99,16 +100,26 @@ export default async function Page({ params }: { params: { personId: string } })
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">
       <div className="row-span-1 bg-black p-5 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className=" col-span-auto ">
-          <img
-            src={
-              details?.profile_path
-                ? `https://image.tmdb.org/t/p/w500${image_path}`
-                : "/blank-profile-picture.png"
-            }
-            loading="lazy"
-            alt="poster"
-            className="w-[500px] mx-auto rounded"
-          />
+          
+          {details?.profile_path == undefined ? (
+            <Image
+              src={`/blank-profile-picture.png`}
+              loading="lazy"
+              width={300}
+              height={400}
+              alt="poster"
+              className="w-[500px] mx-auto rounded"
+            />
+          ) : (
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${image_path}`}
+              loading="lazy"
+              width={300}
+              height={400}
+              alt="poster"
+              className="w-[500px] mx-auto rounded"
+            />
+          )}
         </div>
 
         <div className="col-span-auto flex flex-col text-white ">

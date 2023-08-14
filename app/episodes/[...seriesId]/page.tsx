@@ -5,6 +5,8 @@ import Spinner from "@/app/_components/Spinner";
 import TvSlider from "@/app/_components/sliders/TvSlider";
 import ActorSlider from "@/app/_components/sliders/ActorSlider";
 import CrewSlider from "@/app/_components/sliders/CrewSlider";
+import SeasonBox from "@/app/_components/grids/SeasonBox";
+import EpisodeBox from "@/app/_components/grids/EpisodeBox";
 import TvDetailsTable from "@/app/_components/tables/TvDetailsTable";
 import { Episode } from "@/lib/interfaces";
 
@@ -13,7 +15,34 @@ import Image from "next/image";
 const token = process.env.TMDB_TOKEN;
 let address = process.env.WEB_LOC;
 
+async function getTvSeries(seriesId: string) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${seriesId}?language=en-US`,
+     {
+       method: "GET",
+       headers: {
+         accept: "application/json",
+         Authorization: `Bearer ${token}`,
+       },
+     }
+   )
+  return res.json();
+}
 
+async function getSeason(seriesId: string, season:  string) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${seriesId}/season/${season}?language=en-US`,
+     {
+       method: "GET",
+       headers: {
+         accept: "application/json",
+         Authorization: `Bearer ${token}`,
+       },
+     }
+   )
+console.log(res)
+  return res.json();
+}
 async function getEpisode(seriesId: string, season:  string, episode: string) {
   const res = await fetch(
     `https://api.themoviedb.org/3/tv/${seriesId}/season/${season}/episode/${episode}?language=en-US`,
@@ -60,29 +89,32 @@ export default async function Page({ params }: { params: { seriesId: string; sea
   const seriesId = params.seriesId[0];
   const season = params.seriesId[1];
   const episode = params.seriesId[2];
-  console.log(seriesId, season)
+  
   if (!seriesId || !season) {
     return <Spinner visible={true} />;
   }
   const details:Episode = await getEpisode(seriesId, season, episode);
-  console.log(details)
+ 
   const recommendations = await getRecommendations(seriesId);
   const credits = await getCredits(seriesId, season, episode);
-console.log(credits)
+  const seriesDetails = await getTvSeries(seriesId);
+  const seasonDetails = await getSeason(seriesId, season);
 
 
-  // const seriesRating =
-  //   details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
-  //     ?.release_dates[0].certification || "NR";
-  console.log(details.still_path)
-  console.log("seriesPAGE", recommendations.results[0]);
 
   return (
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">
       <div className="row-span-1 bg-black p-5 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className=" col-span-auto ">
-          {details?.still_path == undefined ? (
-            <Spinner visible={true}/>
+        {details?.still_path == undefined ? (
+            <Image
+              src={`/blank-profile-picture.png`}
+              loading="lazy"
+              width={300}
+              height={400}
+              alt="poster"
+              className="w-[500px] mx-auto rounded"
+            />
           ) : (
             <Image
               src={`https://image.tmdb.org/t/p/w500${details?.still_path}`}
@@ -127,7 +159,22 @@ console.log(credits)
 
         </div>
       </div>
-
+      <div className="flex flex-col w-full  mx-auto">
+        <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
+          Episodes
+        </h2>
+        <div className="flex flex-col lg:flex-row text-center gap-28 mx-auto">
+          {seriesId && <EpisodeBox episodes={seasonDetails} id={seriesId} />}
+          </div>
+        </div>
+        <div className="flex flex-col w-full  mx-auto">
+        <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
+          Seasons
+        </h2>
+        <div className="flex flex-col lg:flex-row text-center gap-28 mx-auto">
+          {seriesId && <SeasonBox seasons={seriesDetails} id={seriesId} />}
+          </div>
+        </div>
       <div className="flex flex-col w-full  mx-auto">
         <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
           Credits

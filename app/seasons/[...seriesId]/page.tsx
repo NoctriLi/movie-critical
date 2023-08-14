@@ -9,9 +9,23 @@ import { SeasonDetails } from "@/lib/interfaces";
 
 import { GetServerSideProps } from "next";
 import Image from "next/image";
+import EpisodeBox from "@/app/_components/grids/EpisodeBox";
 
 const token = process.env.TMDB_TOKEN;
 const address = process.env.WEB_LOC;
+async function getTvSeries(seriesId: string) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${seriesId}?language=en-US`,
+     {
+       method: "GET",
+       headers: {
+         accept: "application/json",
+         Authorization: `Bearer ${token}`,
+       },
+     }
+   )
+  return res.json();
+}
 
 async function getSeason(seriesId: string, season:  string) {
   const res = await fetch(
@@ -61,6 +75,7 @@ export default async function Page({ params }: { params: { seriesId: string; sea
   if (!seriesId || !season) {
     return <Spinner visible={true} />;
   }
+  const seriesDetails = await getTvSeries(seriesId);
   const details:SeasonDetails = await getSeason(seriesId, season);
   const recommendations = await getRecommendations(seriesId);
   const credits = await getCredits(seriesId, season);
@@ -71,8 +86,15 @@ export default async function Page({ params }: { params: { seriesId: string; sea
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">
       <div className="row-span-1 bg-black p-5 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className=" col-span-auto ">
-          {details?.poster_path == undefined ? (
-            <Spinner visible={true}/>
+        {details?.poster_path == undefined ? (
+            <Image
+              src={`/blank-profile-picture.png`}
+              loading="lazy"
+              width={300}
+              height={400}
+              alt="poster"
+              className="w-[500px] mx-auto rounded"
+            />
           ) : (
             <Image
               src={`https://image.tmdb.org/t/p/w500${details?.poster_path}`}
@@ -118,10 +140,18 @@ export default async function Page({ params }: { params: { seriesId: string; sea
       </div>
       <div className="flex flex-col w-full  mx-auto">
         <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
-          Credits
+          Episodes
         </h2>
         <div className="flex flex-col lg:flex-row text-center gap-28 mx-auto">
-          {seriesId && <SeasonBox seriesId={seriesId} />}
+          {seriesId && <EpisodeBox episodes={details} id={seriesId} />}
+          </div>
+        </div>
+      <div className="flex flex-col w-full  mx-auto">
+        <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
+          Seasons
+        </h2>
+        <div className="flex flex-col lg:flex-row text-center gap-28 mx-auto">
+          {seriesId && <SeasonBox seasons={seriesDetails} id={seriesId} />}
           </div>
         </div>
 
