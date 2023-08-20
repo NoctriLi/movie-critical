@@ -19,6 +19,15 @@ module.exports = {
         '2xs': '16rem',
         '3xs': '12rem',
       },
+      keyframes: {
+        'leftToRight' : {
+          '0%' : { transform: 'translateX(-100%)' },
+          '100%' : { transform: 'translateX(100)', zIndex: 0, height: '0px' },
+        },
+      },
+      animation: {
+        'leftToRight' : 'leftToRight 1s ease-in',
+      },
     },
   },
   plugins: [require('@tailwindcss/container-queries')],

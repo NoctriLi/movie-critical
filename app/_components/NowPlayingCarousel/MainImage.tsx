@@ -16,7 +16,7 @@ const MainCard = ({ card, children, activeIndex }: MainCardProps) => {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     setLoaded(false);
-    setTimeout(() => setLoaded(true), 200);
+    setTimeout(() => setLoaded(true), 150);
   }, [activeIndex]);
 
   return (

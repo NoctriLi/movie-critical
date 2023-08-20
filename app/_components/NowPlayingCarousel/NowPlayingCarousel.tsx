@@ -12,28 +12,31 @@ const NowPlayingCourosel: React.FC<Movies> = (movies) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState<Movie[]>([]);
   const [activeCard, setActiveCard] = useState<Movie>(cards[activeIndex]);
+  const [direction, setDirection] = useState("next");
 
   const handleNext = () => {
     setActiveIndex((activeIndex + 1) % cards.length);
+    setDirection("next");
   };
   const handleLast = () => {
     setActiveIndex(
       activeIndex === 0 ? cards.length - 1 : activeIndex - (1 % cards.length)
-    );
+      );
+      setDirection("last");
   };
   useEffect(() => {
     const updateVisibleCards = () => {
       const cardCount = cards.length;
       const newVisibleCards: Movie[] = [];
 
-      for (let i = 1; i < 4; i++) {
+      for (let i = 0; i <= 4; i++) {
         const cardIndex = (activeIndex + i) % cardCount;
         newVisibleCards.push(cards[cardIndex]);
       }
       setTimeout(() => {
         setVisibleCards(newVisibleCards);
         setActiveCard(cards[activeIndex]);
-      }, 100);
+      }, 150);
     };
 
     updateVisibleCards();
@@ -48,7 +51,7 @@ const NowPlayingCourosel: React.FC<Movies> = (movies) => {
         </MainImage>
       </div>
 
-      <SideImages movies={...visibleCards} activeIndex={activeIndex} />
+      <SideImages movies={...visibleCards} activeIndex={activeIndex} direction={direction} setDirection={setDirection} />
     </div>
   );
 };
