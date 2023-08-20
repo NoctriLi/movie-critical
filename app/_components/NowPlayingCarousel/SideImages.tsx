@@ -68,7 +68,7 @@ const Maincard: React.FC<MainCardProps> = ({
   console.log(movies);
   return (
     <>
-      <div className="hidden lg:flex flex-col w-1/3 items-center">
+      <div className="relative w-0 scale-0 lg:flex flex-col lg:w-1/3 transition -translate-x-full lg:scale-100 lg:translate-x-0 items-center">
         <div className="relative block space-y-1 h-full w-full overflow-hidden">
           {movies.map((card: Movie, index: number) => (
             <div

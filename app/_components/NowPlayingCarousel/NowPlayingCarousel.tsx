@@ -43,11 +43,14 @@ const NowPlayingCourosel: React.FC<Movies> = (movies) => {
   }, [activeIndex, movies]);
 
   return (
-    <div className=" flex space-x-2 max-w-7xl h-4/5 mx-auto my-5 p-2 overflow-hidden">
-      <div className=" w-full lg:w-2/3 h-full">
+    <div className="relative flex space-x-2 max-w-7xl h-full mx-auto my-5 p-2 overflow-hidden">
+      <div className="relative w-full transition scale-80 lg:scale-90  h-full ">
         <MainImage card={activeCard} activeIndex={activeIndex}>
+          <div className="absolute w-full h-full top-0">
+
           <BackButton handleClick={handleLast} />
           <NextButton handleClick={handleNext} />
+          </div>
         </MainImage>
       </div>
 

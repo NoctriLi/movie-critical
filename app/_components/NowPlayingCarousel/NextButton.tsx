@@ -5,15 +5,14 @@ interface NextButtonProps {
 
 const NextButton: React.FC<NextButtonProps> = ({ handleClick }) => {
   return (
-    <>
-      <button className="absolute top-1/3 right-5 p-2 h-20 w-10 bg-zinc-600 text-white opacity-70 rounded transform translate-y-1/2" onClick={handleClick}>
+      <button className="absolute top-0 right-0 p-2 h-full w-1/2 text-white opacity-70 rounded" style={{WebkitTapHighlightColor: 'transparent'}} onClick={handleClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="relative left-full -translate-x-full w-20 shadow-xl bg-black bg-opacity-10 shadow-black"
         >
           <path
             strokeLinecap="round"
@@ -22,7 +21,6 @@ const NextButton: React.FC<NextButtonProps> = ({ handleClick }) => {
           />
         </svg>
       </button>
-    </>
   );
 };
 
