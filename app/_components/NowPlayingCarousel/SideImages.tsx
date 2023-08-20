@@ -60,7 +60,7 @@ const Maincard: React.FC<MainCardProps> = ({
       ? "absolute h-1/3 z-11" +
         (!loaded
           ? direction === "next"
-            ? "z-12  -translate-y-full h-1/3 linear duration-800"
+            ? " absolute transition z-10 -translate-y-full h-1/3 linear "
             : "invisible"
           : " z-1")
       : "";

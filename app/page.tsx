@@ -46,7 +46,7 @@ export default async function Page() {
   return (
     <>
       <section className="flex flex-col w-full min-h-[90vh] my-5 ">
-        <h1 className="text-white text-5xl mx-auto text-center">Now Playing</h1>
+        <h1 className="text-white text-5xl mx-10 text-left">Now Playing</h1>
         {movies && <NowPlayingCourosel {...movies} />}
       </section>
 

@@ -11,7 +11,7 @@ const SearchInput = () => {
 
   return (
     <div className="flex flex-col relative gap-0 min-w-fit h-fit text-white text-xs rounded shadow ">
-      <div className="hidden lg:block relative">
+      <div className="hidden md:block relative md:transition-transform ease-in-out">
       <h1 className="text-white ">search</h1>
         <input
           type="text"
@@ -20,7 +20,7 @@ const SearchInput = () => {
           onChange={onSearch}
         />
       </div>
-      <div className="block lg:hidden">
+      <div className="block md:hidden md:transition-transform ease-in-out">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
