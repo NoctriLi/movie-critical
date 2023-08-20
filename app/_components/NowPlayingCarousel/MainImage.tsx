@@ -38,10 +38,10 @@ const MainCard = ({ card, children, activeIndex }: MainCardProps) => {
           />
         </div>
         {children}
-        <div className={`relative top-0 text-4xl h-2/6 mx-auto  text-white opacity-80`}>
+      </div>
+        <div className={`absolute  text-4xl tracking-wide h-2/6 mx-auto  text-white opacity-80`}>
           {card.title}
         </div>
-      </div>
     </>
   );
 };
