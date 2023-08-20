@@ -37,15 +37,7 @@ td {
   box-sizing: border-box;
 }
 
-.navlogo {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  left: 0;
-  right: 0;
 
-}
 .carousel-text {
   position: absolute;
 }
