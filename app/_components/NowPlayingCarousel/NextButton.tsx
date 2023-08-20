@@ -6,7 +6,7 @@ interface NextButtonProps {
 const NextButton: React.FC<NextButtonProps> = ({ handleClick }) => {
   return (
     <>
-      <button className="absolute top-1/3 right-5 p-2 h-10 w-10 bg-zinc-600 opacity-50 transform translate-y-1/2" onClick={handleClick}>
+      <button className="absolute top-1/3 right-5 p-2 h-20 w-10 bg-zinc-600 text-white opacity-70 rounded transform translate-y-1/2" onClick={handleClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

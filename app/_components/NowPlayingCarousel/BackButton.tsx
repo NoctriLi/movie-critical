@@ -5,7 +5,7 @@ interface BackButtonProps {
 const BackButton: React.FC<BackButtonProps> = ({ handleClick }) => {
   return (
     <>
-      <button className="absolute top-1/3 left-5 p-2 w-10 h-10 bg-zinc-600 opacity-50 tranform translate-y-1/2" onClick={handleClick}>
+      <button className="absolute top-1/3 left-5 p-2 w-10 h-20 bg-zinc-600 text-white opacity-70 tranform rounded translate-y-1/2" onClick={handleClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
