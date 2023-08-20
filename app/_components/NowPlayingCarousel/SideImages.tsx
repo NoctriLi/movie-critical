@@ -5,6 +5,7 @@ import { Movie } from "@/lib/interfaces";
 interface MainCardProps {
   movies: Movie[];
   activeIndex: number;
+  direction: string;
 }
 
 const Maincard: React.FC<MainCardProps> = ({
