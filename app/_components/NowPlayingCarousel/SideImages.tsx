@@ -83,15 +83,15 @@ const Maincard: React.FC<MainCardProps> = ({
             >
               <Image
                 src={"https://image.tmdb.org/t/p/w342" + card.backdrop_path}
-                layout="fill"
+                fill={true}
                 placeholder="blur"
                 blurDataURL={
                   "https://image.tmdb.org/t/p/w342/nHf61UzkfFno5X1ofIhugCPus2R.jpg"
                 }
-                objectFit="cover"
-                objectPosition="center"
+                sizes="50vw"
                 style={{ borderRadius: "10px" }}
                 alt={card.title}
+                className="object-cover"
               />
               <p className=" text-white bg-zinc-900 opacity-80">{card.title}</p>
             </div>

@@ -1,14 +1,10 @@
-import Image from "next/image";
+
 import React from "react";
-import movies from "@/lib/dummy";
-import axios from "axios";
-import Navbar from "@/app/_components/Navbar";
-import Hero from "@/app/_components/Hero";
+
 import MovieSlider from "@/app/_components/sliders/MovieSlider";
 import TvSlider from "@/app/_components/sliders/TvSlider";
 import NowPlayingCourosel from "./_components/NowPlayingCarousel/NowPlayingCarousel";
-import { Movies, Movie } from "@/lib/interfaces";
-import { get } from "lodash";
+
 
 const token = process.env.TMDB_TOKEN;
 async function getMovies() {

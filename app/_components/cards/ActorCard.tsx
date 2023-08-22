@@ -11,7 +11,6 @@ const ActorCard: React.FC<CastMember> = (castMember) => {
   //   () => router.push(`/people/${castMember.id}`),
   //   [router, castMember.id]
   // );
- 
 
   return (
     <div className="flex flex-col gap-0 relative min-w-[100px] h-fit text-white text-xs rounded shadow">
@@ -27,9 +26,10 @@ const ActorCard: React.FC<CastMember> = (castMember) => {
         <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
           <Link
             href={`/people/${castMember.id}`}
-            
             className="absolute bottom-0 mt-2 px-4 py-2 bg-zinc-800 rounded text-white"
-        >More...</Link>
+          >
+            More...
+          </Link>
         </div>
       </div>
       <div className="flex flex-col py-1">

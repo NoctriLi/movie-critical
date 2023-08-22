@@ -12,7 +12,7 @@ const SearchInput = () => {
     setSearchTerm(e.target.value);
   };
 
-  function clearSearch() {
+  const clearSearch = () => {
     setSearchTerm("");
     setSearchResults([]);
   }
@@ -70,7 +70,7 @@ const SearchInput = () => {
         </svg>
       </div>
       {searchActive && searchResults.length > 0 && (
-        <SearchBarResults results={searchResults} clearSearch={clearSearch} setSearchActive={setSearchActive}/>
+        <SearchBarResults results={searchResults} clearSearch={() => clearSearch()}/>
       )}
     </div>
   );

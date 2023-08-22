@@ -2,16 +2,24 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const SearchBarItem = ({result, clearSearch}) => {
 
-    console.log(result)
+interface SearchBarItemProps {
+    result: any;
+    clearSearch: any;
+}
+
+
+const SearchBarItem: React.FC<SearchBarItemProps> = ({result, clearSearch}) => {
+
+    
 
   if (result.media_type === "movie") {
+    console.log("HI", result.poster_path)
     return (
-      <Link href={`/movies/${result.id}`} onClick={() => clearSearch()}  className="flex flex-row relative justify-between border border-black h-fit w-full">
+      <Link  href={`/movies/${result.id}`} onClick={() => clearSearch()}  className="flex flex-row relative justify-between border border-black h-fit w-full">
         <div className="flex flex-row">
           <Image
-            src={"https://image.tmdb.org/t/p/w185" + result.poster_path}
+            src={result.poster_path ? "https://image.tmdb.org/t/p/w185" + result.poster_path : "/blank-profile-picture.png"}
             width={30}
             height={45}
             sizes="50vw"
@@ -30,7 +38,7 @@ const SearchBarItem = ({result, clearSearch}) => {
       <Link href={`/tvseries/${result.id}`} onClick={() => clearSearch()} className="flex flex-row justify-between">
         <div className="flex flex-row">
           <Image
-            src={"https://image.tmdb.org/t/p/w185" + result.poster_path}
+            src={result.poster_path ? "https://image.tmdb.org/t/p/w185" + result.poster_path: "/blank-profile-picture.png"}
             width={30}
             height={45}
             sizes="50vw"
@@ -49,7 +57,7 @@ const SearchBarItem = ({result, clearSearch}) => {
       <Link href={`/people/${result.id}`} onClick={() => clearSearch()} className="flex flex-row justify-between">
         <div className="flex flex-row">
           <Image
-            src={"https://image.tmdb.org/t/p/w185" + result.profile_path}
+            src={result.profile_path ? "https://image.tmdb.org/t/p/w185" + result.profile_path: "/blank-profile-picture.png"}
             width={30}
             height={45}
             sizes="50vw"

@@ -65,7 +65,7 @@ export default async function Page({ params: {movieId} }: { params: { movieId: s
   const creditsData = await getCredits(movieId);
 
   const [details, recommendations, credits] = await Promise.all([detailsData, recommendationsData, creditsData]);
-console.log(recommendations)
+
   const movieRating =
     details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
       ?.release_dates[0].certification || "NR";
@@ -87,7 +87,8 @@ console.log(recommendations)
           ) : (
             <Image
               src={`https://image.tmdb.org/t/p/w500${details?.poster_path}`}
-              loading="lazy"
+              loading="eager"
+              priority={true}
               width={300}
               height={400}
               alt="poster"

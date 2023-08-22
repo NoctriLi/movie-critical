@@ -10,9 +10,7 @@ interface Image {
   quality?: number;
 }
 
-
-
-const EpisodeCard = ({episodeDetails}:any) => {
+const EpisodeCard = ({ episodeDetails }: any) => {
   // const router = useRouter();
   const episode: Episode = episodeDetails[0];
   const seriesId: string = episodeDetails[1];
@@ -32,10 +30,12 @@ const EpisodeCard = ({episodeDetails}:any) => {
           alt={episode.name}
         />
         <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
-        <Link
-            href={`/episodes/${seriesId}/${episode.season_number}/${episode.episode_number}`}  
+          <Link
+            href={`/episodes/${seriesId}/${episode.season_number}/${episode.episode_number}`}
             className="absolute bottom-0 mt-2 px-4 py-2 bg-zinc-800 rounded text-white"
-        >More...</Link>
+          >
+            More...
+          </Link>
         </div>
       </div>
 

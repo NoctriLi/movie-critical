@@ -83,7 +83,8 @@ export default async function Page({ params }: { params: { seriesId: string } })
           ) : (
             <Image
               src={`https://image.tmdb.org/t/p/w500${details?.poster_path}`}
-              loading="lazy"
+              loading="eager"
+              priority={true}
               width={300}
               height={400}
               alt="poster"
