@@ -12,23 +12,14 @@ const Navbar = () => {
         </div>
 
         <div className="justify-center">
-          <h1 className=" text-white text-3xl text-center h-0 md:h-auto overflow-hidden">Movie Critical</h1>
+          <a href="/" className=" text-white text-3xl text-center h-0 md:h-auto overflow-hidden">Movie Critical</a>
           <h1 className=" text-white text-3xl text-center md:h-0 overflow-hidden">M.Crit</h1>
         </div>
 
-        <div className="flex flex-row gap-2 p-2 border border-white">
+        <div className="flex p-2">
           
           <SearchInput />
         </div>
-
-      </div>
-      <div className="flex flex-row gap-2 basis-5/12 justify-center">
-        <div className="text-white p-2 border">
-            <a href="/">Home</a>
-        </div>
-
-
-
 
       </div>
     </nav>

@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
-import Navbar from "@/app/_components/Navbar";
+import Navbar from "@/app/_components/nav/Navbar";
 import { Roboto } from "next/font/google";
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        <div className="pt-20"></div>
+        <div className="pt-32"></div>
         {children}
       </body>
     </html>

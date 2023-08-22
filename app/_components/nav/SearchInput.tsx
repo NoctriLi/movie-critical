@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import SearchBarResults from "./SearchBarResults";
+import Link from "next/link";
 
 const SearchInput = () => {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -39,10 +40,9 @@ const SearchInput = () => {
   return (
     <div
       onFocus={() => setSearchActive(true)}
-      className="flex flex-col relative gap-0 min-w-fit h-fit text-white text-xs rounded shadow "
+      className=" relative flex space-x-1 h-fit w-auto text-white text-xs rounded shadow "
     >
-      <div className="hidden md:block relative md:transition-transform ease-in-out">
-        <h1 className="text-white ">search</h1>
+      <div className="hidden md:flex relative md:transition-transform ease-in-out">
         <input
           type="text"
           placeholder="Search"
@@ -50,10 +50,10 @@ const SearchInput = () => {
           onChange={onSearch}
           onFocus={() => setSearchActive(true)}
           onBlur={() => setTimeout(() => setSearchActive(false), 200)}
-          className="bg-zinc-300 border-b-2 border-white w-full h-8 text-black text-xs focus:outline-none focus:border-white"
+          className="bg-zinc-300 w-full h-8 text-black text-xs focus:outline-none focus:border-white"
         />
       </div>
-      <div className="block md:hidden md:transition-transform ease-in-out">
+      <Link href={`/search/${searchTerm}`} className=" py-1 px-2 w-fit h-full border-s border-white mx-auto">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -68,7 +68,7 @@ const SearchInput = () => {
             d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
           />
         </svg>
-      </div>
+      </Link>
       {searchActive && searchResults.length > 0 && (
         <SearchBarResults results={searchResults} clearSearch={() => clearSearch()}/>
       )}
