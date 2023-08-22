@@ -55,7 +55,7 @@ const Page = ({params}: {params:{keyword: string} }) => {
 
   return (
     <div onScroll={onScroll} ref={listInnerRef} className="relative flex h-full w-full">
-      <div className="relative flex flex-col pt-10 px-5 space-y-5 w-9/12 h-9/12 bg-slate-500 mx-auto shadow">
+      <div className="relative flex flex-col pt-10 px-5 space-y-5 w-full lg:w-9/12 h-fit mx-auto shadow">
          {list.map((item: any, index: number) => (
             <ItemCard key={index} item={item} />
          ))}
