@@ -8,9 +8,9 @@ interface Props {
 
 const MovieSlider: React.FC<Movies> = (movies) => {
   return (
-    <div className="mx-auto  px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div className="mx-auto w-full h-full px-4 sm:px-6 lg:max-w-7xl lg:px-8">
  
-      <div className="slider">
+      <div className="mt-6 flex scroll-smooth h-[325px] overflow-x-clip overflow-y-hidden gap-x-10 py-2">
 
         {movies.results.map((movie, i) =>
           <MovieCard key={movie.id} {...movie}/> )}

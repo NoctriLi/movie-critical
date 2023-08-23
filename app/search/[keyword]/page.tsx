@@ -4,29 +4,54 @@ import Image from "next/image";
 
 import ItemCard from "@/app/_components/search/ItemCard";
 
-const Page = ({ params }: { params: { keyword: string } }) => {
+interface Props {
+
+  
+
+
+  params: { keyword: string };
+
+}
+
+const Page: React.FC<Props> = ({ params }: { params: { keyword: string } }) => {
   const keyword = params.keyword;
 
-  const listInnerRef = useRef(null);
-  const [page, setPage] = useState({
-    currPage: 1,
-    prevPage: 0,
-    totalPage: 0,
-  });
-  const [list, setList] = useState([]);
+  const [page, setPage]= useState({currPage: 1});
+  const [totalPage, setTotalPage] = useState(2);
+  const [list, setList]:  any[]  = useState([]);
 
   const onScroll = () => {
-    if (listInnerRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
-      if (scrollTop + clientHeight === scrollHeight) {
-        setPage({
-          currPage: page.currPage + 1,
-          prevPage: page.currPage,
-          totalPage: page.totalPage,
-        });
-      }
-    }
+    if(window.scrollY + window.innerHeight === document.body.scrollHeight && page.currPage < totalPage){
+      console.log("bottom")
+      const timer = setTimeout(() => {
+
+      setPage({
+        currPage: page.currPage + 1,
+      });
+    }, 500);
+
+    return () => clearTimeout(timer);
+    }   
+
+
+    // if (listInnerRef.current) {
+    //   const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
+    //   console.log(scrollTop, scrollHeight, clientHeight);
+    //   if (scrollTop + clientHeight === scrollHeight && page.currPage < totalPage) {
+    //     setPage({
+    //       currPage: page.currPage + 1,
+    //       prevPage: page.currPage,
+    //       totalPage: totalPage,
+    //     });
+    //   }
+    // }
   };
+  useEffect(() => {
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }
+  , [page.currPage]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,14 +61,10 @@ const Page = ({ params }: { params: { keyword: string } }) => {
           "Content-Type": "application/json",
         },
       });
-      const data = await res.json();
+      const data : any = await res.json();
       if (data) {
-        setList([...list, ...data.results]);
-        setPage({
-          currPage: data.page,
-          prevPage: data.page - 1,
-          totalPage: data.total_pages,
-        });
+        setList((prev: any) => [...prev, ...data.results]);
+        setTotalPage(data.total_pages);
       }
     };
     fetchData();
@@ -52,8 +73,7 @@ const Page = ({ params }: { params: { keyword: string } }) => {
   return (
     <div
       onScroll={onScroll}
-      ref={listInnerRef}
-      className="relative h-full w-screen bg-zinc-900 "
+      className="relative h-fit w-screen bg-zinc-900 "
     >
       <div className="relative flex flex-wrap mx-auto pt-10 min-w-[300px] w-full md:w-3/4 h-max min-h-screen shadow">
         {list.map((item: any, index: number) => (

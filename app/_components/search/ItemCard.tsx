@@ -56,7 +56,7 @@ const ItemCard = ({ item }: { item: any }) => {
               <div className="flex flex-row py-1 w-full">
                 <p className="text-[.75rem]">{item.known_for_department}</p>
               </div>
-              <h1 className=" text-xl leading-snug" style={{ fontSize: `clamp(.7rem, calc(1rem + 1vw - ${item.name.split(" ").length * 0.17}rem), 2rem)` }}>{item.name}</h1>
+              <h1 className=" text-xl leading-tight" style={{ fontSize: `clamp(.7rem, calc(1rem + 1vw - ${item.name.split(" ").length * 0.17}rem), 1.5rem)` }}>{item.name}</h1>
 
 
               <div className="flex flex-col py-1">
@@ -76,7 +76,7 @@ const ItemCard = ({ item }: { item: any }) => {
             <div className="relative flex flex-col">
               <p className="text-[.75rem]">{capFirst(item.media_type)}</p>
               <div className="block px-2  w-full  ">
-                <h1 className=" text-xl leading-snug" style={{ fontSize: `clamp(.7rem, calc(1rem + 1vw - ${item.title.split(" ").length * 0.17}rem), 2rem)` }}>{item.title}</h1>
+                <h1 className=" text-xl leading-tight" style={{ fontSize: `clamp(.7rem, calc(1rem + 1vw - ${item.title.split(" ").length * 0.17}rem), 1.5rem)` }}>{item.title}</h1>
               </div>
 
               <div className="flex flex-col py-1">
@@ -97,7 +97,7 @@ const ItemCard = ({ item }: { item: any }) => {
           <>
             <div className="relative flex flex-col ">
               <p className="text-[.75rem]">{capFirst(item.media_type)}</p>
-              <h1 className=" text-xl leading-snug" style={{ fontSize: `clamp(.7rem, calc(1rem + 1vw - ${item.name.split(" ").length * 0.17}rem), 2rem)` }}>{item.name}</h1>
+              <h1 className=" text-xl leading-tight" style={{ fontSize: `clamp(.7rem, calc(1rem + 1vw - ${item.name.split(" ").length * 0.17}rem), 1.5rem)` }}>{item.name}</h1>
 
 
               <div className="flex flex-col py-1">

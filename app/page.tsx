@@ -1,10 +1,8 @@
-
 import React from "react";
 
 import MovieSlider from "@/app/_components/sliders/MovieSlider";
 import TvSlider from "@/app/_components/sliders/TvSlider";
 import NowPlayingCourosel from "./_components/NowPlayingCarousel/NowPlayingCarousel";
-
 
 const token = process.env.TMDB_TOKEN;
 async function getMovies() {
@@ -46,11 +44,17 @@ export default async function Page() {
         {movies && <NowPlayingCourosel {...movies} />}
       </section>
 
-      <section className="  items-center text-white">
-        <h1>Movies</h1>
-        {movies && <MovieSlider {...movies} />}
-        <h1>TV Series</h1>
-        {tvSeries && <TvSlider {...tvSeries} />}
+      <section className="relative flex space-x-5 items-center h-screen w-screen text-white p-5">
+        <div className="relative flex flex-col w-1/2 overflow-hidden border-8 rounded border-zinc-800">
+          <h1 className="mx-auto">Movies</h1>
+
+          {movies && <MovieSlider {...movies} />}
+        </div>
+        <div className="relative flex flex-col w-1/2 overflow-hidden border-8 rounded border-zinc-800">
+          <h1 className="mx-auto">TV Series</h1>
+
+          {tvSeries && <TvSlider {...tvSeries} />}
+        </div>
       </section>
     </>
   );

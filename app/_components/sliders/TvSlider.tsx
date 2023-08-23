@@ -14,7 +14,7 @@ const MovieSlider: React.FC<Props> = (tvshows) => {
   console.log(tvshows)
   
   return (
-    <div className="mx-auto  px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div className="mx-auto w-full h-full px-4 sm:px-6 lg:max-w-7xl lg:px-8">
  
       <div className="slider">
 

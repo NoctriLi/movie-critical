@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 
+
 body {
   @apply bg-zinc-900 h-full overflow-x-hidden;
 
-  --zinc-400: @apply zinc-300;
+  --zinc-400: @apply zinc-300
 
 }
 
@@ -16,7 +17,6 @@ body {
 
 html {
   @apply h-full;
-  
 }
 
 td {
@@ -111,18 +111,5 @@ td {
 
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-}
-::-webkit-scrollbar-track {
-  background: black;
-}
-::-webkit-scrollbar-thumb {
-  background: #008593;
-  height: 50px;
-  width: 5px;
 
-  border-radius: 5px;
-}
+
