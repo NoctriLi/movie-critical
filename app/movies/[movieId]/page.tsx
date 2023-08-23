@@ -5,15 +5,12 @@ import Spinner from "@/app/_components/Spinner";
 import { useSearchParams } from "next/navigation";
 import useMovie from "@/hooks/useMovie";
 import useRecommendations from "@/hooks/useRecommendations";
-import MovieSlider from "@/app/_components/sliders/MovieSlider";
+import Slider from "@/app/_components/sliders/Slider";
 import ActorSlider from "@/app/_components/sliders/ActorSlider";
 import CrewSlider from "@/app/_components/sliders/CrewSlider";
-import useCredits from "@/hooks/useCredits";
 import MovieDetailsTable from "@/app/_components/tables/MovieDetailsTable";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 const token = process.env.TMDB_TOKEN;
-let address = process.env.WEB_LOC;
 
 
 
@@ -133,29 +130,10 @@ export default async function Page({ params: {movieId} }: { params: { movieId: s
             {details && <MovieDetailsTable {...details} />}
             
           </div>
-          {/* <div className=" flex justify-evenly row-start-3 row-end-5 ">
-            <div className="flex">
-              <h2 className="text-lg py-2">Genres:</h2>
-              <p className="text-sm">
-                {details?.budget}
-              </p>
-            </div>
-            <div className="flex">
-              <h2 className="text-lg py-2">Genres:</h2>
-              <p className="text-sm">
-                {details?.genres.map((genre: any) => genre.name).join(", ")}
-              </p>
-            </div>
-            <div className="flex">
-              <h2 className="text-lg py-2">Genres:</h2>
-              <p className="text-sm">
-                {details?.genres.map((genre: any) => genre.name).join(", ")}
-              </p>
-            </div>
-          </div> */}
         </div>
       </div>
 
+            <section className="relative flex flex-wrap items-center h-screen w-screen text-white p-5">
       <div className="flex flex-col w-full  mx-auto">
         <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
           Credits
@@ -181,14 +159,13 @@ export default async function Page({ params: {movieId} }: { params: { movieId: s
         </div>
       </div>
 
-      <div className=" flex flex-col mt-20 w-full mx-auto">
+        <div className="relative flex flex-col w-fit mx-auto overflow-hidden ">
         <h2 className="text-2xl font-bold tracking-tight text-white text-center">
           Recommendations
         </h2>
-        <div className="w-full">
-          {recommendations?.results && <MovieSlider {...recommendations} />}
+          {recommendations?.results && <Slider list={recommendations.results} type="movie" />}
         </div>
-      </div>
+      </section>
     </div>
   );
 };
