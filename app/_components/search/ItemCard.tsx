@@ -27,7 +27,7 @@ const ItemCard = ({ item }: { item: any }) => {
   return (
     <Link
       href={url}
-      className="relative flex flex-col w-[300px] h-[400px] mx-auto my-2 p-2 border-8 rounded bg-zinc-700 border-zinc-800"
+      className="relative flex flex-col w-[300px] h-[400px] mx-2 my-2 p-2 border-8 rounded bg-zinc-700 shadow border-zinc-800"
     >
       <div className="relative flex h-40">
         <Image
@@ -46,7 +46,7 @@ const ItemCard = ({ item }: { item: any }) => {
             e.currentTarget.onerror = null;
             e.currentTarget.src = "/blank-profile-picture.png";
           }}
-          className="max-w-[100px] object-contain  rounded "
+          className="max-w-[100px] object-contain  rounded shadow"
         />
       </div>
       <div className="relative flex flex-col min-w-[100px] place-content-evenly h-full w-fit text-white text-xs rounded">
