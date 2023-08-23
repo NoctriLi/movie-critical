@@ -6,7 +6,7 @@ import { TVShow } from "@/lib/interfaces";
 
 const TvCard: React.FC<TVShow> = (tvshow) => {
   return (
-    <div className="relative min-w-[175px] h-fit bg-white rounded shadow overflow-hidden">
+    <div className="relative min-w-[175px] h-fit bg-white rounded shadow overflow-hidden snap-center">
       {tvshow.poster_path != undefined ? (
         <LazyImage
           src={`https://image.tmdb.org/t/p/w500${tvshow.poster_path}`}

@@ -1,7 +1,7 @@
 import React from "react";
 
-import MovieSlider from "@/app/_components/sliders/MovieSlider";
-import TvSlider from "@/app/_components/sliders/TvSlider";
+import Slider from "@/app/_components/sliders/Slider";
+import MovieSlider from "@/app/_components/sliders/TvSlider";
 import NowPlayingCourosel from "./_components/NowPlayingCarousel/NowPlayingCarousel";
 
 const token = process.env.TMDB_TOKEN;
@@ -39,21 +39,21 @@ export default async function Page() {
 
   return (
     <>
-      <section className="flex flex-col w-full min-h-[90vh] my-5 ">
+      <section className="flex flex-col w-full h-fit my-5 ">
         <h1 className="text-white text-5xl mx-10 text-left">Now Playing</h1>
         {movies && <NowPlayingCourosel {...movies} />}
       </section>
 
-      <section className="relative flex space-x-5 items-center h-screen w-screen text-white p-5">
-        <div className="relative flex flex-col w-1/2 overflow-hidden border-8 rounded border-zinc-800">
+      <section className="relative flex flex-wrap items-center h-screen w-screen text-white p-5">
+        <div className="relative flex flex-col w-fit mx-auto overflow-hidden ">
           <h1 className="mx-auto">Movies</h1>
 
-          {movies && <MovieSlider {...movies} />}
+          {movies && <Slider list={movies.results} type={"movie"} />}
         </div>
-        <div className="relative flex flex-col w-1/2 overflow-hidden border-8 rounded border-zinc-800">
+        <div className="relative flex flex-col w-fit mx-auto overflow-hidden ">
           <h1 className="mx-auto">TV Series</h1>
 
-          {tvSeries && <TvSlider {...tvSeries} />}
+          {tvSeries && <Slider list={tvSeries.results} type={"tv"} />}
         </div>
       </section>
     </>
