@@ -16,6 +16,7 @@ const SearchInput = () => {
   const clearSearch = () => {
     setSearchTerm("");
     setSearchResults([]);
+
   }
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;

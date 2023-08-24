@@ -6,7 +6,10 @@ import { TVShow } from "@/lib/interfaces";
 
 const TvCard: React.FC<TVShow> = (tvshow) => {
   return (
-    <div className="relative min-w-[175px] h-fit bg-white rounded shadow overflow-hidden snap-center">
+    <Link
+      href={`/tvseries/${tvshow.id}`}
+      className="relative min-w-[175px] h-fit bg-white rounded shadow overflow-hidden snap-center"
+    >
       {tvshow.poster_path != undefined ? (
         <LazyImage
           src={`https://image.tmdb.org/t/p/w500${tvshow.poster_path}`}
@@ -21,14 +24,8 @@ const TvCard: React.FC<TVShow> = (tvshow) => {
         <div className="max-h-[75%] overflow-y-auto text-[.7rem]">
           <p>{tvshow.overview}</p>
         </div>
-        <Link
-          href={`/tvseries/${tvshow.id}`}
-          className="absolute bottom-0 mt-2 px-4 py-2 bg-zinc-800 rounded text-white"
-        >
-          More...
-        </Link>
       </div>
-    </div>
+    </Link>
   );
 };
 

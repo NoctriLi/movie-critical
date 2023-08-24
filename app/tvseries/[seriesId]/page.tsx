@@ -1,9 +1,8 @@
-
 import React from "react";
 
 import Spinner from "@/app/_components/Spinner";
 import { useSearchParams } from "next/navigation";
-import TvSlider from "@/app/_components/sliders/TvSlider";
+import Slider from "@/app/_components/sliders/Slider";
 import ActorSlider from "@/app/_components/sliders/ActorSlider";
 import CrewSlider from "@/app/_components/sliders/CrewSlider";
 import TvDetailsTable from "@/app/_components/tables/TvDetailsTable";
@@ -17,14 +16,14 @@ const token = process.env.TMDB_TOKEN;
 async function getTvSeries(seriesId: string) {
   const res = await fetch(
     `https://api.themoviedb.org/3/tv/${seriesId}?language=en-US`,
-     {
-       method: "GET",
-       headers: {
-         accept: "application/json",
-         Authorization: `Bearer ${token}`,
-       },
-     }
-   )
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return res.json();
 }
 async function getRecommendations(seriesId: string) {
@@ -37,7 +36,7 @@ async function getRecommendations(seriesId: string) {
         Authorization: `Bearer ${token}`,
       },
     }
-  ); 
+  );
   return res.json();
 }
 async function getCredits(seriesId: string) {
@@ -54,24 +53,25 @@ async function getCredits(seriesId: string) {
   return res.json();
 }
 
-
-export default async function Page({ params }: { params: { seriesId: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: { seriesId: string };
+}) {
   const seriesId = params.seriesId;
-  const details:TVDetails = await getTvSeries(seriesId) ;
+  const details: TVDetails = await getTvSeries(seriesId);
   const recommendations = await getRecommendations(seriesId);
   const credits = await getCredits(seriesId);
-
-
 
   // const seriesRating =
   //   details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
   //     ?.release_dates[0].certification || "NR";
- 
+
   return (
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">
       <div className="row-span-1 bg-black p-5 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className=" col-span-auto ">
-        {details?.poster_path == undefined ? (
+          {details?.poster_path == undefined ? (
             <Image
               src={`/blank-profile-picture.png`}
               loading="lazy"
@@ -105,10 +105,15 @@ export default async function Page({ params }: { params: { seriesId: string } })
                   <p className="text-md self-center">{seriesRating}</p>
                 )} */}
               </h2>
-              <h1>{details?.first_air_date?details?.first_air_date.substring(0, 4):'????'}</h1>
+              <h1>
+                {details?.first_air_date
+                  ? details?.first_air_date.substring(0, 4)
+                  : "????"}
+              </h1>
 
               <p>
-                {details?.genres && details?.genres.map((genre: any) => genre.name).join(", ")}
+                {details?.genres &&
+                  details?.genres.map((genre: any) => genre.name).join(", ")}
               </p>
             </div>
           </div>
@@ -126,56 +131,56 @@ export default async function Page({ params }: { params: { seriesId: string } })
             </div>
           </div>
           <div className="py-2">
-           {details && <TvDetailsTable {...details} />} 
+            {details && <TvDetailsTable {...details} />}
           </div>
         </div>
       </div>
 
-
-      <div className="flex flex-col w-full  mx-auto">
-        <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
-          Seasons
-        </h2>
-        <div className="flex flex-col lg:flex-row text-center gap-28 mx-auto">
-          {seriesId && <SeasonBox seasons={details} id={seriesId} />}
+      <section className="relative flex flex-wrap items-center h-screen w-screen text-white p-5">
+        <div className="flex flex-col w-full overflow-hidden mx-auto">
+          <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
+            Seasons
+          </h2>
+          <div className="relative flex flex-col lg:flex-row text-center w-full overflow-auto mx-auto">
+            {seriesId && <SeasonBox seasons={details} id={seriesId} />}
           </div>
         </div>
 
-      <div className="flex flex-col w-full  mx-auto">
-        <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
-          Credits
-        </h2>
-        <div className="flex flex-col lg:flex-row text-center gap-28 mx-auto">
-          <div className=" max-w-[500px] h-full  flex  flex-col">
-            <h3 className="text-xl font-bold tracking-tight text-white ">
-              Cast
-            </h3>
-            <div className=" space-x-5 w-full align-middle justify-center ">
-              {credits && <ActorSlider {...credits} />}
+        <div className="flex flex-col w-full  mx-auto">
+          <h2 className=" text-2xl font-bold tracking-tight text-center text-white py-2 ">
+            Credits
+          </h2>
+          <div className="flex flex-col lg:flex-row text-center gap-28 mx-auto">
+            <div className=" max-w-[500px] h-full  flex  flex-col">
+              <h3 className="text-xl font-bold tracking-tight text-white ">
+                Cast
+              </h3>
+              <div className=" space-x-5 w-full align-middle justify-center ">
+                {credits && <ActorSlider {...credits} />}
+              </div>
+            </div>
+
+            <div className="max-w-[500px] h-full flex flex-col ">
+              <h3 className="text-xl font-bold tracking-tight text-white ">
+                Crew
+              </h3>
+              <div className=" space-x-5 w-full align-middle justify-center ">
+                {credits && <CrewSlider {...credits} />}
+              </div>
             </div>
           </div>
+        </div>
 
-          <div className="max-w-[500px] h-full flex flex-col ">
-            <h3 className="text-xl font-bold tracking-tight text-white ">
-              Crew
-            </h3>
-            <div className=" space-x-5 w-full align-middle justify-center ">
-              {credits && <CrewSlider {...credits} />}
-            </div>
+
+          <div className="relative flex flex-col w-fit mx-auto overflow-hidden ">
+            <h2 className="text-2xl font-bold tracking-tight text-white text-center">
+              Recommendations
+            </h2>
+            {recommendations && (
+              <Slider list={recommendations.results} type={"tv"} />
+            )}
           </div>
-        </div>
-      </div>
-
-      <div className=" flex flex-col mt-20 w-full mx-auto">
-        <h2 className="text-2xl font-bold tracking-tight text-white text-center">
-          Recommendations
-        </h2>
-        <div className="w-full">
-          {recommendations && < TvSlider {...recommendations} />}
-        </div>
-      </div>
+      </section>
     </div>
   );
-};
-
-
+}

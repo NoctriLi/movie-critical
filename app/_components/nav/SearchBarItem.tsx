@@ -16,7 +16,7 @@ const SearchBarItem: React.FC<SearchBarItemProps> = ({result, clearSearch}) => {
   if (result.media_type === "movie") {
     console.log("HI", result.poster_path)
     return (
-      <Link  href={`/movies/${result.id}`} onClick={() => clearSearch()}  className="flex flex-row relative justify-between border border-black h-fit w-full">
+      <Link  href={`/movies/${result.id}`}  className="flex flex-row relative justify-between border border-black h-fit w-full">
         <div className="flex flex-row">
           <Image
             src={result.poster_path ? "https://image.tmdb.org/t/p/w185" + result.poster_path : "/blank-profile-picture.png"}
@@ -35,7 +35,7 @@ const SearchBarItem: React.FC<SearchBarItemProps> = ({result, clearSearch}) => {
     );
   } else if (result.media_type === "tv") {
     return (
-      <Link href={`/tvseries/${result.id}`} onClick={() => clearSearch()} className="flex flex-row justify-between">
+      <Link href={`/tvseries/${result.id}`}  className="flex flex-row justify-between">
         <div className="flex flex-row">
           <Image
             src={result.poster_path ? "https://image.tmdb.org/t/p/w185" + result.poster_path: "/blank-profile-picture.png"}
@@ -54,7 +54,7 @@ const SearchBarItem: React.FC<SearchBarItemProps> = ({result, clearSearch}) => {
     );
   } else if (result.media_type === "person") {
     return (
-      <Link href={`/people/${result.id}`} onClick={() => clearSearch()} className="flex flex-row justify-between">
+      <Link href={`/people/${result.id}`}  className="flex flex-row justify-between">
         <div className="flex flex-row">
           <Image
             src={result.profile_path ? "https://image.tmdb.org/t/p/w185" + result.profile_path: "/blank-profile-picture.png"}

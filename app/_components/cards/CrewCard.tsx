@@ -44,7 +44,7 @@ const CrewCard: React.FC<any> = (crewMember) => {
       </div>
 
       <div className="flex flex-col py-2">
-        <p className="text-white">{crewMember.name}</p>
+        <p className="text-white font-bold">{crewMember.name}</p>
         {crewMember && <p className="text-white">{crewMember.job}</p>}
       </div>
     </div>

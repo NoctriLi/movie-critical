@@ -4,7 +4,7 @@ import { HiChevronLeft } from "react-icons/hi";
 // import usePerson from "@/hooks/usePerson";
 // import useMovie from "@/hooks/useMovie";
 // import useRecommendations from "@/hooks/useRecommendations";
-import MovieCastSlider from "@/app/_components/sliders/MovieCastSlider";
+import Slider from "@/app/_components/sliders/Slider";
 import ActorSlider from "@/app/_components/sliders/ActorSlider";
 import CrewSlider from "@/app/_components/sliders/CrewSlider";
 import useCredits from "@/hooks/useCredits";
@@ -176,8 +176,12 @@ export default async function Page({ params }: { params: { personId: string } })
       </div>
 
 
-  
-          {details?.movie_credits && <MovieCastSlider {...details?.movie_credits} /> }
+      <div className="relative flex flex-col w-fit mx-auto overflow-hidden ">
+        <h2 className="text-2xl font-bold tracking-tight text-white text-center">
+          Roles
+        </h2>
+          {details?.movie_credits && <Slider list={details.movie_credits.cast} type={"moviecast"} /> }
+            </div>
       
 
 

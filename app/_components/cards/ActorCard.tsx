@@ -33,7 +33,7 @@ const ActorCard: React.FC<CastMember> = (castMember) => {
         </div>
       </div>
       <div className="flex flex-col py-1">
-        <p>{castMember.name}</p>
+        <p className="font-bold">{castMember.name}</p>
         <p className="text-[.75rem]">as</p>
         {castMember.character && <p>{castMember.character}</p>}
       </div>

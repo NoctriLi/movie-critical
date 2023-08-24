@@ -67,7 +67,7 @@ export default async function Page({ params: {movieId} }: { params: { movieId: s
     details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
       ?.release_dates[0].certification || "NR";
 
-
+  console.log(credits)
   return (
     <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">
       <div className="row-span-1 bg-black p-5 grid grid-cols-1 md:grid-cols-2 gap-5 ">
@@ -143,8 +143,8 @@ export default async function Page({ params: {movieId} }: { params: { movieId: s
             <h3 className="text-xl font-bold tracking-tight text-white ">
               Cast
             </h3>
-            <div className=" space-x-5 w-full align-middle justify-center ">
-              {credits && <ActorSlider {...credits} />}
+            <div className="w-full align-middle justify-center ">
+              {credits && <Slider list={credits.cast} type={"cast"} />}
             </div>
           </div>
 
@@ -153,7 +153,7 @@ export default async function Page({ params: {movieId} }: { params: { movieId: s
               Crew
             </h3>
             <div className=" space-x-5 w-full align-middle justify-center ">
-              {credits && <CrewSlider {...credits} />}
+              {credits && <Slider list={credits.crew} type={"crew"} />}
             </div>
           </div>
         </div>

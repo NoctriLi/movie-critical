@@ -29,7 +29,8 @@ const MovieCard = (movie: CastMovie | CrewMovie) => {
           <h1 className="w-full text-center font-bold">{movie.title}</h1>
         </div>
       )}
-      <p className="py-2 text-sm">
+      <p className="text-[.75rem] mx-auto">as</p>
+      <p className="py-2 text-sm mx-auto">
         {isCastMovie(movie) ? movie.character : movie.job}
       </p>
       <div className="@container absolute bottom-0 left-0 w-full h-full p-3 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
