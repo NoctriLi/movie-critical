@@ -11,7 +11,8 @@ const SearchPageResults = ({ list, onScroll, setSearchTerm }: any) => {
     })
     const [filtered, setFiltered] = useState(list)
 
-    useEffect(() => {
+
+
         const applyFilter = () => {
             let filtered = list
 
@@ -29,12 +30,22 @@ const SearchPageResults = ({ list, onScroll, setSearchTerm }: any) => {
 
             setFiltered(filtered)
         }
+
+    useEffect(() => {
+
         applyFilter()
-    }, [options.genre, list])
+    }, [])
+
+
+
 
     const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setOptions({ ...options, genre: e.target.value })
     }
+
+
+
+
 
     return (
         <div className="relative flex h-full w-full">
@@ -57,7 +68,7 @@ const SearchPageResults = ({ list, onScroll, setSearchTerm }: any) => {
                                 </option>
                             ))}
                         </select>
-                        <button>Apply</button>
+                        <button onClick={() => applyFilter()} >Apply</button>
                     </div>
                 </div>
             </div>
