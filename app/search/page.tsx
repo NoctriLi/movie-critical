@@ -5,6 +5,8 @@ import { useSearchParams } from 'next/navigation'
 import SearchPageInput from '../_components/search/SearchPageInput'
 import ItemCard from '@/app/_components/search/ItemCard'
 import SearchPageResults from '../_components/search/SearchPageResults'
+import SearchFilterPanel from '../_components/search/SearchFilterPanel'
+import { Slider } from '@mui/material'
 
 interface Props {
     params: { keyword: string }
@@ -75,33 +77,9 @@ const Page: React.FC<Props> = () => {
                     </div>
                 </div>
             </div>
+            <SearchFilterPanel list={list} onScroll={onScroll} setSearchTerm={setSearchTerm} />
             <SearchPageResults list={list} onScroll={onScroll} setSearchTerm={setSearchTerm} />
-            {/* <div className="relative flex h-full w-full">
 
-                <div className="fixed h-full w-52 border border-black bg-zinc-700 shadow-xl md:w-1/5 ">
-                    <div className="relative flex flex-col h-full w-full">
-                        <div className="relative flex flex-col h-full w-full">
-                            <SearchPageInput />
-                        </div>
-                    </div>
-                </div>
-                <div
-                    onScroll={onScroll}
-                    className="relative h-fit  w-full border border-white bg-zinc-900 bg-opacity-100 md:ms-[20%] "
-                >
-                    <div className="relative mx-auto flex h-max min-h-screen w-full min-w-[300px] flex-wrap pt-10 shadow md:w-3/4">
-                        {list.length > 0 ? (
-                            list.map((item: any, index: number) => (
-                                <ItemCard key={index} item={item} />
-                            ))
-                        ) : (
-                            <div className="text-white">
-                                <h1>No Results!</h1>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div> */}
         </div>
     )
 }

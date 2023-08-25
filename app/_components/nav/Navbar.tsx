@@ -1,29 +1,39 @@
-import React from "react";
-import SearchInput from "./SearchInput";
-
+import React from 'react'
+import SearchInput from './SearchInput'
+import { ModeToggle } from '@/components/ui/DarkModeToggle'
 
 const Navbar = () => {
-  return (
-    <nav className="fixed w-full z-[300] h-20 flex flex-col cols-3 opacity-[80%] bg-zinc-900 ">
-      <div className="flex flex-row navpanel justify-center mx-2 basis-7/12 ">
+    return (
+        <nav className="cols-3 fixed z-[300] flex h-20 w-full flex-col bg-zinc-900 opacity-[80%] ">
+            <div className="navpanel mx-2 flex basis-7/12 flex-row justify-center ">
+                <div className="flex border-x border-white p-2 text-center align-middle ">
+                    <h1 className="text-white px-5">Sign In</h1>
+                    <div className='px-5 w-fit h-fit'>
+                        <ModeToggle />
+                    </div>
+                </div>
 
-        <div className="flex text-center align-middle p-2 border-x border-white ">
-            <h1 className="text-white">Sign In</h1>
-        </div>
+                
+                    <a
+                        href="/"
+                        className=" hidden overflow-hidden text-center text-3xl text-white md:block"
+                    >
+                        Movie Critical
+                    </a>
+                    <a
+                        href="/"
+                        className=" block overflow-hidden text-center text-3xl text-white md:hidden"
+                    >
+                        M.Crit
+                    </a>
+                
 
-        <div className="absolute block w-full mx-auto">
-          <a href="/" className=" text-white text-3xl text-center hidden md:block overflow-hidden">Movie Critical</a>
-          <a href="/" className=" text-white text-3xl text-center block md:hidden overflow-hidden">M.Crit</a>
-        </div>
+                <div className="flex p-2">
+                    <SearchInput />
+                </div>
+            </div>
+        </nav>
+    )
+}
 
-        <div className="flex p-2">
-          
-          <SearchInput />
-        </div>
-
-      </div>
-    </nav>
-  );
-};
-
-export default Navbar;
+export default Navbar

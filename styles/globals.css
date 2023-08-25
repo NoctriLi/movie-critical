@@ -3,12 +3,11 @@
 @tailwind utilities;
 
 
-
 body {
   @apply bg-zinc-900 h-full overflow-x-hidden;
 
   --zinc-400: @apply zinc-300
-
+    
 }
 
 #__next {
@@ -17,6 +16,7 @@ body {
 
 html {
   @apply h-full;
+  
 }
 
 td {
