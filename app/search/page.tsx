@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import SearchPageInput from '../_components/search/SearchPageInput'
@@ -14,7 +14,7 @@ const Page: React.FC<Props> = () => {
     const keywordParams = useSearchParams()
     const keyword = keywordParams.get('keyword') || ''
     console.log(keyword)
-
+    const [searchTerm, setSearchTerm] = useState(keyword)
     const [page, setPage] = useState({ currPage: 1 })
     const [totalPage, setTotalPage] = useState(2)
     const [list, setList]: any[] = useState([])
@@ -44,13 +44,13 @@ const Page: React.FC<Props> = () => {
     useEffect(() => {
         setList([])
         setPage({ currPage: 1 })
-    }, [keyword])
+    }, [searchTerm])
 
     useEffect(() => {
-        if (!keyword) return
-        console.log(keyword)
+        if (!searchTerm) return
+        console.log(searchTerm)
         const fetchData = async () => {
-            const res = await fetch(`/api/search/${keyword}/${page.currPage}`, {
+            const res = await fetch(`/api/search/${searchTerm}/${page.currPage}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -63,19 +63,19 @@ const Page: React.FC<Props> = () => {
             }
         }
         fetchData()
-    }, [page.currPage, keyword])
+    }, [page.currPage, searchTerm])
 
     return (
-        <div className="relative flex h-screen w-screen flex-col ">
-            <div className="flex flex-row justify-between border-b border-black bg-zinc-600">
+        <div className="relative flex h-fit border-b-[13rem] border-zinc-950 w-screen flex-col">
+            <div className="flex flex-row justify-between border-b border-black rounded bg-zinc-900">
                 <div className="flex flex-col ">
-                    <div className="text-black">Search</div>
-                    <div className="text-black">
+                    <div className="text-white">Search</div>
+                    <div className="text-white">
                         <h1>Movies, TV Shows, People</h1>
                     </div>
                 </div>
             </div>
-            <SearchPageResults list={list} onScroll={onScroll} />
+            <SearchPageResults list={list} onScroll={onScroll} setSearchTerm={setSearchTerm} />
             {/* <div className="relative flex h-full w-full">
 
                 <div className="fixed h-full w-52 border border-black bg-zinc-700 shadow-xl md:w-1/5 ">
