@@ -5,7 +5,7 @@ import ItemCard from './ItemCard'
 import SearchPageInput from './SearchPageInput'
 import genres from '@/lib/genres'
 
-const SearchPageResults = ({ list, onScroll, setSearchTerm }: any) => {
+const SearchPageResults = ({ list, onScroll }: any) => {
     return (
         
             <div

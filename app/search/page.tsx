@@ -16,10 +16,12 @@ const Page: React.FC<Props> = () => {
     const keywordParams = useSearchParams()
     const keyword = keywordParams.get('keyword') || ''
     console.log(keyword)
-    const [searchTerm, setSearchTerm] = useState(keyword)
+   
+
     const [page, setPage] = useState({ currPage: 1 })
     const [totalPage, setTotalPage] = useState(2)
     const [list, setList]: any[] = useState([])
+    const [filtered, setFiltered] = useState(list)
 
     const onScroll = () => {
         if (
@@ -46,14 +48,14 @@ const Page: React.FC<Props> = () => {
     useEffect(() => {
         setList([])
         setPage({ currPage: 1 })
-    }, [searchTerm])
+    }, [keyword])
 
     useEffect(() => {
-        if (!searchTerm) return
-        console.log(searchTerm)
+        if (!keyword) return
+        console.log(keyword)
         const fetchData = async () => {
             const res = await fetch(
-                `/api/search/${searchTerm}/${page.currPage}`,
+                `/api/search/${keyword}/${page.currPage}`,
                 {
                     method: 'GET',
                     headers: {
@@ -68,7 +70,7 @@ const Page: React.FC<Props> = () => {
             }
         }
         fetchData()
-    }, [page.currPage, searchTerm])
+    }, [page.currPage, keyword])
 
     return (
         <div className="relative flex h-fit w-screen flex-col border-b-[13rem] border-zinc-950">
@@ -83,13 +85,13 @@ const Page: React.FC<Props> = () => {
             <SearchFilterPanel
                 list={list}
                 onScroll={onScroll}
-                setSearchTerm={setSearchTerm}
+                setFiltered={setFiltered}
             />
             <div className='sm: ps-1/5'>
                 <SearchPageResults
-                    list={list}
+                    list={filtered}
                     onScroll={onScroll}
-                    setSearchTerm={setSearchTerm}
+                    
                 />
             </div>
         </div>

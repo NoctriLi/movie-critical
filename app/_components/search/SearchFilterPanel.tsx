@@ -22,11 +22,11 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 
-const SearchFilterPanel = ({ list, onScroll, setSearchTerm }: any) => {
+const SearchFilterPanel = ({ list, setFiltered }: any) => {
   const [options, setOptions] = useState({
     genre: '',
   })
-  const [filtered, setFiltered] = useState(list)
+  
 
   const FormSchema = z.object({
     genres: z.array(z.string()).refine((value) => value.some((item) => item), {
@@ -54,7 +54,7 @@ const SearchFilterPanel = ({ list, onScroll, setSearchTerm }: any) => {
 
   useEffect(() => {
     applyFilter()
-  }, [])
+  }, [list])
 
   const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setOptions({ ...options, genre: e.target.value })
@@ -73,7 +73,9 @@ const SearchFilterPanel = ({ list, onScroll, setSearchTerm }: any) => {
       title: 'You submitted the following values:',
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-background p-4">
-          <code className="text-foreground">{JSON.stringify(data, null, 2)}</code>
+          <code className="text-foreground">
+            {JSON.stringify(data, null, 2)}
+          </code>
         </pre>
       ),
     })
@@ -170,7 +172,7 @@ const SearchFilterPanel = ({ list, onScroll, setSearchTerm }: any) => {
           <TabsContent value="people">Change your password here.</TabsContent>
           <TabsContent value="all">
             <div className="relative flex h-full w-full flex-col p-2">
-              <SearchPageInput setSearchTerm={setSearchTerm} />
+              <SearchPageInput />
             </div>
 
             <div className="relative flex h-full w-full flex-col p-2">
