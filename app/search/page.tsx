@@ -88,15 +88,15 @@ const Page: React.FC<Props> = () => {
       }
     }
     fetchData()
-  }, [page.currPage, keyword, searchUrl])
+  }, [page.currPage, searchUrl])
 
   useEffect(() => {
     makeSearchUrl()
-  }, [searchType])
+  }, [searchType, keyword])
 
   return (
     <div className="relative flex  w-screen flex-col border-b-[13rem] border-zinc-950">
-      <div className="flex h-20 p-2 flex-col justify-between rounded border-b border-black bg-primary text-primary-foreground">
+      <div className="flex h-20 p-2 flex-col justify-between rounded border-b font-bold border-black bg-primary text-primary-foreground">
         <div>Search</div>
 
         <h1>Movies, TV Shows, People</h1>

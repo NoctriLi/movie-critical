@@ -41,6 +41,10 @@ export async function GET(request: Request, { params }: {params: { type: string;
       },
     }
   )
+    if(!response.ok) {
+      return NextResponse.error();
+    }
+
     let results = await response.json();
     
       console.log("results", results)

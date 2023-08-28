@@ -97,7 +97,7 @@ export default async function Page({
           )}
         </div>
 
-        <div className="col-span-auto flex flex-col text-foreground ">
+        <div className="col-span-auto flex flex-col text-zinc-300 ">
           <div className="flex flex-col gap-2 ">
             <h1 className="text-2xl font-bold md:text-3xl  ">
               {details?.original_title}{' '}

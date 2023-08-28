@@ -23,7 +23,7 @@ const SearchPageInput = () => {
 
     return (
         <div className=" relative flex h-fit w-auto space-x-1 rounded text-xs text-foreground  ">
-            <div className="relative hidden ease-in-out md:flex md:transition-transform">
+            <div className="relative ease-in-out flex">
                 <input
                     type="text"
                     placeholder="Search"
