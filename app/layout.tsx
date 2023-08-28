@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Navbar from '@/app/_components/nav/Navbar'
 import { Roboto } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { Toaster } from "@/components/ui/toaster"
 const roboto = Roboto({ weight: '400', subsets: ['latin'] })
 
 const inter = Inter({ subsets: ['latin'] })
@@ -31,7 +32,8 @@ export default function RootLayout({
                 >
                     <Navbar />
                     <div className="pt-32"></div>
-                    {children}
+                    <main>{children}</main>
+                    <Toaster />
                 </ThemeProvider>
             </body>
         </html>

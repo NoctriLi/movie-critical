@@ -11,19 +11,19 @@ const SearchPageInput = ({setSearchTerm}:any) => {
     }
 
     return (
-        <div className=" relative flex h-fit w-auto space-x-1 rounded text-xs text-white  ">
+        <div className=" relative flex h-fit w-auto space-x-1 rounded text-xs text-foreground  ">
             <div className="relative hidden ease-in-out md:flex md:transition-transform">
                 <input
                     type="text"
                     placeholder="Search"
                     value={searchText}
                     onChange={onSearch}
-                    className="h-8 w-full bg-zinc-300 text-xs text-black focus:border-white focus:outline-none shadow shadow-black"
+                    className="h-8 w-full bg-background text-xs text-foreground focus:border-white focus:outline-none shadow shadow-foreground"
                 />
             </div>
             <button
                 onClick={()=>setSearchTerm(searchText)}
-                className=" mx-auto h-full w-fit border-s border-white px-2 py-1 shadow shadow-black"
+                className=" mx-auto h-full w-fit border-s border-foreground px-2 py-1 shadow shadow-foreground"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

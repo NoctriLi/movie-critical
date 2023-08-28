@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  @apply bg-zinc-900 h-full overflow-x-hidden;
+
+  --zinc-400: @apply zinc-300
+    
+}
+
+#__next {
+  @apply h-full;
+}
+
+html {
+  @apply h-full;
+  
+}
+
+td {
+  @apply py-2 px-4;
+}
+
+.card{
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+
+.navpanel {
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+
+.carousel-text {
+  position: absolute;
+}
+
+#carousel-image, #carousel-header {
+  border-top-left-radius: 60%;
+  border-bottom-right-radius: 60%;
+  border-bottom-left-radius: 40%;
+  border-top-right-radius: 40%;
+  overflow: hidden;
+}
+
+.accordion {
+  list-style: none;
+}
+
+.accordion_item {
+  border-top: 1px solid #9f9f9f;
+}
+
+.button {
+  font-size: 16px;
+  background-color: #008593;
+  color: #fff;
+  text-align: left;
+  font-weight: 700;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 8px;
+  cursor: pointer;
+  border: none;
+}
+
+.control {
+  font-size: 20px;
+}
+
+.answer {
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+
+/* activate toggle */
+.accordion_item.active .button {
+  background-color: #105057;
+}
+.answer_wrapper {
+  display: relative;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #9f9f9f;
+  max-height: 400px;
+  overflow: hidden;
+  z-index: 200;
+}
+.active>.answer_wrapper {
+  position: absolute;
+  overflow: auto;
+  top: 0;
+  
+}
+
+
+.slider {
+  @apply mt-6 flex scroll-smooth h-[325px] snap-proximity overflow-x-auto
+  overflow-y-clip gap-x-10 py-2 ;
+
+
+}
+
+
+

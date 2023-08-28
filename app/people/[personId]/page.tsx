@@ -103,8 +103,8 @@ export default async function Page({
     console.log(details)
 
     return (
-        <div className="flex h-[300vh] w-full flex-col gap-10 opacity-70">
-            <div className="row-span-1 grid grid-cols-1 gap-5 bg-black p-5 md:grid-cols-2 ">
+        <div className="flex h-[300vh] w-full flex-col">
+            <div className="row-span-1 grid grid-cols-1 gap-5 bg-zinc-950 p-5 md:grid-cols-2 ">
                 <div className=" col-span-auto ">
                     {details?.profile_path == undefined ? (
                         <Image
@@ -204,8 +204,8 @@ export default async function Page({
                 </div>
             </div>
 
-            <div className="relative mx-auto flex w-fit flex-col overflow-hidden ">
-                <h2 className="text-center text-2xl font-bold tracking-tight text-white">
+            <div className="relative mx-auto flex w-fit flex-col text-foreground overflow-hidden ">
+                <h2 className="text-center text-2xl font-bold tracking-tight">
                     Roles
                 </h2>
                 {details?.movie_credits && (

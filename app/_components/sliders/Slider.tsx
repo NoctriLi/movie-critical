@@ -29,7 +29,7 @@ const Slider: React.FC<Props> = ({ list, type }) => {
   });
 
   return (
-    <div className="relative flex mx-auto object-scale-down w-full h-full px-4 sm:px-6 lg:max-w-7xl lg:px-8 border-y-8 rounded border-zinc-800 overflow-hidden ">
+    <div className="relative flex mx-auto object-scale-down w-full h-full bg-zinc-900 px-4 sm:px-6 lg:max-w-7xl lg:px-8 border-y-8 rounded border-zinc-800 overflow-hidden ">
       <button
         onClick={handlePrev}
         className="absolute flex h-full w-1/4 top-0 bottom-0 left-0 z-20  bg-opacity-20 bg-black hover:bg-opacity-50"

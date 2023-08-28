@@ -6,7 +6,7 @@ import SearchPageInput from '../_components/search/SearchPageInput'
 import ItemCard from '@/app/_components/search/ItemCard'
 import SearchPageResults from '../_components/search/SearchPageResults'
 import SearchFilterPanel from '../_components/search/SearchFilterPanel'
-import { Slider } from '@mui/material'
+
 
 interface Props {
     params: { keyword: string }
@@ -52,12 +52,15 @@ const Page: React.FC<Props> = () => {
         if (!searchTerm) return
         console.log(searchTerm)
         const fetchData = async () => {
-            const res = await fetch(`/api/search/${searchTerm}/${page.currPage}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
+            const res = await fetch(
+                `/api/search/${searchTerm}/${page.currPage}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
             const data: any = await res.json()
             if (data) {
                 setList((prev: any) => [...prev, ...data.results])
@@ -68,8 +71,8 @@ const Page: React.FC<Props> = () => {
     }, [page.currPage, searchTerm])
 
     return (
-        <div className="relative flex h-fit border-b-[13rem] border-zinc-950 w-screen flex-col">
-            <div className="flex flex-row justify-between border-b border-black rounded bg-zinc-900">
+        <div className="relative flex h-fit w-screen flex-col border-b-[13rem] border-zinc-950">
+            <div className="flex flex-row justify-between rounded border-b border-black bg-zinc-900">
                 <div className="flex flex-col ">
                     <div className="text-white">Search</div>
                     <div className="text-white">
@@ -77,9 +80,18 @@ const Page: React.FC<Props> = () => {
                     </div>
                 </div>
             </div>
-            <SearchFilterPanel list={list} onScroll={onScroll} setSearchTerm={setSearchTerm} />
-            <SearchPageResults list={list} onScroll={onScroll} setSearchTerm={setSearchTerm} />
-
+            <SearchFilterPanel
+                list={list}
+                onScroll={onScroll}
+                setSearchTerm={setSearchTerm}
+            />
+            <div className='sm: ps-1/5'>
+                <SearchPageResults
+                    list={list}
+                    onScroll={onScroll}
+                    setSearchTerm={setSearchTerm}
+                />
+            </div>
         </div>
     )
 }

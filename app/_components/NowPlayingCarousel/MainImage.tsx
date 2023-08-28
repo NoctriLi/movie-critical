@@ -33,13 +33,13 @@ const MainCard = ({ card, children, activeIndex }: MainCardProps) => {
             width={1280}
             height={720}
             sizes="50vw"
-            className="object-contain rounded overflow-hidden mx-auto after:bg-black after:opacity-50 after:absolute after:inset-0 after:z-10 after:transition-opacity after:duration-500 after:ease-in after:delay-100 "
+            className="object-contain rounded overflow-hidden shadow-foreground mx-auto after:bg-black after:opacity-50 after:absolute after:inset-0 after:z-10 after:transition-opacity after:duration-500 after:ease-in after:delay-100 "
             alt={card.title}
           />
         {children}
         </div>
       </div>
-        <div className={`relative text-4xl tracking-wide h-2/6 mx-auto  text-white opacity-80`}>
+        <div className={`relative text-4xl tracking-wide h-2/6 mx-auto  text-foreground opacity-80`}>
           {card.title}
         </div>
     </>

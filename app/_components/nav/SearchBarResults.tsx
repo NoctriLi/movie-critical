@@ -20,8 +20,8 @@ const SearchBarResults: React.FC<SearchBarResultsProps> = (
   clearSearch
 ) => {
   return (
-    <div className="absolute flex flex-col -bottom-[260px] -left-40 min-w-fit h-fit text-white text-xs rounded shadow ">
-      <div className=" md:block w-80 h-auto relative space-y-2 p-2 bg-white md:transition-transform ease-in-out">
+    <div className="absolute flex flex-col top-10 right-10 min-w-fit h-fit bg-background text-foreground text-xs rounded shadow ">
+      <div className=" md:block w-80 h-auto relative space-y-2 p-2  md:transition-transform ease-in-out">
         {results.results.map((result) => (
           <SearchBarItem
             key={result.id}

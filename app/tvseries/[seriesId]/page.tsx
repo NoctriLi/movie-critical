@@ -68,8 +68,8 @@ export default async function Page({
     //     ?.release_dates[0].certification || "NR";
 
     return (
-        <div className="flex h-[300vh] w-full flex-col gap-10 opacity-70">
-            <div className="row-span-1 grid grid-cols-1 gap-5 bg-black p-5 md:grid-cols-2 ">
+        <div className="flex h-[300vh] w-full flex-col">
+            <div className="row-span-1 grid grid-cols-1 gap-5 bg-zinc-950 p-5 md:grid-cols-2 ">
                 <div className=" col-span-auto ">
                     {details?.poster_path == undefined ? (
                         <Image
@@ -140,9 +140,9 @@ export default async function Page({
                 </div>
             </div>
 
-            <section className="relative flex h-screen w-screen flex-wrap items-center p-5 text-white">
+            <section className="relative flex h-screen w-screen flex-wrap items-center text-foreground p-5">
                 <div className="mx-auto flex w-full flex-col overflow-hidden">
-                    <h2 className=" py-2 text-center text-2xl font-bold tracking-tight text-white ">
+                    <h2 className=" py-2 text-center text-2xl font-bold tracking-tight ">
                         Seasons
                     </h2>
                     <div className="relative mx-auto flex w-full flex-col overflow-auto text-center lg:flex-row">
@@ -153,12 +153,12 @@ export default async function Page({
                 </div>
 
                 <div className="mx-auto flex w-full  flex-col">
-                    <h2 className=" py-2 text-center text-2xl font-bold tracking-tight text-white ">
+                    <h2 className=" py-2 text-center text-2xl font-bold tracking-tight ">
                         Credits
                     </h2>
                     <div className="mx-auto flex flex-col gap-28 text-center lg:flex-row">
                         <div className=" flex h-full  max-w-[500px]  flex-col">
-                            <h3 className="text-xl font-bold tracking-tight text-white ">
+                            <h3 className="text-xl font-bold tracking-tight ">
                                 Cast
                             </h3>
                             <div className=" w-full justify-center space-x-5 align-middle ">
@@ -167,7 +167,7 @@ export default async function Page({
                         </div>
 
                         <div className="flex h-full max-w-[500px] flex-col ">
-                            <h3 className="text-xl font-bold tracking-tight text-white ">
+                            <h3 className="text-xl font-bold tracking-tight ">
                                 Crew
                             </h3>
                             <div className=" w-full justify-center space-x-5 align-middle ">
@@ -178,7 +178,7 @@ export default async function Page({
                 </div>
 
                 <div className="relative mx-auto flex w-fit flex-col overflow-hidden ">
-                    <h2 className="text-center text-2xl font-bold tracking-tight text-white">
+                    <h2 className="text-center text-2xl font-bold tracking-tight">
                         Recommendations
                     </h2>
                     {recommendations && (

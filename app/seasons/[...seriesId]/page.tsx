@@ -83,8 +83,8 @@ export default async function Page({ params }: { params: { seriesId: string; sea
   
 
   return (
-    <div className="h-[300vh] w-full flex flex-col opacity-70 gap-10">
-      <div className="row-span-1 bg-black p-5 grid grid-cols-1 md:grid-cols-2 gap-5 ">
+    <div className="h-[300vh] w-full flex flex-col gap-10">
+      <div className="row-span-1 bg-zinc-950 p-5 grid grid-cols-1 md:grid-cols-2 gap-5 ">
         <div className=" col-span-auto ">
         {details?.poster_path == undefined ? (
             <Image

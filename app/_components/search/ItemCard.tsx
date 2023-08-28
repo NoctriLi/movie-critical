@@ -27,7 +27,7 @@ const ItemCard = ({ item }: { item: any }) => {
   return (
     <Link
       href={url}
-      className="relative flex flex-col w-[300px] h-[400px] mx-2 my-2 p-2 border-8 rounded bg-zinc-700 shadow border-zinc-800"
+      className="relative flex flex-col w-[300px] h-[400px] mx-2 my-2 p-2 border-8 rounded bg-primary shadow "
     >
       <div className="relative flex h-40">
         <Image
@@ -49,7 +49,7 @@ const ItemCard = ({ item }: { item: any }) => {
           className="max-w-[100px] object-contain  rounded shadow"
         />
       </div>
-      <div className="relative flex flex-col min-w-[100px] place-content-evenly h-full w-fit text-white text-xs rounded">
+      <div className="relative flex flex-col min-w-[100px] place-content-evenly h-full w-fit text-primary-foreground text-xs rounded">
         {item.media_type === "person" && (
           <>
             <div className="relative flex flex-col place-self-start">
@@ -88,7 +88,7 @@ const ItemCard = ({ item }: { item: any }) => {
 
             </div>
 
-            <div className="relative bg-zinc-600 p-3 h-32  shadow rounded overflow-hidden">
+            <div className="relative bg-muted text-muted-foreground p-3 h-32  shadow shadow-muted rounded overflow-hidden">
               <p>{stringLimit(item.overview)}</p>
             </div>
           </>
@@ -108,9 +108,7 @@ const ItemCard = ({ item }: { item: any }) => {
               </div>
             </div>
 
-                <div className=" bg-zinc-600 p-3 h-32 shadow rounded overflow-hidden">
-                  <p className="">{stringLimit(item.overview)}</p>
-                </div>
+
 
           </>
         )}
