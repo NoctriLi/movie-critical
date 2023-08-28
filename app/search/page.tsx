@@ -8,7 +8,6 @@ import SearchPageResults from '../_components/search/SearchPageResults'
 import SearchFilterPanel from '../_components/search/SearchFilterPanel'
 import { useToast } from '@/components/ui/use-toast'
 
-
 interface Props {
   params: { keyword: string }
 }
@@ -27,7 +26,7 @@ const Page: React.FC<Props> = () => {
   const [searchUrl, setSearchUrl] = useState(
     `/api/search/all/${keyword}/${page.currPage}`
   )
-    const {toast} = useToast()
+  const { toast } = useToast()
 
   function makeSearchUrl() {
     if (searchType === 'all') {
@@ -96,18 +95,24 @@ const Page: React.FC<Props> = () => {
   }, [searchType])
 
   return (
-    <div className="relative flex h-fit w-screen flex-col border-b-[13rem] border-zinc-950">
-      <div className="flex flex-row justify-between rounded border-b border-black bg-zinc-900">
-        <div className="flex flex-col ">
-          <div className="text-white">Search</div>
-          <div className="text-white">
-            <h1>Movies, TV Shows, People</h1>
-          </div>
-        </div>
+    <div className="relative flex  w-screen flex-col border-b-[13rem] border-zinc-950">
+      <div className="flex h-20 p-2 flex-col justify-between rounded border-b border-black bg-primary text-primary-foreground">
+        <div>Search</div>
+
+        <h1>Movies, TV Shows, People</h1>
       </div>
-      <SearchFilterPanel list={list} setSearchType={setSearchType} />
+
+      <div>
+        <SearchFilterPanel list={list} setSearchType={setSearchType} />
+      </div>
       <div className="sm: ps-1/5">
-        {searchType && <SearchPageResults list={list} onScroll={onScroll} searchType={searchType} /> }
+        {searchType && (
+          <SearchPageResults
+            list={list}
+            onScroll={onScroll}
+            searchType={searchType}
+          />
+        )}
       </div>
     </div>
   )

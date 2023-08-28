@@ -29,7 +29,7 @@ const SearchPageInput = () => {
                     placeholder="Search"
                     value={searchText}
                     onChange={onSearch}
-                    className="h-8 w-full bg-background text-xs text-foreground focus:border-white focus:outline-none shadow shadow-foreground"
+                    className="h-8 w-full bg-background text-xs text-foreground p-1 focus:border-white focus:outline-none shadow shadow-foreground"
                 />
             </div>
             <Link

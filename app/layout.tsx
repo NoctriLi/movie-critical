@@ -31,7 +31,7 @@ export default function RootLayout({
                     enableSystem
                 >
                     <Navbar />
-                    <div className="pt-32"></div>
+                    <div className="pt-20"></div>
                     <main>{children}</main>
                     <Toaster />
                 </ThemeProvider>

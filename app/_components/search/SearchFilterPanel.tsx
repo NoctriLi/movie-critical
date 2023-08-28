@@ -38,7 +38,7 @@ const SearchFilterPanel = ({ setSearchType }: any) => {
   return (
     <div className="relative h-full w-full min-w-fit rounded bg-background shadow p-2 shadow-foreground md:fixed md:w-1/5">
       <div className="relative flex h-full w-full flex-col">
-        <h1 className="text-foreground">Search</h1>
+
         <div className="relative flex h-auto w-full flex-col p-2">
           <SearchPageInput />
         </div>
