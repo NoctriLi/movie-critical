@@ -1,11 +1,11 @@
-'use client'
 
 import React, { useEffect, useState } from 'react'
 import ItemCard from './ItemCard'
 import SearchPageInput from './SearchPageInput'
 import genres from '@/lib/genres'
 
-const SearchPageResults = ({ list, onScroll }: any) => {
+const SearchPageResults = ({ list, onScroll, searchType }: any) => {
+    console.log(searchType)
     return (
         
             <div
@@ -15,7 +15,7 @@ const SearchPageResults = ({ list, onScroll }: any) => {
                 <div className="relative mx-auto flex h-max min-h-screen w-full min-w-[300px] flex-wrap pt-10 shadow md:w-3/4">
                     {list.length > 0 ? (
                         list.map((item: any, index: number) => (
-                            <ItemCard key={index} item={item} />
+                            <ItemCard key={index} item={item} searchType={searchType} />
                         ))
                     ) : (
                         <div className="text-foreground mx-auto">

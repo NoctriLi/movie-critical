@@ -22,172 +22,41 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 
-const SearchFilterPanel = ({ list, setFiltered }: any) => {
-  const [options, setOptions] = useState({
-    genre: '',
-  })
-  
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 
-  const FormSchema = z.object({
-    genres: z.array(z.string()).refine((value) => value.some((item) => item), {
-      message: 'You have to select at least one item.',
-    }),
-    text: z.string().min(1, { message: 'Minimum 1 characters' }),
-  })
+import { ScrollArea } from '@/components/ui/scroll-area'
+const SearchFilterPanel = ({ setSearchType }: any) => {
 
-  const applyFilter = () => {
-    let filtered = list
 
-    console.log(list)
-    console.log(options.genre)
 
-    if (options.genre) {
-      filtered = filtered.filter(
-        (item: any) => item.genre_ids?.includes(parseInt(options.genre))
-      )
-    }
-
-    console.log(filtered)
-
-    setFiltered(filtered)
-  }
-
-  useEffect(() => {
-    applyFilter()
-  }, [list])
-
-  const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setOptions({ ...options, genre: e.target.value })
-  }
-
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      genres: [],
-      text: '',
-    },
-  })
-
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-background p-4">
-          <code className="text-foreground">
-            {JSON.stringify(data, null, 2)}
-          </code>
-        </pre>
-      ),
-    })
-  }
 
   return (
-    <div className="relative h-full w-full min-w-fit rounded bg-background shadow-xl md:fixed md:w-1/5 ">
-      <div className="relative flex h-fit w-full flex-col">
+    <div className="relative h-full w-full min-w-fit rounded bg-background shadow p-2 shadow-foreground md:fixed md:w-1/5">
+      <div className="relative flex h-full w-full flex-col">
+        <h1 className="text-foreground">Search</h1>
+        <div className="relative flex h-auto w-full flex-col p-2">
+          <SearchPageInput />
+        </div>
         <Tabs defaultValue="all" className="mx-auto w-full">
           <TabsList>
-            <TabsTrigger value="movie">Movies</TabsTrigger>
-            <TabsTrigger value="tv">TV</TabsTrigger>
-            <TabsTrigger value="people">People</TabsTrigger>
-            <TabsTrigger value="all">All</TabsTrigger>
-          </TabsList>
-          <TabsContent value="movie">
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8"
-              >
-                <FormField
-                  control={form.control}
-                  name="text"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Keyword</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Keyword" {...field} />
-                      </FormControl>
-                      <FormDescription>
-                        Enter a keyword to search for.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="genres"
-                  render={() => (
-                    <FormItem>
-                      <div className="mb-4">
-                        <FormLabel className="text-base">Sidebar</FormLabel>
-                        <FormDescription>
-                          Select the items you want to display in the sidebar.
-                        </FormDescription>
-                      </div>
-                      {genres.movieGenres.map((item) => (
-                        <FormField
-                          key={item.id}
-                          control={form.control}
-                          name="genres"
-                          render={({ field }) => {
-                            return (
-                              <FormItem
-                                key={item.id}
-                                className="flex flex-row items-start space-x-3 space-y-0"
-                              >
-                                <FormControl>
-                                  <Checkbox
-                                    checked={field.value?.includes(item.name)}
-                                    onCheckedChange={(checked) => {
-                                      return checked
-                                        ? field.onChange([
-                                            ...field.value,
-                                            item.name,
-                                          ])
-                                        : field.onChange(
-                                            field.value?.filter(
-                                              (value) => value !== item.name
-                                            )
-                                          )
-                                    }}
-                                  />
-                                </FormControl>
-                                <FormLabel className="font-normal">
-                                  {item.name}
-                                </FormLabel>
-                              </FormItem>
-                            )
-                          }}
-                        />
-                      ))}
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit">Submit</Button>
-              </form>
-            </Form>
-          </TabsContent>
-          <TabsContent value="tv">Change your password here.</TabsContent>
-          <TabsContent value="people">Change your password here.</TabsContent>
-          <TabsContent value="all">
-            <div className="relative flex h-full w-full flex-col p-2">
-              <SearchPageInput />
-            </div>
-
-            <div className="relative flex h-full w-full flex-col p-2">
-              <div className="text-foreground">Genre</div>
-              <select value={options.genre} onChange={handleGenreChange}>
-                <option value="">All</option>
-                {genres.tvGenres.map((genre: any) => (
-                  <option key={genre.id} value={genre.id}>
-                    {genre.name}
-                  </option>
-                ))}
-              </select>
-              <Button onClick={() => applyFilter()}>Apply</Button>
-            </div>
-          </TabsContent>
+            <TabsTrigger value="movie" onClick={() => setSearchType('movie')}>
+              Movies
+            </TabsTrigger>
+            <TabsTrigger value="tv" onClick={() => setSearchType('tv')}>
+              TV
+            </TabsTrigger>
+            <TabsTrigger value="people" onClick={() => setSearchType('people')}>
+              People
+            </TabsTrigger>
+            <TabsTrigger value="all" onClick={() => setSearchType('all')}>
+              All
+            </TabsTrigger>
+          </TabsList>      
         </Tabs>
       </div>
     </div>
