@@ -20,7 +20,7 @@ const SearchInput = () => {
   useEffect(() => {
     let timeoutId: NodeJS.Timeout
     const getResults = async () => {
-      const response = await fetch(`/api/search/${searchTerm}/1`)
+      const response = await fetch(`/api/search/all/${searchTerm}/1`)
       const results = await response.json()
       const sliced = results.results.slice(0, 5)
       setSearchResults(sliced)
