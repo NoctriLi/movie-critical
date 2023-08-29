@@ -23,7 +23,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={inter.className}>
                 <ThemeProvider
                     attribute="class"
@@ -32,7 +32,7 @@ export default function RootLayout({
                 >
                     <Navbar />
                     <div className="pt-20"></div>
-                    <main>{children}</main>
+                    {children}
                     <Toaster />
                 </ThemeProvider>
             </body>
