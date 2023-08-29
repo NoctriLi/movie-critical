@@ -34,13 +34,11 @@ const CrewCard: React.FC<any> = (crewMember) => {
           }
           alt={crewMember.name}
         />
-        <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
-        <Link
-            href={`/people/${crewMember.id}`}
+        <Link className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100"
+            href={`/people/${crewMember.id}`}>
             
-            className="absolute bottom-0 mt-2 px-4 py-2 bg-zinc-800 rounded text-white"
-        >More...</Link>
-        </div>
+            
+        </Link>
       </div>
 
       <div className="flex flex-col py-2">

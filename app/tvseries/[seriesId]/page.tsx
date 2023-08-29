@@ -142,7 +142,7 @@ export default async function Page({
             Seasons
           </h2>
           <div className="relative mx-auto flex w-full flex-col overflow-auto text-center lg:flex-row">
-            {seriesId && <SeasonBox seasons={details} id={seriesId} />}
+            {details.seasons?.length > 0 && <Slider list={details.seasons} type={"season"} id={seriesId} />}
           </div>
         </div>
 

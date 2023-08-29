@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 // import { useRouter } from "next/router";
 import Link from 'next/link'
 import Image from 'next/image'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { Movie } from '@/lib/interfaces'
 
 const MovieCard: React.FC<Movie> = (movie) => {
@@ -11,8 +12,8 @@ const MovieCard: React.FC<Movie> = (movie) => {
             'min-w-[175px] h-[262px] object-cover bg-gray-400 flex items-center',
         title: 'w-full text-center font-bold',
         hoverBox:
-            '@container absolute bottom-0 left-0 w-full h-full p-3 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100',
-        overviewText: 'max-h-[75%] overflow-y-auto text-[.7rem] font-bolder',
+            '@container absolute bottom-0 left-0 w-full h-full pe-3 py-2 bg-black bg-opacity-70 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100',
+        overviewText: 'w-full p-3 h-full text-[.7rem] font-bolder',
     }
 
     return (
@@ -36,9 +37,10 @@ const MovieCard: React.FC<Movie> = (movie) => {
                 </div>
             )}
             <Link href={`/movies/${movie.id}`} className={cardStyles.hoverBox}>
-                <div className={cardStyles.overviewText}>
-                    <p>{movie.overview}</p>
-                </div>
+                <ScrollArea className={cardStyles.overviewText}>
+
+                    {movie.overview}
+                </ScrollArea>
             </Link>
         </div>
     )

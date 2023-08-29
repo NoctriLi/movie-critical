@@ -19,6 +19,8 @@ interface Props {
 
 const Slider: React.FC<Props> = ({ list, type, id }) => {
   const sliderRef = React.useRef<HTMLDivElement>(null)
+  console.log(id, type)
+  if (type === 'episode') console.log(list)
 
   const handlePrev = () => {
     sliderRef.current?.scrollBy(-200, 0)
@@ -90,14 +92,14 @@ const Slider: React.FC<Props> = ({ list, type, id }) => {
           ? list.map((show, i) => (
               <Fragment key={i}>
                 <div className="relative h-full rounded bg-secondary-foreground p-1"></div>
-                <SeasonCard {...show} id={id} />
+                <SeasonCard season={show} seriesId={id} />
               </Fragment>
             ))
           : type === 'episode'
           ? list.map((show, i) => (
               <Fragment key={i}>
                 <div className="relative h-full rounded bg-secondary-foreground p-1"></div>
-                <EpisodeCard {...show} id={id} />
+                <EpisodeCard episode={show} seriesId={id} />
               </Fragment>
             ))
           : null}

@@ -140,11 +140,12 @@ export default async function Page({
         </div>
       </div>
 
-      <section className="relative flex h-screen w-screen flex-wrap items-center text-foreground p-5">
+      <section className="relative flex h-screen w-screen flex-wrap items-center p-5 text-foreground">
         <div className="mx-auto flex w-full  flex-col">
           <h2 className=" py-2 text-center text-2xl font-bold  tracking-tight ">
             Credits
           </h2>
+
           <div className="mx-auto flex flex-col gap-28 text-center lg:flex-row">
             <div className=" flex h-full  max-w-[500px]  flex-col">
               <h3 className="text-xl font-bold tracking-tight  ">Cast</h3>
@@ -163,7 +164,7 @@ export default async function Page({
         </div>
 
         <div className="relative mx-auto my-5 flex w-fit flex-col overflow-hidden ">
-          <h2 className="text-center text-2xl py-2 font-bold  tracking-tight">
+          <h2 className="py-2 text-center text-2xl font-bold  tracking-tight">
             Recommendations
           </h2>
           {recommendations?.results && (

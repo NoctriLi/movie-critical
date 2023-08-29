@@ -1,49 +1,59 @@
-import React, { useCallback } from "react";
+
+import React, { useCallback } from 'react'
 // import { useRouter } from "next/router";
-import Link from "next/link";
-import { Episode } from "@/lib/interfaces";
-import LazyImage from "@/app/_components/LazyImage";
+import Link from 'next/link'
+import Image from 'next/image'
+
 
 interface Image {
-  src: string;
-  width: number;
-  quality?: number;
+  src: string
+  width: number
+  quality?: number
 }
 
-const EpisodeCard = ({ episodeDetails }: any) => {
+const EpisodeCard = ({episode, seriesId }: any) => {
   // const router = useRouter();
-  const episode: Episode = episodeDetails[0];
-  const seriesId: string = episodeDetails[1];
+
   // const redirectToSummary = useCallback(
   //   () => router.push(`/people/${episode.id}`),
   //   [router, episode.id]
   // );
+  console.log(seriesId)
   return (
-    <div className="flex flex-col relative gap-0 min-w-[100px] h-fit text-white text-xs rounded shadow ">
-      <div className="relative">
-        <LazyImage
-          src={
-            episode.still_path
-              ? `https://image.tmdb.org/t/p/w500${episode.still_path}`
-              : "/blank-profile-picture.png"
-          }
-          alt={episode.name}
-        />
-        <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
-          <Link
-            href={`/episodes/${seriesId}/${episode.season_number}/${episode.episode_number}`}
-            className="absolute bottom-0 mt-2 px-4 py-2 bg-zinc-800 rounded text-white"
-          >
-            More...
-          </Link>
+    <div className="relative flex flex-col h-fit min-w-[175px] snap-center overflow-hidden rounded bg-white shadow">
+     {episode.still_path != undefined ? ( <Image
+        src={
+          episode.still_path
+            ? `https://image.tmdb.org/t/p/w500${episode.still_path}`
+            : '/blank-profile-picture.png'
+        }
+        alt={episode.name}
+        height={300}
+        width={200}
+        className="object-cover"
+        loading="lazy"
+        onError={(e) =>
+          (e.currentTarget.src = '/public/images/blank-profile-picture.png')
+        }
+      />) : (
+        <div className="flex h-full w-full items-center bg-primary object-cover">
+          <p className="w-full bg-primary-foreground text-center font-bold">
+            {episode.name}
+          </p>
         </div>
-      </div>
+      )}
+      <Link
+        className="@container absolute bottom-0 left-0 h-full w-full transform bg-black bg-opacity-50 p-4 text-white opacity-0 duration-500 ease-in-out hover:opacity-100"
+        href={`/episodes/${seriesId}/${episode.season_number}/${episode.episode_number}`}
+      ></Link>
 
-      <div className="flex flex-col py-2">
-        <p className="text-white">{episode.name}</p>
+      <div className="flex h-fit w-full items-center bg-primary object-cover">
+        <p className="w-full bg-primary-foreground text-center font-bold">
+          {episode.name}
+        </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EpisodeCard;
+export default EpisodeCard

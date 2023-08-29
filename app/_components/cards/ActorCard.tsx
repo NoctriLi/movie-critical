@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from 'react'
 // import { useRouter } from "next/router";
-import Link from "next/link";
-import LazyImage from "../LazyImage";
-import { CastMember } from "@/lib/interfaces";
+import Link from 'next/link'
+import LazyImage from '../LazyImage'
+import { CastMember } from '@/lib/interfaces'
 
 const ActorCard: React.FC<CastMember> = (castMember) => {
   // const router = useRouter();
@@ -13,24 +13,20 @@ const ActorCard: React.FC<CastMember> = (castMember) => {
   // );
 
   return (
-    <div className="flex flex-col gap-0 relative min-w-[100px] h-fit text-white text-xs rounded shadow">
+    <div className="relative flex h-fit min-w-[100px] flex-col gap-0 rounded text-xs text-white shadow">
       <div className="relative">
         <LazyImage
           src={
             castMember.profile_path
               ? `https://image.tmdb.org/t/p/w500${castMember.profile_path}`
-              : "/blank-profile-picture.png"
+              : '/blank-profile-picture.png'
           }
           alt={castMember.name}
         />
-        <div className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
-          <Link
-            href={`/people/${castMember.id}`}
-            className="absolute bottom-0 mt-2 px-4 py-2 bg-zinc-800 rounded text-white"
-          >
-            More...
-          </Link>
-        </div>
+        <Link
+          className="@container absolute bottom-0 left-0 h-full w-full transform bg-black bg-opacity-50 p-4 text-white opacity-0 duration-500 ease-in-out hover:opacity-100"
+          href={`/people/${castMember.id}`}
+        ></Link>
       </div>
       <div className="flex flex-col py-1">
         <p className="font-bold">{castMember.name}</p>
@@ -38,7 +34,7 @@ const ActorCard: React.FC<CastMember> = (castMember) => {
         {castMember.character && <p>{castMember.character}</p>}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ActorCard;
+export default ActorCard

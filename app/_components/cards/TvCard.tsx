@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 // import { useRouter } from "next/router";
 import Link from "next/link";
 import LazyImage from "../LazyImage";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { TVShow } from "@/lib/interfaces";
 
 const TvCard: React.FC<TVShow> = (tvshow) => {
@@ -20,10 +21,10 @@ const TvCard: React.FC<TVShow> = (tvshow) => {
           <h1 className="w-full text-center font-bold">{tvshow.name}</h1>
         </div>
       )}
-      <div className="@container absolute bottom-0 left-0 w-full h-full p-3 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
-        <div className="max-h-[75%] overflow-y-auto text-[.7rem]">
-          <p>{tvshow.overview}</p>
-        </div>
+      <div className='@container absolute bottom-0 left-0 w-full h-full pe-3 py-2 bg-black bg-opacity-70 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100'>
+        <ScrollArea className='w-full p-3 h-full text-[.7rem] font-bolder'>
+          {tvshow.overview}
+        </ScrollArea>
       </div>
     </Link>
   );

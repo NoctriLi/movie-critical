@@ -33,18 +33,14 @@ const MovieCard = (movie: CastMovie | CrewMovie) => {
       <p className="py-2 text-sm mx-auto">
         {isCastMovie(movie) ? movie.character : movie.job}
       </p>
-      <div className="@container absolute bottom-0 left-0 w-full h-full p-3 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100">
+      <Link className="@container absolute bottom-0 left-0 w-full h-full p-3 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100"
+          href={`/movies/${movie.id}`}>
         <div className="max-h-[75%] overflow-y-auto text-[.7rem]">
           <p>{movie.overview}</p>
         </div>
-        <Link
-          href={`/movies/${movie.id}`}
-          className="absolute bottom-0 mt-2 px-4 py-2 bg-zinc-800 rounded text-white"
-        >
-          More...
+      
         </Link>
       </div>
-    </div>
     // <div className="card flex">
 
     //   <div

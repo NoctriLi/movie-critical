@@ -135,13 +135,13 @@ export default async function Page({
           </div>
         </div>
       </div>
-
+      <section className="relative flex flex-col  h-screen w-screen  items-center p-5 text-foreground">
       <div className="mx-auto flex w-full  flex-col">
         <h2 className=" py-2 text-center text-2xl font-bold  tracking-tight ">
           Episodes
         </h2>
         <div className="mx-auto flex flex-col gap-28 text-center lg:flex-row">
-          {seriesId && <EpisodeBox episodes={details} id={seriesId} />}
+          {seriesId && <Slider list={details.episodes} type={"episode"} id={seriesId} />}
         </div>
       </div>
 
@@ -150,7 +150,7 @@ export default async function Page({
           Seasons
         </h2>
         <div className="mx-auto flex flex-col gap-28 text-center lg:flex-row">
-          {seriesId && <SeasonBox seasons={seriesDetails} id={seriesId} />}
+          {seriesId && <Slider list={seriesDetails.seasons} type={"season"} id={seriesId} />}
         </div>
       </div>
 
@@ -186,6 +186,7 @@ export default async function Page({
           {recommendations && <Slider list={recommendations.results} type={"tv"} />}
         </div>
       </div>
+      </section>
     </div>
   )
 }
