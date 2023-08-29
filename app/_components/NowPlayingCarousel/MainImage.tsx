@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface MainCardProps {
   card: {
@@ -21,10 +22,12 @@ const MainCard = ({ card, children, activeIndex }: MainCardProps) => {
 
   return (
     <>
-      <div className='relative z-[200] rounded w-full h-full'>
-        <div
+      <div className='relative bg-black z-[200] rounded w-full h-full'
+        >
+        <Link
+          href={`/movies/${card.id}`}
           key={card.id}
-          className={`rounded relative h-4/6 w-full  bg-zinc-900 transition-opacity opacity-0 overflow-hidden ${
+          className={`rounded relative h-4/6 w-full transition-opacity opacity-0 overflow-hidden ${
             loaded && "opacity-100"
           } ease-in duration-400`}
         >
@@ -36,8 +39,8 @@ const MainCard = ({ card, children, activeIndex }: MainCardProps) => {
             className="object-contain rounded overflow-hidden shadow-foreground mx-auto after:bg-black after:opacity-50 after:absolute after:inset-0 after:z-10 after:transition-opacity after:duration-500 after:ease-in after:delay-100 "
             alt={card.title}
           />
+        </Link>
         {children}
-        </div>
       </div>
         <div className={`relative text-4xl tracking-wide h-2/6 mx-auto  text-foreground opacity-80`}>
           {card.title}

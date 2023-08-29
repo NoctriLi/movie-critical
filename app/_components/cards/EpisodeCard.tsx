@@ -20,7 +20,7 @@ const EpisodeCard = ({episode, seriesId }: any) => {
   // );
   console.log(seriesId)
   return (
-    <div className="relative flex flex-col h-fit min-w-[175px] snap-center overflow-hidden rounded bg-white shadow">
+    <div className="relative flex flex-col h-fit min-w-[175px] snap-center overflow-hidden rounded  shadow">
      {episode.still_path != undefined ? ( <Image
         src={
           episode.still_path
@@ -36,7 +36,7 @@ const EpisodeCard = ({episode, seriesId }: any) => {
           (e.currentTarget.src = '/public/images/blank-profile-picture.png')
         }
       />) : (
-        <div className="flex h-full w-full items-center bg-primary object-cover">
+        <div className="flex h-full w-full items-center  object-cover">
           <p className="w-full bg-primary-foreground text-center font-bold">
             {episode.name}
           </p>
@@ -47,8 +47,8 @@ const EpisodeCard = ({episode, seriesId }: any) => {
         href={`/episodes/${seriesId}/${episode.season_number}/${episode.episode_number}`}
       ></Link>
 
-      <div className="flex h-fit w-full items-center bg-primary object-cover">
-        <p className="w-full bg-primary-foreground text-center font-bold">
+      <div className="flex h-fit w-full items-center p-1 object-cover">
+        <p className="w-full text-center font-bold">
           {episode.name}
         </p>
       </div>

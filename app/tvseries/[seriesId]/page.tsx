@@ -137,6 +137,7 @@ export default async function Page({
       </div>
 
       <section className="relative flex h-screen w-screen flex-wrap items-center p-5 text-foreground">
+        
         <div className="mx-auto flex w-full flex-col overflow-hidden">
           <h2 className=" py-2 text-center text-2xl font-bold tracking-tight ">
             Seasons

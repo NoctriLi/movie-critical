@@ -155,13 +155,13 @@ export default async function Page({
         </div>
       </div>
 
-      <section className="relative flex flex-col  h-screen w-screen  items-center p-5 text-foreground">
+      <section className="relative flex h-screen  w-screen flex-col  items-center p-5 text-foreground">
         <div className="mx-auto flex w-full flex-col">
           <h2 className=" py-2 text-center text-2xl font-bold tracking-tight ">
             Episodes
           </h2>
 
-          <div className="mx-auto flex flex-col w-full gap-28 text-center lg:flex-row">
+          <div className="mx-auto flex w-full flex-col gap-28 text-center lg:flex-row">
             {seasonDetails.episodes && (
               <Slider
                 list={seasonDetails.episodes}
@@ -176,7 +176,7 @@ export default async function Page({
           <h2 className=" py-2 text-center text-2xl font-bold tracking-tight ">
             Seasons
           </h2>
-          <div className="mx-auto flex flex-col w-full gap-28 text-center lg:flex-row">
+          <div className="mx-auto flex w-full flex-col gap-28 text-center lg:flex-row">
             {seriesDetails.seasons && (
               <Slider
                 list={seriesDetails.seasons}

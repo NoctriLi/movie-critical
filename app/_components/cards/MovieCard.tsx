@@ -12,7 +12,7 @@ const MovieCard: React.FC<Movie> = (movie) => {
             'min-w-[175px] h-[262px] object-cover bg-gray-400 flex items-center',
         title: 'w-full text-center font-bold',
         hoverBox:
-            '@container absolute bottom-0 left-0 w-full h-full pe-3 py-2 bg-black bg-opacity-70 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100',
+            '@container absolute bottom-0 left-0 w-full h-full pe-3 bg-black bg-opacity-70 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100',
         overviewText: 'w-full p-3 h-full text-[.7rem] font-bolder',
     }
 

@@ -1,8 +1,7 @@
 import React, { useCallback } from "react";
 // import { useRouter } from "next/router";
 import Link from "next/link";
-import { CrewMember } from "@/lib/interfaces";
-import LazyImage from "@/app/_components/LazyImage";
+import Image from "next/image";
 
 interface Image {
   src: string;
@@ -24,15 +23,24 @@ const CrewCard: React.FC<any> = (crewMember) => {
   //   [router, crewMember.id]
   // );
   return (
-    <div className="flex flex-col relative gap-0 min-w-[100px] h-fit text-white text-xs rounded shadow ">
+    <div className='relative min-w-[100px] h-fit rounded shadow overflow-hidden snap-center'>
       <div className="relative">
-        <LazyImage
+        <Image
           src={
             crewMember.profile_path
               ? `https://image.tmdb.org/t/p/w500${crewMember.profile_path}`
               : "/blank-profile-picture.png"
           }
           alt={crewMember.name}
+          height={300}
+                    width={200}
+                    className="object-cover"
+                    loading="lazy"
+                    onError={(e) =>
+                        (e.currentTarget.src =
+                            '/public/images/blank-profile-picture.png')
+                    }
+                
         />
         <Link className="@container absolute bottom-0 left-0 w-full h-full p-4 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100"
             href={`/people/${crewMember.id}`}>
@@ -41,9 +49,9 @@ const CrewCard: React.FC<any> = (crewMember) => {
         </Link>
       </div>
 
-      <div className="flex flex-col py-2">
-        <p className="text-white font-bold">{crewMember.name}</p>
-        {crewMember && <p className="text-white">{crewMember.job}</p>}
+      <div className="flex flex-col w-full h-fit py-2 mx-auto text-center">
+        <p className=" font-bold">{crewMember.name}</p>
+        {crewMember && <p className='text-xs font-semibold tracking-tighter'>{crewMember.job}</p>}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ interface NextButtonProps {
 
 const NextButton: React.FC<NextButtonProps> = ({ handleClick }) => {
   return (
-      <button className="absolute top-0 right-0 p-2 h-full w-1/2 text-white opacity-40 rounded" style={{WebkitTapHighlightColor: 'transparent'}} onClick={handleClick}>
+      <button className="absolute z-[201] top-0 right-0 p-2 h-full bg-black w-1/5 text-white opacity-40 rounded" style={{WebkitTapHighlightColor: 'transparent'}} onClick={handleClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

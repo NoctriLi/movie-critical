@@ -8,6 +8,7 @@ import ActorCard from '../cards/ActorCard'
 import CrewCard from '../cards/CrewCard'
 import SeasonCard from '../cards/SeasonCard'
 import EpisodeCard from '../cards/EpisodeCard'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { HiChevronLeft } from 'react-icons/hi'
 import { HiChevronRight } from 'react-icons/hi'
 
@@ -34,16 +35,16 @@ const Slider: React.FC<Props> = ({ list, type, id }) => {
   })
 
   return (
-    <div className="relative mx-auto flex h-full w-full overflow-hidden rounded border-y-8 border-zinc-800 bg-secondary object-scale-down px-4 shadow-secondary-foreground sm:px-6 lg:max-w-7xl lg:px-8 ">
+    <div className="relative mx-auto flex h-full w-full md:min-w-[350px] overflow-hidden rounded border-y-8 shadow-inner  border-zinc-800 bg-secondary object-scale-down px-4 shadow-black sm:px-6 lg:max-w-7xl lg:px-8 ">
       <button
         onClick={handlePrev}
-        className="absolute bottom-0 left-0 top-0 z-20 flex h-full w-1/4  bg-black bg-opacity-30 hover:bg-opacity-50"
+        className="absolute bottom-0 left-0 top-0 z-20 flex h-full w-1/4 shadow shadow-black bg-black bg-opacity-30 hover:bg-opacity-50"
       >
         <HiChevronLeft className="relative mx-auto self-center text-5xl text-white" />
       </button>
       <button
         onClick={handleNext}
-        className="absolute bottom-0 right-0 top-0 z-20 flex h-full w-1/4  bg-black bg-opacity-30 hover:bg-opacity-50"
+        className="absolute bottom-0 right-0 top-0 z-20 flex h-full w-1/4 shadow shadow-black bg-black bg-opacity-30 hover:bg-opacity-50"
       >
         <HiChevronRight className="relative mx-auto self-center text-5xl text-white shadow" />
       </button>
@@ -51,7 +52,7 @@ const Slider: React.FC<Props> = ({ list, type, id }) => {
       <div
         id="tvslider"
         ref={sliderRef}
-        className="mt-6 flex h-[325px] snap-x gap-x-10 overflow-x-hidden overflow-y-hidden scroll-smooth px-[25%] py-2"
+        className="relative mt-6 flex h-[325px] snap-x gap-x-10 overflow-x-hidden overflow-y-hidden scroll-smooth px-[25%] py-2"
       >
         {type === 'movie'
           ? list.map((movie, i) => (
@@ -103,6 +104,7 @@ const Slider: React.FC<Props> = ({ list, type, id }) => {
               </Fragment>
             ))
           : null}
+          <div className="relative h-full rounded bg-secondary-foreground p-1"></div>
       </div>
     </div>
   )

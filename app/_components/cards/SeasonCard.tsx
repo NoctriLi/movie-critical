@@ -20,7 +20,7 @@ const SeasonCard = ({season, seriesId }: any) => {
   // );
   console.log(seriesId)
   return (
-    <div className="relative flex flex-col h-fit min-w-[175px] snap-center overflow-hidden rounded bg-white shadow">
+    <div className="relative flex flex-col h-fit min-w-[150px] w-[150px] snap-center overflow-hidden rounded  shadow">
      {season.poster_path != undefined ? ( <Image
         src={
           season.poster_path
@@ -46,8 +46,8 @@ const SeasonCard = ({season, seriesId }: any) => {
         href={`/seasons/${seriesId}/${season.season_number}`}
       ></Link>
 
-      <div className="flex h-fit w-full items-center bg-primary object-cover">
-        <p className="w-full bg-primary-foreground text-center font-bold">
+      <div className="flex h-fit w-full items-center  object-cover">
+        <p className="w-full  text-center font-bold">
           {season.name}
         </p>
       </div>

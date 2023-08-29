@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { Movie } from "@/lib/interfaces";
 interface MainCardProps {
   movies: Movie[];
@@ -72,6 +73,7 @@ const Maincard: React.FC<MainCardProps> = ({
         <div className="relative block space-y-1 h-full w-full overflow-hidden">
           {movies.map((card: Movie, index: number) => (
             <div
+              
               key={index}
               className={`w-full  overflow-hidden z-5 ${
                 animation0(index) + " " +
@@ -79,8 +81,10 @@ const Maincard: React.FC<MainCardProps> = ({
                 animation2(index) + " " +
                 animation3(index) + " " +
                 animation4(index)
-              }`}
+              }`
+            }
             >
+              <Link href={`/movies/${card.id}`}>
               <Image
                 src={"https://image.tmdb.org/t/p/w342" + card.backdrop_path}
                 fill={true}
@@ -93,6 +97,7 @@ const Maincard: React.FC<MainCardProps> = ({
                 alt={card.title}
                 className="object-cover"
               />
+              </Link>
               <p className=" text-white bg-zinc-900 opacity-80">{card.title}</p>
             </div>
           ))}

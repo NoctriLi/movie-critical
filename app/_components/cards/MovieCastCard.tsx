@@ -1,13 +1,24 @@
 import React, { useCallback } from "react";
 // import { useRouter } from "next/router";
-import LazyImage from "../LazyImage";
-import { Movie } from "@/lib/interfaces";
+import Image from "next/image";
 import Link from "next/link";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { CastMovie, CrewMovie } from "@/lib/interfaces";
 
 const isCastMovie = (movie: CastMovie | CrewMovie): movie is CastMovie => {
   return (movie as CastMovie).character !== undefined;
 };
+
+const cardStyles = {
+  card: 'relative min-w-[175px] h-fit bg-white rounded shadow overflow-hidden snap-center',
+  titleBox:
+      'min-w-[175px] h-[262px] object-cover bg-gray-400 flex items-center',
+  title: 'w-full text-center font-bold',
+  hoverBox:
+      '@container absolute bottom-0 left-0 w-full h-full pe-3 py-2 bg-black bg-opacity-70 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100',
+  overviewText: 'w-full p-3 h-full text-[.7rem] font-bolder',
+}
+
 
 const MovieCard = (movie: CastMovie | CrewMovie) => {
   // const router = useRouter();
@@ -18,28 +29,40 @@ const MovieCard = (movie: CastMovie | CrewMovie) => {
   // );
   if (!movie.poster_path) return <div></div>;
   return (
-    <div className="relative flex flex-col min-w-[150px] w-[150px] h-fit text-white rounded shadow overflow-hidden">
-      {movie.poster_path != undefined ? (
-        <LazyImage
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.title}
-        />
-      ) : (
-        <div className="min-w-[175px] h-[262px] object-cover bg-gray-400 flex items-center">
-          <h1 className="w-full text-center font-bold">{movie.title}</h1>
-        </div>
-      )}
-      <p className="text-[.75rem] mx-auto">as</p>
-      <p className="py-2 text-sm mx-auto">
+    <div className='relative min-w-[175px] h-fit  rounded shadow overflow-hidden snap-center'>
+            {movie.poster_path != undefined ? (
+                <Image
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                    height={300}
+                    width={200}
+                    className="object-cover"
+                    loading="lazy"
+                    onError={(e) =>
+                        (e.currentTarget.src =
+                            '/public/images/blank-profile-picture.png')
+                    }
+                />
+            ) : (
+                <div className={cardStyles.titleBox}>
+                    <h1 className={cardStyles.title}>{movie.title}</h1>
+                </div>
+            )}
+
+
+      <p className="text-[.75rem] text-center mx-auto">as</p>
+
+      <p className="pb-2 text-sm font-bold text-center mx-auto">
         {isCastMovie(movie) ? movie.character : movie.job}
       </p>
-      <Link className="@container absolute bottom-0 left-0 w-full h-full p-3 bg-black bg-opacity-50 opacity-0 text-white transform ease-in-out duration-500 hover:opacity-100"
-          href={`/movies/${movie.id}`}>
-        <div className="max-h-[75%] overflow-y-auto text-[.7rem]">
-          <p>{movie.overview}</p>
-        </div>
-      
-        </Link>
+
+      <Link href={`/movies/${movie.id}`} className={cardStyles.hoverBox}>
+                <ScrollArea className={cardStyles.overviewText}>
+
+                    {movie.overview}
+                </ScrollArea>
+            </Link>
+
       </div>
     // <div className="card flex">
 

@@ -146,15 +146,15 @@ export default async function Page({
             Credits
           </h2>
 
-          <div className="mx-auto flex flex-col gap-28 text-center lg:flex-row">
-            <div className=" flex h-full  max-w-[500px]  flex-col">
+          <div className="mx-auto flex w-full flex-wrap justify-evenly overflow-hidden">
+            <div className=" flex h-full w-full lg:max-w-[600px]  flex-col">
               <h3 className="text-xl font-bold tracking-tight  ">Cast</h3>
               <div className="w-full justify-center align-middle ">
                 {credits && <Slider list={credits.cast} type={'cast'} />}
               </div>
             </div>
 
-            <div className="flex h-full max-w-[500px] flex-col ">
+            <div className="flex h-full w-full lg:max-w-[600px] flex-col ">
               <h3 className="text-xl font-bold tracking-tight  ">Crew</h3>
               <div className=" w-full justify-center space-x-5 align-middle ">
                 {credits && <Slider list={credits.crew} type={'crew'} />}

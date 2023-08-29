@@ -83,7 +83,7 @@ export default async function Page({
   const credits = await getCredits(seriesId, season)
 
   return (
-    <div className="flex h-[300vh] w-full flex-col gap-10">
+    <div className="flex h-[300vh] w-full flex-col">
       <div className="row-span-1 grid grid-cols-1 gap-5 bg-zinc-950 p-5 md:grid-cols-2 ">
         <div className=" col-span-auto ">
           {details?.poster_path == undefined ? (
@@ -133,60 +133,88 @@ export default async function Page({
               <p className="px-5 text-sm">{details?.overview}</p>
             </div>
           </div>
-        </div>
-      </div>
-      <section className="relative flex flex-col  h-screen w-screen  items-center p-5 text-foreground">
-      <div className="mx-auto flex w-full  flex-col">
-        <h2 className=" py-2 text-center text-2xl font-bold  tracking-tight ">
-          Episodes
-        </h2>
-        <div className="mx-auto flex flex-col gap-28 text-center lg:flex-row">
-          {seriesId && <Slider list={details.episodes} type={"episode"} id={seriesId} />}
+
+          
         </div>
       </div>
 
-      <div className="mx-auto flex w-full  flex-col">
-        <h2 className=" py-2 text-center text-2xl font-bold  tracking-tight ">
-          Seasons
-        </h2>
-        <div className="mx-auto flex flex-col gap-28 text-center lg:flex-row">
-          {seriesId && <Slider list={seriesDetails.seasons} type={"season"} id={seriesId} />}
-        </div>
-      </div>
 
-      <div className="mx-auto flex w-full  flex-col">
-        <h2 className=" py-2 text-center text-2xl font-bold  tracking-tight ">
-          Credits
-        </h2>
-        <div className="mx-auto flex flex-col gap-28 text-center lg:flex-row">
-          {credits?.cast.length > 0 && (
-            <div className=" flex h-full  max-w-[500px]  flex-col">
-              <h3 className="text-xl font-bold tracking-tight  ">Cast</h3>
-              <div className=" w-full justify-center space-x-5 align-middle ">
-                <Slider list={credits.cast} type={'cast'} />
+
+      <section className="relative flex h-fit w-screen flex-wrap items-center p-5 text-foreground">
+
+
+        <div className="mx-auto flex w-full flex-col overflow-hidden">
+          <h2 className=" py-2 text-center text-2xl font-bold  tracking-tight ">
+            Episodes
+          </h2>
+
+          <div className="relative mx-auto flex w-full flex-col overflow-auto text-center lg:flex-row">
+            {seriesId && (
+              <Slider list={details.episodes} type={'episode'} id={seriesId} />
+            )}
+          </div>
+
+          <h2 className=" py-2 text-center text-2xl font-bold  tracking-tight ">
+            Seasons
+          </h2>
+
+          <div className="relative mx-auto flex w-full flex-col overflow-auto text-center lg:flex-row">
+            {seriesId && (
+              <Slider
+                list={seriesDetails.seasons}
+                type={'season'}
+                id={seriesId}
+              />
+            )}
+          </div>
+        </div>
+
+
+        <div className="mx-auto flex w-full  flex-col">
+          <h2 className=" py-2 text-center text-2xl font-bold  tracking-tight ">
+            Credits
+          </h2>
+
+          <div className="mx-auto flex flex-col gap-28 text-center lg:flex-row">
+
+            {credits?.cast.length > 0 && (
+              <div className=" flex h-full  max-w-[500px]  flex-col">
+                <h3 className="text-xl font-bold tracking-tight  ">Cast</h3>
+                <div className=" w-full justify-center space-x-5 align-middle ">
+                  <Slider list={credits.cast} type={'cast'} />
+                </div>
               </div>
-            </div>
-          )}
-          {credits?.crew.length > 0 && (
-            <div className="flex h-full max-w-[500px] flex-col ">
-              <h3 className="text-xl font-bold tracking-tight  ">Crew</h3>
-              <div className=" w-full justify-center space-x-5 align-middle ">
-                <Slider list={credits.crew} type={'crew'} />
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+            )}
 
-      <div className=" mx-auto mt-20 flex w-full flex-col">
-        <h2 className="text-center text-2xl font-bold  tracking-tight">
-          Recommendations
-        </h2>
-        <div className="w-full">
-          {recommendations && <Slider list={recommendations.results} type={"tv"} />}
+            {credits?.crew.length > 0 && (
+              <div className="flex h-full max-w-[500px] flex-col ">
+                <h3 className="text-xl font-bold tracking-tight  ">Crew</h3>
+                <div className=" w-full justify-center space-x-5 align-middle ">
+                  <Slider list={credits.crew} type={'crew'} />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+
+
+        <div className=" mx-auto mt-20 flex w-full flex-col">
+          <h2 className="text-center text-2xl font-bold  tracking-tight">
+            Recommendations
+          </h2>
+
+          <div className="w-full">
+            {recommendations && (
+              <Slider list={recommendations.results} type={'tv'} />
+            )}
+          </div>
+        </div>
+
+
       </section>
+
+
+
     </div>
   )
 }

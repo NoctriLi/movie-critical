@@ -5,7 +5,7 @@ interface BackButtonProps {
 const BackButton: React.FC<BackButtonProps> = ({ handleClick }) => {
   return (
 
-    <button className="absolute top-0 left-0 p-2 w-1/2 h-full  z-[201]  text-white opacity-40 rounded" style={{WebkitTapHighlightColor: 'transparent'}} onClick={handleClick}>
+    <button className="absolute top-0 left-0 p-2 w-1/5 bg-black h-full  z-[201]  text-white opacity-40 rounded" style={{WebkitTapHighlightColor: 'transparent'}} onClick={handleClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
