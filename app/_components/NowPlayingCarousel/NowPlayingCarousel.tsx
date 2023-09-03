@@ -24,24 +24,27 @@ const NowPlayingCourosel: React.FC<Movies> = (movies) => {
       );
       setDirection("last");
   };
+  const updateVisibleCards = () => {
+    const cardCount = cards.length;
+    const newVisibleCards: Movie[] = [];
+
+    for (let i = 0; i <= 4; i++) {
+      const cardIndex = (activeIndex + i) % cardCount;
+      newVisibleCards.push(cards[cardIndex]);
+    }
+    setTimeout(() => {
+      setVisibleCards(newVisibleCards);
+      setActiveCard(cards[activeIndex]);
+    }, 150);
+  };
+
   useEffect(() => {
-    const updateVisibleCards = () => {
-      const cardCount = cards.length;
-      const newVisibleCards: Movie[] = [];
-
-      for (let i = 0; i <= 4; i++) {
-        const cardIndex = (activeIndex + i) % cardCount;
-        newVisibleCards.push(cards[cardIndex]);
-      }
-      setTimeout(() => {
-        setVisibleCards(newVisibleCards);
-        setActiveCard(cards[activeIndex]);
-      }, 150);
-    };
-
     updateVisibleCards();
   }, [activeIndex, movies]);
 
+
+
+  
   return (
     <div className="relative flex space-x-2 max-w-7xl h-full mx-auto my-5 p-2">
       <div className="relative w-full transition scale-80 lg:scale-90  h-full ">
