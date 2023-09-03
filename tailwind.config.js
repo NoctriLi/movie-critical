@@ -65,10 +65,29 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        cardFlipF: {
+          "0%": { transform: "rotatey(180deg)"  },
+          "0%": { transform: "scaleX(0)"  },
+
+          "50%": { transform: "scaleX(0)"  },
+          "100%": {  transform: "rotatey(0deg)"},
+          "100%": { transform: "scaleX(1)"  },
+        },
+        cardFlipB: {
+          "100%": { transform: "rotatey(180deg)"  },
+          "100%": { transform: "scaleX(0)"  },
+
+          "50%": { transform: "scaleX(0)"  },
+          "0%": {  transform: "rotatey(0deg)"},
+          "0%": { transform: "scaleX(1)"  },
+        },
+        
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        cardFlipF: "cardFlipF 0.25s ease-out forwards 1 ",
+        cardFlipB: "cardFlipB 0.25s ease-out forwards 1",
       },
     },
   },

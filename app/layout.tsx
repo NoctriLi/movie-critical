@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import { Inter } from 'next/font/google'
 import Navbar from '@/app/_components/nav/Navbar'
+import Footer from './_components/footer/Footer'
 import { Roboto } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Toaster } from "@/components/ui/toaster"
@@ -34,6 +35,7 @@ export default function RootLayout({
                     <div className="pt-20"></div>
                     {children}
                     <Toaster />
+                    <Footer />
                 </ThemeProvider>
             </body>
         </html>

@@ -14,6 +14,8 @@ const Maincard: React.FC<MainCardProps> = ({
   activeIndex,
   direction,
 }) => {
+
+  
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     setLoaded(false);

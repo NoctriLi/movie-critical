@@ -115,7 +115,7 @@ const ItemCard = ({ item, searchType }: { item: any; searchType: String }) => {
               </div>
             </div>
 
-            <div className="relative h-32 overflow-hidden rounded bg-primary p-3 text-primary-foreground font-bolder shadow shadow-muted">
+            <div className="font-bolder relative h-32 overflow-hidden rounded bg-primary p-3 text-primary-foreground shadow shadow-muted">
               <p>{(item.overview && stringLimit(item.overview)) || 'N/A'}</p>
             </div>
           </>
@@ -144,7 +144,7 @@ const ItemCard = ({ item, searchType }: { item: any; searchType: String }) => {
                 </p>
               </div>
             </div>
-            <div className="relative h-32 overflow-hidden rounded bg-primary p-3 text-primary-foreground font-bolder shadow shadow-muted">
+            <div className="font-bolder relative h-32 overflow-hidden rounded bg-primary p-3 text-primary-foreground shadow shadow-muted">
               <p>{(item.overview && stringLimit(item.overview)) || 'N/A'}</p>
             </div>
           </>
