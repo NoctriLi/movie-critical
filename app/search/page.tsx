@@ -15,52 +15,35 @@ interface Props {
 const Page: React.FC<Props> = () => {
   const keywordParams = useSearchParams()
   const keyword = keywordParams.get('keyword') || ''
-  console.log(keyword)
   const [searchType, setSearchType] = useState('all')
-  console.log(searchType)
-
   const [page, setPage] = useState({ currPage: 1 })
   const [totalPage, setTotalPage] = useState(2)
   const [list, setList]: any[] = useState([])
-  const [filtered, setFiltered] = useState(list)
+
   const [searchUrl, setSearchUrl] = useState(
     `/api/search/all/${keyword}/${page.currPage}`
   )
   const { toast } = useToast()
 
-  function makeSearchUrl() {
-    if (searchType === 'all') {
-      setSearchUrl(`/api/search/all/${keyword}/${page.currPage}`)
-    } else if (searchType === 'movie') {
-      setSearchUrl(`/api/search/movie/${keyword}/${page.currPage}`)
-    } else if (searchType === 'tv') {
-      setSearchUrl(`/api/search/tv/${keyword}/${page.currPage}`)
-    } else if (searchType === 'people') {
-      setSearchUrl(`/api/search/people/${keyword}/${page.currPage}`)
-    } else {
-      toast({
-        title: 'what?!',
-        description: 'Invalid search type',
-      })
-    }
-  }
+  
 
-  const onScroll = () => {
-    if (
-      window.scrollY + window.innerHeight === document.body.scrollHeight &&
-      page.currPage < totalPage
-    ) {
-      console.log('bottom')
-      const timer = setTimeout(() => {
-        setPage({
-          currPage: page.currPage + 1,
-        })
-      }, 500)
-
-      return () => clearTimeout(timer)
-    }
-  }
   useEffect(() => {
+    const onScroll = () => {
+      if (
+        window.scrollY + window.innerHeight === document.body.scrollHeight &&
+        page.currPage < totalPage
+      ) {
+
+        const timer = setTimeout(() => {
+          setPage({
+            currPage: page.currPage + 1,
+          })
+        }, 500)
+
+        return () => clearTimeout(timer)
+      }
+    }
+
     onScroll()
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
@@ -73,7 +56,7 @@ const Page: React.FC<Props> = () => {
 
   useEffect(() => {
     if (!keyword || keyword.length <= 0) return
-    console.log(keyword, searchUrl)
+
     const fetchData = async () => {
       const res = await fetch(`${searchUrl}`, {
         method: 'GET',
@@ -88,15 +71,31 @@ const Page: React.FC<Props> = () => {
       }
     }
     fetchData()
-  }, [page.currPage, searchUrl])
+  }, [page.currPage, searchUrl, keyword])
 
   useEffect(() => {
+    function makeSearchUrl() {
+      if (searchType === 'all') {
+        setSearchUrl(`/api/search/all/${keyword}/${page.currPage}`)
+      } else if (searchType === 'movie') {
+        setSearchUrl(`/api/search/movie/${keyword}/${page.currPage}`)
+      } else if (searchType === 'tv') {
+        setSearchUrl(`/api/search/tv/${keyword}/${page.currPage}`)
+      } else if (searchType === 'people') {
+        setSearchUrl(`/api/search/people/${keyword}/${page.currPage}`)
+      } else {
+        toast({
+          title: 'what?!',
+          description: 'Invalid search type',
+        })
+      }
+    }
     makeSearchUrl()
-  }, [searchType, keyword])
+  }, [searchType, keyword, page])
 
   return (
     <div className="relative flex  w-screen flex-col border-b-[13rem] border-zinc-950">
-      <div className="flex h-20 p-2 flex-col justify-between rounded border-b font-bold border-black bg-primary text-primary-foreground">
+      <div className="flex h-20 flex-col justify-between rounded border-b border-black bg-primary p-2 font-bold text-primary-foreground">
         <div>Search</div>
 
         <h1>Movies, TV Shows, People</h1>
@@ -107,11 +106,7 @@ const Page: React.FC<Props> = () => {
       </div>
       <div className="sm: ps-1/5">
         {searchType && (
-          <SearchPageResults
-            list={list}
-            onScroll={onScroll}
-            searchType={searchType}
-          />
+          <SearchPageResults list={list} searchType={searchType} />
         )}
       </div>
     </div>

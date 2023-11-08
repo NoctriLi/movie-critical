@@ -1,4 +1,4 @@
-export default {
+const genres = {
     movieGenres: [
       {
         id: 28,
@@ -144,3 +144,4 @@ export default {
     }
     ]
   }
+  export default genres;
