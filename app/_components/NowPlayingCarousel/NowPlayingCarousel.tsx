@@ -41,7 +41,7 @@ const NowPlayingCourosel: React.FC<Movies> = (movies) => {
     }
 
     updateVisibleCards()
-  }, [activeIndex, movies])
+  }, [activeIndex, movies, cards])
 
   return (
     <div className="relative mx-auto my-5 flex h-full max-w-7xl space-x-2 p-2">

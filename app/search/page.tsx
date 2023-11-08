@@ -47,7 +47,7 @@ const Page: React.FC<Props> = () => {
     onScroll()
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
-  }, [page.currPage])
+  }, [page.currPage, totalPage])
 
   useEffect(() => {
     setList([])
@@ -91,7 +91,7 @@ const Page: React.FC<Props> = () => {
       }
     }
     makeSearchUrl()
-  }, [searchType, keyword, page])
+  }, [searchType, keyword, page, toast])
 
   return (
     <div className="relative flex  w-screen flex-col border-b-[13rem] border-zinc-950">
