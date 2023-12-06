@@ -31,8 +31,7 @@ const ItemCard = ({ item, searchType }: { item: any; searchType: String }) => {
 
 
   return (
-    <Link
-    prefetch={false}
+    <a
       href={url}
       className="relative mx-2 my-2 flex h-[400px] w-[300px] flex-col rounded border-8 bg-card p-2 shadow "
     >
@@ -150,7 +149,7 @@ const ItemCard = ({ item, searchType }: { item: any; searchType: String }) => {
           </>
         )}
       </div>
-    </Link>
+    </a>
   )
 }
 export default ItemCard

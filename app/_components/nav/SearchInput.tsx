@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react'
 import SearchBarResults from './SearchBarResults'
-import Link from 'next/link'
+
 
 const SearchInput = () => {
   const [searchTerm, setSearchTerm] = React.useState('')
@@ -53,8 +53,7 @@ const SearchInput = () => {
           className="h-8 w-full bg-background p-1 text-xs  focus:border-background focus:outline-none"
         />
       </div>
-      <Link
-      prefetch={false}
+      <a
         href={`/search?keyword=${searchTerm}`}
         className=" mx-auto h-full w-fit border-s border-background px-2 py-1"
       >
@@ -72,7 +71,7 @@ const SearchInput = () => {
             d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
           />
         </svg>
-      </Link>
+      </a>
       {searchActive && searchResults.length > 0 && (
         <SearchBarResults
           results={searchResults}

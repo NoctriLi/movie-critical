@@ -1,6 +1,6 @@
 import React from "react";
 // import { useRouter } from "next/router";
-import Link from "next/link";
+
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { CastMovie, CrewMovie } from "@/lib/interfaces";
 
@@ -55,12 +55,12 @@ const MovieCard = (movie: CastMovie | CrewMovie) => {
         {isCastMovie(movie) ? movie.character : movie.job}
       </p>
 
-      <Link prefetch={false} href={`/movies/${movie.id}`} className={cardStyles.hoverBox}>
+      <a href={`/movies/${movie.id}`} className={cardStyles.hoverBox}>
                 <ScrollArea className={cardStyles.overviewText}>
 
                     {movie.overview}
                 </ScrollArea>
-            </Link>
+            </a>
 
       </div>
     // <div className="card flex">

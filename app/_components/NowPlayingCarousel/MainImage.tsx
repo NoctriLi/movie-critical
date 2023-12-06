@@ -23,8 +23,7 @@ const MainCard = ({ card, children, activeIndex }: MainCardProps) => {
     <>
       <div className='relative bg-black z-[200] rounded w-full h-full'
         >
-        <Link
-        prefetch={false}
+        <a
           href={`/movies/${card.id}`}
           key={card.id}
           className={`rounded relative h-4/6 w-full transition-opacity opacity-0 overflow-hidden ${
@@ -39,7 +38,7 @@ const MainCard = ({ card, children, activeIndex }: MainCardProps) => {
             className="object-contain rounded overflow-hidden shadow-foreground mx-auto after:bg-black after:opacity-50 after:absolute after:inset-0 after:z-10 after:transition-opacity after:duration-500 after:ease-in after:delay-100 "
             alt={card.title}
           />
-        </Link>
+        </a>
         {children}
       </div>
         <div className={`relative text-4xl tracking-wide h-2/6 mx-auto  text-foreground opacity-80`}>

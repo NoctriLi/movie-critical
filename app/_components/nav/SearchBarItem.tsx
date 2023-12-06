@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+
 
 interface SearchBarItemProps {
   result: any
@@ -13,8 +13,7 @@ const SearchBarItem: React.FC<SearchBarItemProps> = ({
 }) => {
   if (result.media_type === 'movie') {
     return (
-      <Link
-      prefetch={false}
+      <a
         href={`/movies/${result.id}`}
         className="relative flex h-fit w-full flex-row justify-between border border-foreground bg-primary p-1 text-primary-foreground"
       >
@@ -36,12 +35,11 @@ const SearchBarItem: React.FC<SearchBarItemProps> = ({
             <div>{result.release_date}</div>
           </div>
         </div>
-      </Link>
+      </a>
     )
   } else if (result.media_type === 'tv') {
     return (
-      <Link
-      prefetch={false}
+      <a
         href={`/tvseries/${result.id}`}
         className="relative flex h-fit w-full flex-row justify-between border border-foreground bg-primary p-1 text-primary-foreground"
       >
@@ -63,11 +61,11 @@ const SearchBarItem: React.FC<SearchBarItemProps> = ({
             <div>{result.first_air_date}</div>
           </div>
         </div>
-      </Link>
+      </a>
     )
   } else if (result.media_type === 'person') {
     return (
-      <Link
+      <a
         href={`/people/${result.id}`}
         className="relative flex h-fit w-full flex-row justify-between border border-foreground bg-primary p-1 text-primary-foreground"
       >
@@ -89,7 +87,7 @@ const SearchBarItem: React.FC<SearchBarItemProps> = ({
             <div>{result.known_for_department}</div>
           </div>
         </div>
-      </Link>
+      </a>
     )
   } else {
     return <div> N/A</div>

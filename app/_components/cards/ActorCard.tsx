@@ -1,6 +1,6 @@
 import React from 'react'
 // import { useRouter } from "next/router";
-import Link from 'next/link'
+
 import { CastMember } from '@/lib/interfaces'
 
 const ActorCard: React.FC<CastMember> = (castMember) => {
@@ -29,11 +29,10 @@ const ActorCard: React.FC<CastMember> = (castMember) => {
             (e.currentTarget.src = '/public/images/blank-profile-picture.png')
           }
         />
-        <Link
-        prefetch={false}
+        <a
           className="@container absolute bottom-0 left-0 h-full w-full transform bg-black bg-opacity-50 p-4 text-white opacity-0 duration-500 ease-in-out hover:opacity-100"
           href={`/people/${castMember.id}`}
-        ></Link>
+        ></a>
       </div>
       <div className="flex flex-col py-1 text-center">
         <p className="font-bold">{castMember.name}</p>

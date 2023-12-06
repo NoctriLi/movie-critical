@@ -2,7 +2,7 @@
 
 import React, { useCallback, useState } from 'react'
 // import { useRouter } from "next/router";
-import Link from 'next/link'
+
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Movie } from '@/lib/interfaces'
 
@@ -41,8 +41,7 @@ const MovieCard: React.FC<Movie> = (movie) => {
           <h1 className={cardStyles.title}>{movie.title}</h1>
         </div>
       )}
-      <Link
-      prefetch={false}
+      <a
         href={`/movies/${movie.id}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -55,7 +54,7 @@ const MovieCard: React.FC<Movie> = (movie) => {
             {movie.overview}
           </ScrollArea>
         </div>
-      </Link>
+      </a>
     </div>
   )
 }

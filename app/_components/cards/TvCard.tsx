@@ -1,14 +1,13 @@
 import React, { useCallback } from 'react'
 // import { useRouter } from "next/router";
-import Link from 'next/link'
+
 
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { TVShow } from '@/lib/interfaces'
 
 const TvCard: React.FC<TVShow> = (tvshow) => {
   return (
-    <Link
-    prefetch={false}
+    <a
       href={`/tvseries/${tvshow.id}`}
       className="relative h-fit min-w-[175px] snap-center overflow-hidden rounded bg-white shadow"
     >
@@ -27,7 +26,7 @@ const TvCard: React.FC<TVShow> = (tvshow) => {
           {tvshow.overview}
         </ScrollArea>
       </div>
-    </Link>
+    </a>
   )
 }
 

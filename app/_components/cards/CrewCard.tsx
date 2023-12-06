@@ -1,6 +1,6 @@
 import React from 'react'
 // import { useRouter } from "next/router";
-import Link from 'next/link'
+
 
 
 
@@ -31,11 +31,10 @@ const CrewCard: React.FC<any> = (crewMember) => {
             (e.currentTarget.src = '/public/images/blank-profile-picture.png')
           }
         />
-        <Link
-        prefetch={false}
+        <a
           className="@container absolute bottom-0 left-0 h-full w-full transform bg-black bg-opacity-50 p-4 text-white opacity-0 duration-500 ease-in-out hover:opacity-100"
           href={`/people/${crewMember.id}`}
-        ></Link>
+        ></a>
       </div>
 
       <div className="mx-auto flex h-fit w-full flex-col py-2 text-center">

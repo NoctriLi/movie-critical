@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useCallback } from 'react'
-import Link from 'next/link'
+
 import { usePathname, useSearchParams } from 'next/navigation'
 
 const SearchPageInput = () => {
@@ -32,8 +32,7 @@ const SearchPageInput = () => {
                     className="h-8 w-full bg-background text-xs text-foreground p-1 focus:border-white focus:outline-none shadow shadow-foreground"
                 />
             </div>
-            <Link
-            prefetch={false}
+            <a
                 href={pathname + '?' + createQueryString("keyword", searchText)}
                 rel="search"
                 className=" mx-auto h-full w-fit border-s border-foreground px-2 py-1 shadow shadow-foreground"
@@ -52,7 +51,7 @@ const SearchPageInput = () => {
                         d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                     />
                 </svg>
-            </Link>
+            </a>
         </div>
     )
 }

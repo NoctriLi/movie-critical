@@ -85,7 +85,7 @@ const Maincard: React.FC<MainCardProps> = ({
               }`
             }
             >
-              <Link prefetch={false} href={`/movies/${card.id}`}>
+              <a href={`/movies/${card.id}`}>
               <img
                 src={"https://image.tmdb.org/t/p/w342" + card.backdrop_path}    
                 placeholder="blur"
@@ -94,7 +94,7 @@ const Maincard: React.FC<MainCardProps> = ({
                 alt={card.title}
                 className="object-cover"
               />
-              </Link>
+              </a>
               <p className=" text-white bg-zinc-900 opacity-80">{card.title}</p>
             </div>
           ))}
