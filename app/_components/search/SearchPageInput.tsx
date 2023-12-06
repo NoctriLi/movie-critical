@@ -33,6 +33,7 @@ const SearchPageInput = () => {
                 />
             </div>
             <Link
+            prefetch={false}
                 href={pathname + '?' + createQueryString("keyword", searchText)}
                 rel="search"
                 className=" mx-auto h-full w-fit border-s border-foreground px-2 py-1 shadow shadow-foreground"

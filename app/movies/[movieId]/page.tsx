@@ -14,6 +14,7 @@ async function getMovies(movieId: string) {
         accept: 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
     }
   )
   return res.json()
@@ -27,6 +28,7 @@ async function getRecommendations(movieId: string) {
         accept: 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
     }
   )
   return res.json()
@@ -40,6 +42,7 @@ async function getCredits(movieId: string) {
         accept: 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
     }
   )
   return res.json()

@@ -52,6 +52,7 @@ const getPerson = async (personId: string) => {
         accept: 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
     }
   )
   return res.json()

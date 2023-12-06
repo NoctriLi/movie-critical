@@ -55,7 +55,7 @@ const MovieCard = (movie: CastMovie | CrewMovie) => {
         {isCastMovie(movie) ? movie.character : movie.job}
       </p>
 
-      <Link href={`/movies/${movie.id}`} className={cardStyles.hoverBox}>
+      <Link prefetch={false} href={`/movies/${movie.id}`} className={cardStyles.hoverBox}>
                 <ScrollArea className={cardStyles.overviewText}>
 
                     {movie.overview}

@@ -42,6 +42,7 @@ const MovieCard: React.FC<Movie> = (movie) => {
         </div>
       )}
       <Link
+      prefetch={false}
         href={`/movies/${movie.id}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

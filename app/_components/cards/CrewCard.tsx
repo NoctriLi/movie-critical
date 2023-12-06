@@ -1,19 +1,10 @@
 import React from 'react'
 // import { useRouter } from "next/router";
 import Link from 'next/link'
-import Image from 'next/image'
 
-interface Image {
-  src: string
-  width: number
-  quality?: number
-}
 
-const imageLoader = ({ src, width, quality }: Image) => {
-  return `https://example.com/${src}?w=${width}&q=${
-    quality || '/blank-profile-picture.png'
-  }`
-}
+
+
 
 const CrewCard: React.FC<any> = (crewMember) => {
   // const router = useRouter();
@@ -41,6 +32,7 @@ const CrewCard: React.FC<any> = (crewMember) => {
           }
         />
         <Link
+        prefetch={false}
           className="@container absolute bottom-0 left-0 h-full w-full transform bg-black bg-opacity-50 p-4 text-white opacity-0 duration-500 ease-in-out hover:opacity-100"
           href={`/people/${crewMember.id}`}
         ></Link>

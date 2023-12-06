@@ -24,6 +24,7 @@ const MainCard = ({ card, children, activeIndex }: MainCardProps) => {
       <div className='relative bg-black z-[200] rounded w-full h-full'
         >
         <Link
+        prefetch={false}
           href={`/movies/${card.id}`}
           key={card.id}
           className={`rounded relative h-4/6 w-full transition-opacity opacity-0 overflow-hidden ${

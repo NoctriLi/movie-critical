@@ -54,6 +54,7 @@ const SearchInput = () => {
         />
       </div>
       <Link
+      prefetch={false}
         href={`/search?keyword=${searchTerm}`}
         className=" mx-auto h-full w-fit border-s border-background px-2 py-1"
       >

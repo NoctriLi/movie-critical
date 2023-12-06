@@ -14,6 +14,7 @@ const SearchBarItem: React.FC<SearchBarItemProps> = ({
   if (result.media_type === 'movie') {
     return (
       <Link
+      prefetch={false}
         href={`/movies/${result.id}`}
         className="relative flex h-fit w-full flex-row justify-between border border-foreground bg-primary p-1 text-primary-foreground"
       >
@@ -40,6 +41,7 @@ const SearchBarItem: React.FC<SearchBarItemProps> = ({
   } else if (result.media_type === 'tv') {
     return (
       <Link
+      prefetch={false}
         href={`/tvseries/${result.id}`}
         className="relative flex h-fit w-full flex-row justify-between border border-foreground bg-primary p-1 text-primary-foreground"
       >

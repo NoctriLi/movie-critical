@@ -17,6 +17,7 @@ async function getTvSeries(seriesId: string) {
         accept: 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
     }
   )
   return res.json()
@@ -30,6 +31,7 @@ async function getRecommendations(seriesId: string) {
         accept: 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
     }
   )
   return res.json()
@@ -43,6 +45,7 @@ async function getCredits(seriesId: string) {
         accept: 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
     }
   )
   return res.json()

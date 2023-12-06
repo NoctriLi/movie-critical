@@ -40,6 +40,7 @@ const SeasonCard = ({ season, seriesId }: any) => {
         </div>
       )}
       <Link
+      prefetch={false}
         className="@container absolute bottom-0 left-0 h-full w-full transform bg-black bg-opacity-50 p-4 text-white opacity-0 duration-500 ease-in-out hover:opacity-100"
         href={`/seasons/${seriesId}/${season.season_number}`}
       ></Link>

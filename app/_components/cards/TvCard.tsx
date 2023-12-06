@@ -8,6 +8,7 @@ import { TVShow } from '@/lib/interfaces'
 const TvCard: React.FC<TVShow> = (tvshow) => {
   return (
     <Link
+    prefetch={false}
       href={`/tvseries/${tvshow.id}`}
       className="relative h-fit min-w-[175px] snap-center overflow-hidden rounded bg-white shadow"
     >

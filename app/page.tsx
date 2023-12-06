@@ -4,6 +4,8 @@ import Slider from "@/app/_components/sliders/Slider";
 
 import NowPlayingCourosel from "./_components/NowPlayingCarousel/NowPlayingCarousel";
 
+
+
 const token = process.env.TMDB_TOKEN;
 async function getMovies() {
   let res = await fetch("https://api.themoviedb.org/3/discover/movie", {
@@ -12,6 +14,7 @@ async function getMovies() {
       accept: "application/json",
       Authorization: `Bearer ${token}`,
     },
+    cache: "no-store",
   });
   const data = await res.json();
 
@@ -26,6 +29,7 @@ async function getCurrentTVSeries() {
         accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
     }
   );
   const data = await res.json();
