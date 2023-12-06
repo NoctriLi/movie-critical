@@ -5,6 +5,8 @@ import Footer from './_components/footer/Footer'
 import { Roboto } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Toaster } from "@/components/ui/toaster"
+import { Analytics} from "@vercel/analytics/react"
+
 const roboto = Roboto({ weight: '400', subsets: ['latin'] })
 
 const inter = Inter({ subsets: ['latin'] })
@@ -36,6 +38,7 @@ export default function RootLayout({
                     {children}
                     <Toaster />
                     <Footer />
+                    <Analytics />
                 </ThemeProvider>
             </body>
         </html>

@@ -53,7 +53,7 @@ const NowPlayingCourosel: React.FC<Movies> = (movies) => {
       </div>
 
       <SideImages
-        movies={...visibleCards}
+        movies={visibleCards}
         activeIndex={activeIndex}
         direction={direction}
       />

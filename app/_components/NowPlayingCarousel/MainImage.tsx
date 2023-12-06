@@ -31,7 +31,7 @@ const MainCard = ({ card, children, activeIndex }: MainCardProps) => {
             loaded && "opacity-100"
           } ease-in duration-400`}
         >
-          <Image
+          <img
             src={"https://image.tmdb.org/t/p/w780" + card.backdrop_path}
             width={1280}
             height={720}
