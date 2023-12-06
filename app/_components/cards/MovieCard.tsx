@@ -3,7 +3,6 @@
 import React, { useCallback, useState } from 'react'
 // import { useRouter } from "next/router";
 import Link from 'next/link'
-import Image from 'next/image'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Movie } from '@/lib/interfaces'
 
@@ -26,7 +25,7 @@ const MovieCard: React.FC<Movie> = (movie) => {
   return (
     <div className={cardStyles.card }>
       {movie.poster_path != undefined ? (
-        <Image
+        <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
           height={300}

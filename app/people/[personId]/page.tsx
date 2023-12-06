@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { HiChevronLeft } from 'react-icons/hi'
-// import { useRouter } from "next/router";
-// import usePerson from "@/hooks/usePerson";
-// import useMovie from "@/hooks/useMovie";
-// import useRecommendations from "@/hooks/useRecommendations";
+import React from 'react'
+
 import Slider from '@/app/_components/sliders/Slider'
-import ActorSlider from '@/app/_components/sliders/ActorSlider'
-import CrewSlider from '@/app/_components/sliders/CrewSlider'
-import useCredits from '@/hooks/useCredits'
-import MovieDetailsTable from '@/app/_components/tables/MovieDetailsTable'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import Image from 'next/image'
+
+
 const token = process.env.TMDB_TOKEN
 
 let address = process.env.WEB_LOC
 
 function formatDate(date: Date) {
-  console.log(date)
-
   const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date)
   const mo = new Intl.DateTimeFormat('en', { month: 'numeric' }).format(date)
   const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date)
@@ -46,7 +36,6 @@ function calculateAge({
   return age
 }
 function parseDate(date: string) {
-  console.log(date)
   const parts = date.split('-')
   const year = parseInt(parts[0], 10)
   const month = parseInt(parts[1], 10)
@@ -94,20 +83,17 @@ export default async function Page({
   if (birthday !== 'N/A') {
     age = calculateAge({ birthday, deathday })
   }
-  console.log(age)
 
   // const movieRating =
   //   details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === "US")
   //     ?.release_dates[0].certification || "NR";
-
-  console.log(details)
 
   return (
     <div className="flex h-fit w-full flex-col py-5">
       <div className="row-span-1 grid grid-cols-1 gap-5 bg-zinc-950 p-5 md:grid-cols-2 ">
         <div className=" col-span-auto ">
           {details?.profile_path == undefined ? (
-            <Image
+            <img
               src={`/blank-profile-picture.png`}
               loading="lazy"
               width={300}
@@ -116,14 +102,13 @@ export default async function Page({
               className="mx-auto w-[500px] rounded"
             />
           ) : (
-            <Image
+            <img
               src={
                 image_path
                   ? `https://image.tmdb.org/t/p/w500${image_path}`
                   : `/blank-profile-picture.png`
               }
               loading="eager"
-              priority={true}
               width={300}
               height={400}
               alt="poster"
@@ -192,12 +177,14 @@ export default async function Page({
         </div>
       </div>
       <section className="relative flex h-fit w-screen flex-wrap items-start p-5 text-foreground">
-      <div className="mx-auto flex w-full flex-col overflow-hidden">
-        <h2 className="text-center text-2xl font-bold tracking-tight">Roles</h2>
-        {details?.movie_credits && (
-          <Slider list={details.movie_credits.cast} type={'moviecast'} />
-        )}
-      </div>
+        <div className="mx-auto flex w-full flex-col overflow-hidden">
+          <h2 className="text-center text-2xl font-bold tracking-tight">
+            Roles
+          </h2>
+          {details?.movie_credits && (
+            <Slider list={details.movie_credits.cast} type={'moviecast'} />
+          )}
+        </div>
       </section>
     </div>
   )

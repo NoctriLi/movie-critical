@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Movie } from "@/lib/interfaces";
@@ -68,7 +67,7 @@ const Maincard: React.FC<MainCardProps> = ({
           : " z-1")
       : "";
 
-  console.log(movies);
+
   return (
     <>
       <div className="relative w-0 scale-0 lg:flex flex-col lg:w-1/3 transition -translate-x-full lg:scale-100 lg:translate-x-0 items-center">
@@ -87,13 +86,9 @@ const Maincard: React.FC<MainCardProps> = ({
             }
             >
               <Link href={`/movies/${card.id}`}>
-              <Image
-                src={"https://image.tmdb.org/t/p/w342" + card.backdrop_path}
-                fill={true}
+              <img
+                src={"https://image.tmdb.org/t/p/w342" + card.backdrop_path}    
                 placeholder="blur"
-                blurDataURL={
-                  "https://image.tmdb.org/t/p/w342/nHf61UzkfFno5X1ofIhugCPus2R.jpg"
-                }
                 sizes="50vw"
                 style={{ borderRadius: "10px" }}
                 alt={card.title}

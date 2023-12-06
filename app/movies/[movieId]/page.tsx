@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { HiChevronLeft } from 'react-icons/hi'
-import Spinner from '@/app/_components/Spinner'
-import { useSearchParams } from 'next/navigation'
-import useMovie from '@/hooks/useMovie'
-import useRecommendations from '@/hooks/useRecommendations'
+import React from 'react'
+
 import Slider from '@/app/_components/sliders/Slider'
-import ActorSlider from '@/app/_components/sliders/ActorSlider'
-import CrewSlider from '@/app/_components/sliders/CrewSlider'
+
 import MovieDetailsTable from '@/app/_components/tables/MovieDetailsTable'
-import Image from 'next/image'
 const token = process.env.TMDB_TOKEN
 
 async function getMovies(movieId: string) {
@@ -70,13 +64,12 @@ export default async function Page({
     details?.release_dates?.results?.find((i: any) => i.iso_3166_1 === 'US')
       ?.release_dates[0].certification || 'NR'
 
-  console.log(credits)
   return (
     <div className="flex h-auto w-full flex-col gap-10 bg-background">
       <div className="row-span-1 grid grid-cols-1 gap-5 bg-zinc-950 p-5 md:grid-cols-2 ">
         <div className=" col-span-auto ">
           {details?.poster_path == undefined ? (
-            <Image
+            <img
               src={`/blank-profile-picture.png`}
               loading="lazy"
               width={300}
@@ -85,10 +78,9 @@ export default async function Page({
               className="mx-auto w-[500px] rounded"
             />
           ) : (
-            <Image
+            <img
               src={`https://image.tmdb.org/t/p/w500${details?.poster_path}`}
               loading="eager"
-              priority={true}
               width={300}
               height={400}
               alt="poster"
@@ -147,14 +139,14 @@ export default async function Page({
           </h2>
 
           <div className="mx-auto flex w-full flex-wrap justify-evenly overflow-hidden">
-            <div className=" flex h-full w-full lg:max-w-[600px]  flex-col">
+            <div className=" flex h-full w-full flex-col  lg:max-w-[600px]">
               <h3 className="text-xl font-bold tracking-tight  ">Cast</h3>
               <div className="w-full justify-center align-middle ">
                 {credits && <Slider list={credits.cast} type={'cast'} />}
               </div>
             </div>
 
-            <div className="flex h-full w-full lg:max-w-[600px] flex-col ">
+            <div className="flex h-full w-full flex-col lg:max-w-[600px] ">
               <h3 className="text-xl font-bold tracking-tight  ">Crew</h3>
               <div className=" w-full justify-center space-x-5 align-middle ">
                 {credits && <Slider list={credits.crew} type={'crew'} />}

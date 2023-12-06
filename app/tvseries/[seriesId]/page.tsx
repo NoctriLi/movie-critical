@@ -1,16 +1,11 @@
 import React from 'react'
 
-import Spinner from '@/app/_components/Spinner'
-import { useSearchParams } from 'next/navigation'
 import Slider from '@/app/_components/sliders/Slider'
-import ActorSlider from '@/app/_components/sliders/ActorSlider'
-import CrewSlider from '@/app/_components/sliders/CrewSlider'
+
 import TvDetailsTable from '@/app/_components/tables/TvDetailsTable'
 import { TVDetails } from '@/lib/interfaces'
-import SeasonBox from '@/app/_components/grids/SeasonBox'
-import Image from 'next/image'
 
-const address = process.env.WEB_LOC
+
 const token = process.env.TMDB_TOKEN
 
 async function getTvSeries(seriesId: string) {
@@ -72,7 +67,7 @@ export default async function Page({
       <div className="row-span-1 grid grid-cols-1 gap-5 bg-zinc-950 p-5 md:grid-cols-2 ">
         <div className=" col-span-auto ">
           {details?.poster_path == undefined ? (
-            <Image
+            <img
               src={`/blank-profile-picture.png`}
               loading="lazy"
               width={300}
@@ -81,10 +76,9 @@ export default async function Page({
               className="mx-auto w-[500px] rounded"
             />
           ) : (
-            <Image
+            <img
               src={`https://image.tmdb.org/t/p/w500${details?.poster_path}`}
               loading="eager"
-              priority={true}
               width={300}
               height={400}
               alt="poster"

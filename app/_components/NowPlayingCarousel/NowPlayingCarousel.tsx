@@ -8,7 +8,7 @@ import { Movies, Movie } from '@/lib/interfaces'
 
 const NowPlayingCourosel: React.FC<Movies> = (movies) => {
   const cards = movies.results
-  console.log(cards)
+
   const [activeIndex, setActiveIndex] = useState(0)
   const [visibleCards, setVisibleCards] = useState<Movie[]>([])
   const [activeCard, setActiveCard] = useState<Movie>(cards[activeIndex])

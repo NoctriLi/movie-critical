@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 

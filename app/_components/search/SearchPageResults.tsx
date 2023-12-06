@@ -1,11 +1,10 @@
 
-import React, { useEffect, useState } from 'react'
+
 import ItemCard from './ItemCard'
-import SearchPageInput from './SearchPageInput'
-import genres from '@/lib/genres'
+
 
 const SearchPageResults = ({ list, onScroll, searchType }: any) => {
-    console.log(searchType)
+
     return (
         
             <div

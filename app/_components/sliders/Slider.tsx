@@ -1,6 +1,6 @@
 'use client'
 import React, { Fragment, useEffect } from 'react'
-import { TVShow, Movie } from '@/lib/interfaces'
+
 import TvCard from '../cards/TvCard'
 import MovieCard from '../cards/MovieCard'
 import MovieCastCard from '../cards/MovieCastCard'
@@ -8,7 +8,7 @@ import ActorCard from '../cards/ActorCard'
 import CrewCard from '../cards/CrewCard'
 import SeasonCard from '../cards/SeasonCard'
 import EpisodeCard from '../cards/EpisodeCard'
-import { ScrollArea } from '@/components/ui/scroll-area'
+
 import { HiChevronLeft } from 'react-icons/hi'
 import { HiChevronRight } from 'react-icons/hi'
 
@@ -20,8 +20,8 @@ interface Props {
 
 const Slider: React.FC<Props> = ({ list, type, id }) => {
   const sliderRef = React.useRef<HTMLDivElement>(null)
-  console.log(id, type)
-  if (type === 'episode') console.log(list)
+
+ 
 
   const handlePrev = () => {
     sliderRef.current?.scrollBy(-200, 0)

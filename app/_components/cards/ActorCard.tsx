@@ -1,7 +1,6 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 // import { useRouter } from "next/router";
 import Link from 'next/link'
-import Image from 'next/image'
 import { CastMember } from '@/lib/interfaces'
 
 const ActorCard: React.FC<CastMember> = (castMember) => {
@@ -15,7 +14,7 @@ const ActorCard: React.FC<CastMember> = (castMember) => {
   return (
     <div className="relative h-fit min-w-[100px] snap-center overflow-hidden rounded shadow">
       <div className="relative">
-        <Image
+        <img
           src={
             castMember.profile_path
               ? `https://image.tmdb.org/t/p/w500${castMember.profile_path}`

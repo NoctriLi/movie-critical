@@ -4,7 +4,6 @@ import Spinner from '@/app/_components/Spinner'
 import Slider from '@/app/_components/sliders/Slider'
 import { Episode } from '@/lib/interfaces'
 
-import Image from 'next/image'
 const token = process.env.TMDB_TOKEN
 let address = process.env.WEB_LOC
 
@@ -33,7 +32,7 @@ async function getSeason(seriesId: string, season: string) {
       },
     }
   )
-  console.log(res)
+
   return res.json()
 }
 async function getEpisode(seriesId: string, season: string, episode: string) {
@@ -95,14 +94,14 @@ export default async function Page({
   const credits = await getCredits(seriesId, season, episode)
   const seriesDetails = await getTvSeries(seriesId)
   const seasonDetails = await getSeason(seriesId, season)
-  console.log(seasonDetails.episodes)
+
 
   return (
     <div className="relative flex h-[300vh] w-full flex-col">
       <div className="relative row-span-1 grid grid-cols-1 gap-5 bg-zinc-950 p-5 md:grid-cols-2 ">
         <div className=" col-span-auto ">
           {details?.still_path == undefined ? (
-            <Image
+            <img
               src={`/blank-profile-picture.png`}
               loading="lazy"
               width={300}
@@ -111,7 +110,7 @@ export default async function Page({
               className="mx-auto w-[500px] rounded"
             />
           ) : (
-            <Image
+            <img
               src={`https://image.tmdb.org/t/p/w500${details?.still_path}`}
               loading="lazy"
               width={300}

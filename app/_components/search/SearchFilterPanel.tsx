@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import ItemCard from './ItemCard'
+import React from 'react'
+
 import SearchPageInput from './SearchPageInput'
-import genres from '@/lib/genres'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const SearchFilterPanel = ({ setSearchType }: any) => {
 

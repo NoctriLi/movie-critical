@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Movie, Movies } from "@/lib/interfaces";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import Image from "next/image";
 interface CarouselProps {
   movies: Movie[];
 }
@@ -38,7 +37,7 @@ const Carousel: React.FC<Movies> = (movies) => {
         <HiChevronRight className="relative self-center text-white text-5xl flex" />
       </button>
       <div className="flex-1 flex py-2 items-center flex-col sm:overflow-y-auto lg:flex-row @container">
-        <Image
+        <img
           src={
             "https://image.tmdb.org/t/p/w500" +
             movies.results[activeIndex].backdrop_path

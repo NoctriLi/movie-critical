@@ -1,4 +1,4 @@
-import Image from 'next/image'
+
 
 const Footer = () => {
   return (
@@ -6,7 +6,7 @@ const Footer = () => {
       <h1 className="text-sm text-white">
         This product uses the TMDB API but is not endorsed or certified by TMDB
       </h1>
-      <Image
+      <img
         src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
         width={50}
         height={50}

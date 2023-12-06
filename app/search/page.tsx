@@ -1,9 +1,8 @@
 'use client'
-import { useEffect, useState, useRef } from 'react'
-import Image from 'next/image'
+import { useEffect, useState} from 'react'
+
 import { useSearchParams } from 'next/navigation'
-import SearchPageInput from '../_components/search/SearchPageInput'
-import ItemCard from '@/app/_components/search/ItemCard'
+
 import SearchPageResults from '../_components/search/SearchPageResults'
 import SearchFilterPanel from '../_components/search/SearchFilterPanel'
 import { useToast } from '@/components/ui/use-toast'

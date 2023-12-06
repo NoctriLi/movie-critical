@@ -1,7 +1,7 @@
 import React from "react";
 
 import Slider from "@/app/_components/sliders/Slider";
-import MovieSlider from "@/app/_components/sliders/TvSlider";
+
 import NowPlayingCourosel from "./_components/NowPlayingCarousel/NowPlayingCarousel";
 
 const token = process.env.TMDB_TOKEN;

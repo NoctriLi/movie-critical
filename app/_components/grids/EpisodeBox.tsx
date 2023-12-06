@@ -14,7 +14,7 @@ type SeasonBoxProps = {
 
 const EpisodeBox: React.FC<SeasonBoxProps> = async ({ episodes, id }) => {
   const details: SeasonDetails = episodes;
-  console.log(details);
+
   return (
     <div className="mx-auto  px-4 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="slider">

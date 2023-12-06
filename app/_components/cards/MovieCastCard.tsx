@@ -1,6 +1,5 @@
-import React, { useCallback } from "react";
+import React from "react";
 // import { useRouter } from "next/router";
-import Image from "next/image";
 import Link from "next/link";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { CastMovie, CrewMovie } from "@/lib/interfaces";
@@ -31,7 +30,7 @@ const MovieCard = (movie: CastMovie | CrewMovie) => {
   return (
     <div className='relative min-w-[175px] h-fit  rounded shadow overflow-hidden snap-center'>
             {movie.poster_path != undefined ? (
-                <Image
+                <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
                     height={300}

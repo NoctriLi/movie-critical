@@ -1,16 +1,14 @@
 import React from 'react'
 import Spinner from '@/app/_components/Spinner'
-import TvSlider from '@/app/_components/sliders/TvSlider'
+
 import Slider from '@/app/_components/sliders/Slider'
-import SeasonBox from '@/app/_components/grids/SeasonBox'
+
 import { SeasonDetails } from '@/lib/interfaces'
 
-import { GetServerSideProps } from 'next'
-import Image from 'next/image'
-import EpisodeBox from '@/app/_components/grids/EpisodeBox'
+
 
 const token = process.env.TMDB_TOKEN
-const address = process.env.WEB_LOC
+
 async function getTvSeries(seriesId: string) {
   const res = await fetch(
     `https://api.themoviedb.org/3/tv/${seriesId}?language=en-US`,
@@ -36,7 +34,7 @@ async function getSeason(seriesId: string, season: string) {
       },
     }
   )
-  console.log(res)
+
   return res.json()
 }
 async function getRecommendations(seriesId: string) {
@@ -73,7 +71,7 @@ export default async function Page({
 }) {
   const seriesId = params.seriesId[0]
   const season = params.seriesId[1]
-  console.log(seriesId, season)
+
   if (!seriesId || !season) {
     return <Spinner visible={true} />
   }
@@ -87,7 +85,7 @@ export default async function Page({
       <div className="row-span-1 grid grid-cols-1 gap-5 bg-zinc-950 p-5 md:grid-cols-2 ">
         <div className=" col-span-auto ">
           {details?.poster_path == undefined ? (
-            <Image
+            <img
               src={`/blank-profile-picture.png`}
               loading="lazy"
               width={300}
@@ -96,10 +94,9 @@ export default async function Page({
               className="mx-auto w-[500px] rounded"
             />
           ) : (
-            <Image
+            <img
               src={`https://image.tmdb.org/t/p/w500${details?.poster_path}`}
               loading="eager"
-              priority={true}
               width={300}
               height={400}
               alt="poster"

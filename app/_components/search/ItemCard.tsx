@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 
 const twoDecimals = (num: number) => {
@@ -17,7 +16,7 @@ const stringLimit = (str: string) => {
 const ItemCard = ({ item, searchType }: { item: any; searchType: String }) => {
   let url = '/'
 
-  console.log(searchType)
+
   let media_type = item.media_type ? item.media_type : searchType
   if (media_type === 'people') media_type = 'person'
 
@@ -29,7 +28,7 @@ const ItemCard = ({ item, searchType }: { item: any; searchType: String }) => {
     url += `tvseries/${item.id}`
   }
 
-  console.log(media_type)
+
 
   return (
     <Link
@@ -37,7 +36,7 @@ const ItemCard = ({ item, searchType }: { item: any; searchType: String }) => {
       className="relative mx-2 my-2 flex h-[400px] w-[300px] flex-col rounded border-8 bg-card p-2 shadow "
     >
       <div className="relative flex h-40 rounded">
-        <Image
+        <img
           src={
             item.profile_path
               ? `https://image.tmdb.org/t/p/w500${item.profile_path}`

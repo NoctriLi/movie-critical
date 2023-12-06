@@ -1,9 +1,6 @@
 import React, { useCallback } from 'react'
 // import { useRouter } from "next/router";
 import Link from 'next/link'
-import Image from 'next/image'
-import { SeasonDetails } from '@/lib/interfaces'
-import LazyImage from '@/app/_components/LazyImage'
 
 interface Image {
   src: string
@@ -11,34 +8,35 @@ interface Image {
   quality?: number
 }
 
-const SeasonCard = ({season, seriesId }: any) => {
+const SeasonCard = ({ season, seriesId }: any) => {
   // const router = useRouter();
 
   // const redirectToSummary = useCallback(
   //   () => router.push(`/people/${season.id}`),
   //   [router, season.id]
   // );
-  console.log(seriesId)
+
   return (
-    <div className="relative flex flex-col h-fit min-w-[150px] w-[150px] snap-center overflow-hidden rounded  shadow">
-     {season.poster_path != undefined ? ( <Image
-        src={
-          season.poster_path
-            ? `https://image.tmdb.org/t/p/w500${season.poster_path}`
-            : '/blank-profile-picture.png'
-        }
-        alt={season.name}
-        height={300}
-        width={200}
-        className="object-cover"
-        loading="lazy"
-        onError={(e) =>
-          (e.currentTarget.src = '/public/images/blank-profile-picture.png')
-        }
-      />) : (
-        <div className='min-w-[175px] h-[262px] object-cover bg-gray-400 flex items-center'>
-          <p className="w-full bg-primary-foreground text-center font-bold">
-          </p>
+    <div className="relative flex h-fit w-[150px] min-w-[150px] snap-center flex-col overflow-hidden rounded  shadow">
+      {season.poster_path != undefined ? (
+        <img
+          src={
+            season.poster_path
+              ? `https://image.tmdb.org/t/p/w500${season.poster_path}`
+              : '/blank-profile-picture.png'
+          }
+          alt={season.name}
+          height={300}
+          width={200}
+          className="object-cover"
+          loading="lazy"
+          onError={(e) =>
+            (e.currentTarget.src = '/public/images/blank-profile-picture.png')
+          }
+        />
+      ) : (
+        <div className="flex h-[262px] min-w-[175px] items-center bg-gray-400 object-cover">
+          <p className="w-full bg-primary-foreground text-center font-bold"></p>
         </div>
       )}
       <Link
@@ -47,9 +45,7 @@ const SeasonCard = ({season, seriesId }: any) => {
       ></Link>
 
       <div className="flex h-fit w-full items-center  object-cover">
-        <p className="w-full  text-center font-bold">
-          {season.name}
-        </p>
+        <p className="w-full  text-center font-bold">{season.name}</p>
       </div>
     </div>
   )
